@@ -1,0 +1,955 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>صيدلية د/ أحمد عبدالرحيم | المتجر الإلكتروني الرسمي</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy: #00589C;
+      --navy-dark: #003E70;
+      --cyan: #1DA1DB;
+      --cyan-light: #E6F6FD;
+      --bg: #F4F8FB;
+      --card: #FFFFFF;
+      --text: #0F2942;
+      --muted: #5A7184;
+      --border: #DCE8F2;
+      --success: #16A34A;
+      --danger: #DC2626;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Cairo', sans-serif; }
+    body { background: var(--bg); color: var(--text); padding-bottom: 70px; overflow-x: hidden; }
+
+    /* Top Bar */
+    .top-strip {
+      background: var(--navy-dark);
+      color: #fff;
+      font-size: 0.8rem;
+      padding: 6px 20px;
+      text-align: center;
+      font-weight: 600;
+    }
+    .top-strip span { color: #7DD3FC; font-weight: 800; }
+
+    /* Header */
+    header {
+      background: #fff;
+      border-bottom: 3px solid var(--cyan);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 4px 20px rgba(0, 88, 156, 0.08);
+    }
+    .nav-container {
+      max-width: 1280px;
+      margin: auto;
+      padding: 12px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .brand { display: flex; align-items: center; gap: 14px; }
+    .logo-emblem {
+      width: 54px;
+      height: 54px;
+      border-radius: 50%;
+      border: 3px solid var(--navy);
+      background: radial-gradient(circle, #ffffff 60%, var(--cyan-light) 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 3px 10px rgba(29, 161, 219, 0.25);
+      flex-shrink: 0;
+    }
+    .brand-info h1 { font-size: 1.3rem; font-weight: 900; color: var(--navy); line-height: 1.2; }
+    .brand-info p { font-size: 0.78rem; color: var(--cyan); font-weight: 700; }
+
+    .header-actions { display: flex; gap: 10px; align-items: center; }
+    .btn-rx {
+      background: var(--cyan-light);
+      color: var(--navy);
+      border: 1.5px solid var(--cyan);
+      padding: 9px 15px;
+      border-radius: 12px;
+      font-weight: 800;
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .btn-rx:hover { background: var(--cyan); color: #fff; }
+
+    .cart-btn {
+      background: linear-gradient(135deg, var(--navy) 0%, var(--cyan) 100%);
+      color: #fff;
+      border: none;
+      padding: 10px 18px;
+      border-radius: 12px;
+      font-weight: 800;
+      font-size: 0.9rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 4px 12px rgba(0, 88, 156, 0.25);
+      transition: 0.2s;
+    }
+    .cart-btn:hover { transform: translateY(-1px); }
+    .cart-badge {
+      background: #fff;
+      color: var(--navy);
+      border-radius: 50%;
+      min-width: 23px;
+      height: 23px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
+      font-weight: 900;
+    }
+
+    /* Hero Banner */
+    .hero {
+      background: linear-gradient(125deg, var(--navy) 0%, #006BB8 55%, var(--cyan) 100%);
+      color: #fff;
+      padding: 32px 20px 52px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(rgba(255,255,255,0.12) 1px, transparent 1px);
+      background-size: 20px 20px;
+      pointer-events: none;
+    }
+    .hero-content { position: relative; z-index: 2; max-width: 760px; margin: auto; }
+    .hero h2 { font-size: 1.65rem; font-weight: 900; margin-bottom: 8px; }
+    .hero p { font-size: 0.95rem; color: #E0F2FE; margin-bottom: 22px; }
+
+    .search-wrapper {
+      display: flex;
+      background: #fff;
+      border-radius: 14px;
+      padding: 5px;
+      box-shadow: 0 12px 30px rgba(0, 38, 77, 0.22);
+      border: 2px solid rgba(255,255,255,0.4);
+    }
+    .search-wrapper input {
+      flex: 1;
+      border: none;
+      padding: 12px 16px;
+      font-size: 0.95rem;
+      outline: none;
+      color: var(--text);
+      background: transparent;
+    }
+    .search-clear {
+      background: none;
+      border: none;
+      color: var(--muted);
+      font-size: 1.2rem;
+      padding: 0 12px;
+      cursor: pointer;
+      display: none;
+    }
+
+    /* Categories Bar */
+    .categories-wrap {
+      max-width: 1280px;
+      margin: -24px auto 20px;
+      padding: 0 20px;
+      position: relative;
+      z-index: 5;
+    }
+    .categories {
+      display: flex;
+      gap: 10px;
+      overflow-x: auto;
+      padding-bottom: 8px;
+      scrollbar-width: thin;
+    }
+    .cat-btn {
+      background: #fff;
+      border: 1.5px solid var(--border);
+      padding: 10px 16px;
+      border-radius: 12px;
+      white-space: nowrap;
+      font-weight: 800;
+      font-size: 0.85rem;
+      color: var(--navy);
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(0, 88, 156, 0.06);
+      transition: 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .cat-btn:hover { border-color: var(--cyan); background: var(--cyan-light); }
+    .cat-btn.active {
+      background: var(--navy);
+      color: #fff;
+      border-color: var(--navy);
+      box-shadow: 0 6px 15px rgba(0, 88, 156, 0.25);
+    }
+
+    /* Filter Status Bar */
+    .container { max-width: 1280px; margin: auto; padding: 0 20px; }
+    .toolbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .section-title { font-size: 1.15rem; font-weight: 900; color: var(--navy); }
+    .count-pill {
+      background: var(--cyan-light);
+      color: var(--navy);
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 800;
+    }
+
+    /* Products Grid */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(245px, 1fr));
+      gap: 18px;
+    }
+    .card {
+      background: var(--card);
+      border-radius: 16px;
+      padding: 16px;
+      border: 1.5px solid var(--border);
+      box-shadow: 0 4px 14px rgba(0, 88, 156, 0.04);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: 0.22s;
+      position: relative;
+    }
+    .card:hover {
+      transform: translateY(-4px);
+      border-color: var(--cyan);
+      box-shadow: 0 12px 26px rgba(29, 161, 219, 0.14);
+    }
+    .badge-stock {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      font-size: 0.7rem;
+      font-weight: 800;
+      padding: 3px 9px;
+      border-radius: 8px;
+      background: #DCFCE7;
+      color: var(--success);
+    }
+    .badge-stock.out { background: #FEE2E2; color: var(--danger); }
+
+    .card-visual {
+      height: 115px;
+      background: linear-gradient(180deg, var(--cyan-light) 0%, #F8FAFC 100%);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 46px;
+      margin-bottom: 12px;
+      overflow: hidden;
+    }
+    .card-visual img { width: 100%; height: 100%; object-fit: cover; }
+    .card-cat { font-size: 0.75rem; color: var(--cyan); font-weight: 800; margin-bottom: 4px; }
+    .card-title { font-size: 0.98rem; font-weight: 800; color: var(--text); margin-bottom: 4px; line-height: 1.4; }
+    .card-desc { font-size: 0.78rem; color: var(--muted); margin-bottom: 10px; line-height: 1.4; }
+
+    .card-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 12px;
+      border-top: 1px solid var(--border);
+      margin-top: auto;
+    }
+    .price { font-size: 1.15rem; font-weight: 900; color: var(--navy); }
+    .price small { font-size: 0.75rem; font-weight: 700; color: var(--muted); }
+
+    .add-btn {
+      background: var(--navy);
+      color: #fff;
+      border: none;
+      padding: 8px 14px;
+      border-radius: 10px;
+      font-weight: 800;
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+    .add-btn:hover { background: var(--cyan); }
+    .add-btn:disabled { background: #CBD5E1; cursor: not-allowed; }
+
+    /* Overlay & Drawers */
+    .overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 38, 77, 0.55);
+      backdrop-filter: blur(2px);
+      z-index: 200;
+      display: none;
+    }
+    .overlay.open { display: block; }
+
+    .drawer {
+      position: fixed;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      max-width: 420px;
+      height: 100%;
+      background: #fff;
+      z-index: 201;
+      transition: 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 6px 0 30px rgba(0, 0, 0, 0.2);
+    }
+    .drawer.open { left: 0; }
+
+    .drawer-header {
+      padding: 18px 20px;
+      background: linear-gradient(135deg, var(--navy) 0%, var(--cyan) 100%);
+      color: #fff;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .close-btn {
+      background: rgba(255,255,255,0.2);
+      border: none;
+      color: #fff;
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      font-size: 20px;
+      cursor: pointer;
+    }
+    .drawer-body { flex: 1; overflow-y: auto; padding: 16px 20px; }
+    .cart-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--border);
+      gap: 10px;
+    }
+    .qty-controls { display: flex; align-items: center; gap: 8px; }
+    .qty-btn {
+      width: 28px;
+      height: 28px;
+      border-radius: 8px;
+      border: 1.5px solid var(--cyan);
+      background: var(--cyan-light);
+      color: var(--navy);
+      font-weight: 900;
+      cursor: pointer;
+    }
+    .drawer-footer {
+      padding: 16px 20px;
+      border-top: 2px solid var(--border);
+      background: var(--bg);
+    }
+    .form-group { margin-bottom: 10px; }
+    .form-group label { display: block; font-size: 0.8rem; font-weight: 800; color: var(--navy); margin-bottom: 4px; }
+    .form-group input, .form-group textarea {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1.5px solid var(--border);
+      border-radius: 10px;
+      font-size: 0.88rem;
+      outline: none;
+    }
+    .form-group input:focus, .form-group textarea:focus { border-color: var(--cyan); }
+
+    .whatsapp-btn {
+      width: 100%;
+      background: var(--success);
+      color: #fff;
+      border: none;
+      padding: 13px;
+      border-radius: 12px;
+      font-size: 0.98rem;
+      font-weight: 900;
+      cursor: pointer;
+      margin-top: 8px;
+      box-shadow: 0 4px 14px rgba(22, 163, 74, 0.3);
+    }
+
+    /* Modals */
+    .modal {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: #fff;
+      width: 92%;
+      max-width: 500px;
+      max-height: 90vh;
+      overflow-y: auto;
+      border-radius: 20px;
+      z-index: 202;
+      padding: 24px;
+      display: none;
+      border-top: 5px solid var(--cyan);
+      box-shadow: 0 25px 50px rgba(0, 38, 77, 0.25);
+    }
+    .modal.open { display: block; }
+
+    /* Toast Notification */
+    .toast {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: var(--navy);
+      color: #fff;
+      padding: 12px 20px;
+      border-radius: 12px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      border-right: 5px solid var(--cyan);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+      z-index: 300;
+      transform: translateY(120px);
+      transition: 0.3s;
+    }
+    .toast.show { transform: translateY(0); }
+
+    /* Footer */
+    footer {
+      background: var(--navy-dark);
+      color: #E0F2FE;
+      text-align: center;
+      padding: 32px 20px;
+      margin-top: 50px;
+      border-top: 4px solid var(--cyan);
+    }
+    footer h3 { color: #fff; font-size: 1.15rem; margin-bottom: 6px; }
+    .footer-links { margin-top: 14px; display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; }
+    .footer-btn {
+      background: rgba(255,255,255,0.1);
+      color: #fff;
+      border: 1px solid rgba(255,255,255,0.2);
+      padding: 7px 14px;
+      border-radius: 8px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .footer-btn:hover { background: var(--cyan); }
+  </style>
+</head>
+<body>
+
+<div class="top-strip">
+  خدمة التوصيل السريع والاستشارات الصيدلانية عبر واتساب: <span id="topPhoneDisplay">01119713199</span>
+</div>
+
+<header>
+  <div class="nav-container">
+    <div class="brand">
+      <div class="logo-emblem" title="Dr. Ahmed Abdelrehim Pharmacy">
+        <svg width="32" height="32" viewBox="0 0 64 64" fill="none">
+          <path d="M18 22H46L41 34C39 38 35 40 32 40C29 40 25 38 23 34L18 22Z" fill="#1DA1DB"/>
+          <rect x="29" y="39" width="6" height="14" fill="#00589C"/>
+          <rect x="21" y="52" width="22" height="4" rx="2" fill="#00589C"/>
+          <path d="M32 10C26 10 24 15 28 18C33 21 38 23 35 28C33 31 27 32 29 36" stroke="#00589C" stroke-width="3.5" stroke-linecap="round"/>
+          <circle cx="30" cy="11" r="2.5" fill="#00589C"/>
+        </svg>
+      </div>
+      <div class="brand-info">
+        <h1 id="pharmacyNameDisplay">صيدلية د/ أحمد عبدالرحيم</h1>
+        <p>لصاحبها د/ أحمد عبدالرحيم • رعاية صيدلانية متكاملة</p>
+      </div>
+    </div>
+
+    <div class="header-actions">
+      <button class="btn-rx" onclick="openRxModal()">📸 اطلب بالروشتة</button>
+      <button class="cart-btn" onclick="toggleCart()">
+        🛒 السلة <span class="cart-badge" id="cartCount">0</span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero-content">
+    <h2>أهلاً بك في صيدلية د/ أحمد عبدالرحيم</h2>
+    <p>اطلب أدويتك ومنتجات العناية بالبشرة والشعر ومستلزمات الأطفال أونلاين بسهولة</p>
+    <div class="search-wrapper">
+      <input type="text" id="searchInput" placeholder="ابحث باسم الدواء، المنتج، أو القسم (مثال: Panadol, CeraVe, حليب أطفال)..." oninput="handleSearch()" />
+      <button class="search-clear" id="clearSearchBtn" onclick="clearSearch()">✕</button>
+    </div>
+  </div>
+</section>
+
+<div class="categories-wrap">
+  <div class="categories" id="categoryBar"></div>
+</div>
+
+<main class="container">
+  <div class="toolbar">
+    <div class="section-title" id="currentSectionTitle">جميع منتجات الصيدلية</div>
+    <div class="count-pill" id="productsCountLabel">0 صنف</div>
+  </div>
+  <div class="grid" id="productsGrid"></div>
+</main>
+
+<footer>
+  <h3 id="footerPharmacyName">صيدلية د/ أحمد عبدالرحيم</h3>
+  <p>لصاحبها د/ أحمد عبدالرحيم — واتساب وتوصيل: <strong id="footerPhone">01119713199</strong></p>
+  <div class="footer-links">
+    <button class="footer-btn" onclick="openRxModal()">📸 إرسال روشتة واتساب</button>
+    <button class="footer-btn" onclick="openSettings()">⚙️ إعدادات المتجر وربط Google Sheets</button>
+  </div>
+</footer>
+
+<div class="overlay" id="overlay" onclick="closeAll()"></div>
+
+<!-- Cart Drawer -->
+<div class="drawer" id="cartDrawer">
+  <div class="drawer-header">
+    <h3>🛒 سلة المشتريات</h3>
+    <button class="close-btn" onclick="closeAll()">✕</button>
+  </div>
+  <div class="drawer-body" id="cartItems"></div>
+  <div class="drawer-footer">
+    <div style="display:flex; justify-content:space-between; margin-bottom:6px; font-size:0.9rem;">
+      <span>إجمالي الأصناف:</span> <strong id="subTotal">0 ج.م</strong>
+    </div>
+    <div style="display:flex; justify-content:space-between; margin-bottom:10px; font-size:0.88rem; color:var(--muted);">
+      <span>خدمة التوصيل:</span> <span id="deliveryDisplay">20 ج.م</span>
+    </div>
+    <div style="display:flex; justify-content:space-between; margin-bottom:14px; font-size:1.15rem; color:var(--navy); border-top:1px solid var(--border); padding-top:8px;">
+      <strong>الإجمالي النهائي:</strong> <strong id="grandTotal">0 ج.م</strong>
+    </div>
+    <div class="form-group">
+      <input type="text" id="custName" placeholder="الاسم بالكامل *" />
+    </div>
+    <div class="form-group">
+      <input type="tel" id="custPhone" placeholder="رقم الموبايل للتواصل *" />
+    </div>
+    <div class="form-group">
+      <textarea id="custAddress" rows="2" placeholder="العنوان بالتفصيل (المنطقة، الشارع، رقم العمارة، الدور) *"></textarea>
+    </div>
+    <button class="whatsapp-btn" onclick="sendWhatsAppOrder()">📲 تأكيد وإرسال الطلب على واتساب</button>
+  </div>
+</div>
+
+<!-- Prescription Modal -->
+<div class="modal" id="rxModal">
+  <h3 style="color:var(--navy); margin-bottom:10px;">📸 طلب صرف روشتة أو استشارة</h3>
+  <p style="font-size:0.88rem; color:var(--muted); margin-bottom:14px;">
+    اكتب اسمك وعنوانك واضغط على الزر بالأسفل لفتح محادثة واتساب الصيدلية مباشرة وإرفاق صورة الروشتة أو علبة الدواء.
+  </p>
+  <div class="form-group">
+    <label>الاسم:</label>
+    <input type="text" id="rxName" placeholder="اكتب اسمك" />
+  </div>
+  <div class="form-group">
+    <label>العنوان أو ملاحظات إضافية:</label>
+    <textarea id="rxNotes" rows="2" placeholder="اكتب عنوانك أو اسم الدواء المطلوب..."></textarea>
+  </div>
+  <div style="display:flex; gap:10px; margin-top:14px;">
+    <button class="whatsapp-btn" style="margin-top:0; flex:1;" onclick="sendRxWhatsApp()">📲 فتح واتساب وإرسال الروشتة</button>
+    <button class="cat-btn" onclick="closeAll()">إغلاق</button>
+  </div>
+</div>
+
+<!-- Settings Modal -->
+<div class="modal" id="settingsModal">
+  <h3 style="color:var(--navy); margin-bottom:14px;">⚙️ إعدادات الصيدلية وربط البيانات</h3>
+  <div class="form-group">
+    <label>اسم الصيدلية:</label>
+    <input type="text" id="setPharmName" />
+  </div>
+  <div class="form-group">
+    <label>رقم واتساب الصيدلية (بصيغة دولية مثل 201119713199):</label>
+    <input type="text" id="setWhatsapp" />
+  </div>
+  <div class="form-group">
+    <label>قيمة التوصيل (ج.م):</label>
+    <input type="number" id="setDelivery" />
+  </div>
+  <div class="form-group">
+    <label>رابط Google Sheet (CSV من Publish to web):</label>
+    <input type="url" id="setSheetUrl" placeholder="https://docs.google.com/spreadsheets/d/.../pub?output=csv" />
+  </div>
+  <div style="display:flex; gap:10px; margin-top:16px;">
+    <button class="add-btn" style="flex:1; padding:11px;" onclick="saveSettings()">💾 حفظ وتطبيق</button>
+    <button class="cat-btn" style="background:#FEE2E2; color:#DC2626; border-color:#FCA5A5;" onclick="resetDefaultSettings()">استعادة الافتراضي</button>
+    <button class="cat-btn" onclick="closeAll()">إلغاء</button>
+  </div>
+</div>
+
+<div class="toast" id="toast">تمت الإضافة للسلة</div>
+
+<script>
+  const defaultProducts = [
+    // 1. أدوية المسكنات والبرد
+    { id: 101, name: "Panadol Extra 24 Tablets", category: "أدوية المسكنات والبرد", desc: "مسكن للآلام وخافض للحرارة", price: 48, status: "متوفر", icon: "💊" },
+    { id: 102, name: "Cataflam 50mg 20 Tablets", category: "أدوية المسكنات والبرد", desc: "مسكن سريع ومضاد للالتهابات", price: 62, status: "متوفر", icon: "💊" },
+    { id: 103, name: "Congestal 20 Tablets", category: "أدوية المسكنات والبرد", desc: "علاج أعراض البرد والإنفلونزا والرشح", price: 39, status: "متوفر", icon: "🤧" },
+    { id: 104, name: "Brufen 400mg 30 Tablets", category: "أدوية المسكنات والبرد", desc: "مسكن للصداع وآلام الأسنان والمفاصل", price: 54, status: "متوفر", icon: "💊" },
+    { id: 105, name: "Otrivin Adult Nasal Drops 15ml", category: "أدوية المسكنات والبرد", desc: "نقط للأنف لفتح الاحتقان السريع", price: 28, status: "متوفر", icon: "💧" },
+
+    // 2. أدوية الباطنة والجهاز الهضمي
+    { id: 201, name: "Controloc 40mg 14 Tablets", category: "الباطنة والجهاز الهضمي", desc: "علاج حموضة المعدة وارتجاع المريء", price: 112, status: "متوفر", icon: "🩺" },
+    { id: 202, name: "Antinal 200mg 24 Capsules", category: "الباطنة والجهاز الهضمي", desc: "مطهر معوي واسع المجال", price: 42, status: "متوفر", icon: "💊" },
+    { id: 203, name: "Gaviscon Advance Syrup 150ml", category: "الباطنة والجهاز الهضمي", desc: "شراب سريع المفعول لحرقان المعدة", price: 135, status: "متوفر", icon: "🧴" },
+    { id: 204, name: "Coloverin D 30 Tablets", category: "الباطنة والجهاز الهضمي", desc: "علاج تقلصات القولون العصبي والانتفاخ", price: 78, status: "متوفر", icon: "💊" },
+    { id: 205, name: "Motilium 10mg 30 Tablets", category: "الباطنة والجهاز الهضمي", desc: "لتنظيم حركة المعدة وعلاج الغثيان", price: 66, status: "متوفر", icon: "💊" },
+
+    // 3. المضادات الحيوية
+    { id: 301, name: "Augmentin 1g 14 Tablets", category: "المضادات الحيوية", desc: "مضاد حيوي واسع المجال", price: 138, status: "متوفر", icon: "🛡️" },
+    { id: 302, name: "Hibiotic 1g 16 Tablets", category: "المضادات الحيوية", desc: "أموكسيسيلين + كلافولانيك أسيد", price: 105, status: "متوفر", icon: "🛡️" },
+    { id: 303, name: "Zithromax 500mg 3 Capsules", category: "المضادات الحيوية", desc: "أزيثروميسين لعلاج عدوى الجهاز التنفسي", price: 118, status: "متوفر", icon: "💊" },
+    { id: 304, name: "Tavacin 500mg 5 Tablets", category: "المضادات الحيوية", desc: "ليفوفلوكساسين مضاد حيوي", price: 95, status: "متوفر", icon: "💊" },
+    { id: 305, name: "Curam 1g 14 Tablets", category: "المضادات الحيوية", desc: "مضاد حيوي لعلاج الالتهابات البكتيرية", price: 124, status: "متوفر", icon: "🛡️" },
+
+    // 4. الفيتامينات والمكملات الغذائية
+    { id: 401, name: "Centrum Lutein 30 Tablets", category: "الفيتامينات والمكملات", desc: "مجموعة فيتامينات ومعادن متكاملة يومية", price: 410, status: "متوفر", icon: "🌿" },
+    { id: 402, name: "Limitless Omega 3 30 Capsules", category: "الفيتامينات والمكملات", desc: "زيت السمك لصحة القلب والذاكرة", price: 195, status: "متوفر", icon: "🐟" },
+    { id: 403, name: "Kerovit 30 Capsules", category: "الفيتامينات والمكملات", desc: "مكمل غذائي لزيادة النشاط والتركيز", price: 165, status: "متوفر", icon: "⚡" },
+    { id: 404, name: "Osteocare 30 Tablets", category: "الفيتامينات والمكملات", desc: "كالسيوم وماغنسيوم وفيتامين د للعظام", price: 145, status: "متوفر", icon: "🦴" },
+    { id: 405, name: "Feroglobin B12 30 Capsules", category: "الفيتامينات والمكملات", desc: "حديد وزنك وفيتامينات لعلاج الأنيميا", price: 130, status: "متوفر", icon: "🩸" },
+
+    // 5. العناية بالبشرة
+    { id: 501, name: "CeraVe Hydrating Cleanser 236ml", category: "العناية بالبشرة", desc: "غسول مرطب للبشرة العادية والجافة", price: 540, status: "متوفر", icon: "🧴" },
+    { id: 502, name: "La Roche-Posay Anthelios SPF50+", category: "العناية بالبشرة", desc: "واقي شمس عالي الحماية مقاوم للماء", price: 790, status: "متوفر", icon: "☀️" },
+    { id: 503, name: "Bioderma Sensibio H2O 250ml", category: "العناية بالبشرة", desc: "ماء ميسيلار لإزالة المكياج وتنظيف البشرة", price: 495, status: "متوفر", icon: "💧" },
+    { id: 504, name: "Eucerin Hyaluron-Filler Cream", category: "العناية بالبشرة", desc: "كريم ترطيب ومقاومة التجاعيد", price: 980, status: "متوفر", icon: "✨" },
+    { id: 505, name: "Starville Acne Prone Gel 200ml", category: "العناية بالبشرة", desc: "غسول للبشرة الدهنية والمختلطة", price: 165, status: "متوفر", icon: "🧼" },
+
+    // 6. العناية بالشعر
+    { id: 601, name: "Vichy Dercos Anti-Dandruff Shampoo", category: "العناية بالشعر", desc: "شامبو طبي لعلاج القشرة وتهدئة الفروة", price: 620, status: "متوفر", icon: "💆‍♀️" },
+    { id: 602, name: "Strongville Hair Spray 120ml", category: "العناية بالشعر", desc: "سبراي لتقوية البصيلات ومنع التساقط", price: 245, status: "متوفر", icon: "💇‍♀️" },
+    { id: 603, name: "Hair Back 5% Minoxidil Spray", category: "العناية بالشعر", desc: "علاج تساقط الشعر الوراثي وإنبات الفراغات", price: 155, status: "متوفر", icon: "🧴" },
+    { id: 604, name: "Bless Leave-In Curl Cream 300ml", category: "العناية بالشعر", desc: "كريم تصفيف وترطيب للشعر الكيرلي", price: 185, status: "متوفر", icon: "✨" },
+    { id: 605, name: "Seropipe Hair Serum 100ml", category: "العناية بالشعر", desc: "سيروم حماية الشعر من التقصف والهيشان", price: 210, status: "متوفر", icon: "💧" },
+
+    // 7. الأم والطفل
+    { id: 701, name: "Bebelac 1 Infant Formula 400g", category: "الأم والطفل", desc: "حليب أطفال للرضع من عمر يوم إلى 6 شهور", price: 235, status: "متوفر", icon: "🍼" },
+    { id: 702, name: "Pampers Premium Care Size 3", category: "الأم والطفل", desc: "حفاضات ناعمة فائقة الامتصاص للطفل", price: 365, status: "متوفر", icon: "👶" },
+    { id: 703, name: "Sudocrem Antiseptic Cream 125g", category: "الأم والطفل", desc: "كريم الحماية من التهابات الحفاض", price: 240, status: "متوفر", icon: "🧴" },
+    { id: 704, name: "Sanosan Baby Bath & Shampoo 200ml", category: "الأم والطفل", desc: "شامبو وشاور لطيف لا يسبب الدموع", price: 260, status: "متوفر", icon: "🛁" },
+    { id: 705, name: "Avent Natural Feeding Bottle 260ml", category: "الأم والطفل", desc: "ببرونة رضاعة طبيعية مضادة للمغص", price: 340, status: "متوفر", icon: "🍼" },
+
+    // 8. العناية الشخصية والأسنان
+    { id: 801, name: "Sensodyne Repair & Protect 75ml", category: "العناية الشخصية والأسنان", desc: "معجون أسنان لحماية الأسنان الحساسة", price: 115, status: "متوفر", icon: "🦷" },
+    { id: 802, name: "Listerine Cool Mint Mouthwash 250ml", category: "العناية الشخصية والأسنان", desc: "غسول فم لانتعاش يدوم طويلاً", price: 125, status: "متوفر", icon: "💧" },
+    { id: 803, name: "Beesline Whitening Roll-On Deo", category: "العناية الشخصية والأسنان", desc: "مزيل عرق طبيعي لطيف على البشرة", price: 250, status: "متوفر", icon: "🌸" },
+    { id: 804, name: "Gillette Blue3 Comfort Razors", category: "العناية الشخصية والأسنان", desc: "شفرات حلاقة ثلاثية الشفرات", price: 140, status: "متوفر", icon: "🪒" },
+    { id: 805, name: "Dettol Original Liquid Antiseptic 250ml", category: "العناية الشخصية والأسنان", desc: "مطهر ومعقم متعدد الاستخدامات", price: 95, status: "متوفر", icon: "🧼" },
+
+    // 9. الأجهزة والمستلزمات الطبية
+    { id: 901, name: "Omron M2 Basic Blood Pressure", category: "الأجهزة والمستلزمات الطبية", desc: "جهاز قياس ضغط الدم الديجيتال الأوتوماتيك", price: 1450, status: "متوفر", icon: "🩺" },
+    { id: 902, name: "Accu-Chek Instant Glucometer", category: "الأجهزة والمستلزمات الطبية", desc: "جهاز قياس السكر في الدم مع شرائط", price: 690, status: "متوفر", icon: "🩸" },
+    { id: 903, name: "Beurer Digital Thermometer", category: "الأجهزة والمستلزمات الطبية", desc: "ترمومتر ديجيتال سريع لقياس الحرارة", price: 185, status: "متوفر", icon: "🌡️" },
+    { id: 904, name: "Granzia Compressor Nebulizer", category: "الأجهزة والمستلزمات الطبية", desc: "جهاز استنشاق بخار لعلاج ضيق التنفس", price: 920, status: "متوفر", icon: "🫁" },
+    { id: 905, name: "Hansaplast Elastic Bandages 20pcs", category: "الأجهزة والمستلزمات الطبية", desc: "بلاستر جروح طبي مرن مقاوم للماء", price: 38, status: "متوفر", icon: "🩹" }
+  ];
+
+  const defaultConfig = {
+    name: "صيدلية د/ أحمد عبدالرحيم",
+    whatsapp: "201119713199",
+    displayPhone: "01119713199",
+    delivery: 20,
+    sheetUrl: ""
+  };
+
+  let config = JSON.parse(localStorage.getItem('pharmConfig_v2')) || { ...defaultConfig };
+  let products = [...defaultProducts];
+  let cart = [];
+  let currentCategory = "الكل";
+
+  function showToast(msg) {
+    const t = document.getElementById('toast');
+    t.innerText = msg;
+    t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 2200);
+  }
+
+  function applyConfig() {
+    document.getElementById('pharmacyNameDisplay').innerText = config.name;
+    document.getElementById('footerPharmacyName').innerText = config.name;
+    document.title = config.name + " | المتجر الإلكتروني الرسمي";
+    document.getElementById('deliveryDisplay').innerText = config.delivery + " ج.م";
+    const cleanPhone = config.whatsapp.startsWith('20') ? '0' + config.whatsapp.slice(2) : config.whatsapp;
+    document.getElementById('topPhoneDisplay').innerText = cleanPhone;
+    document.getElementById('footerPhone').innerText = cleanPhone;
+  }
+
+  async function loadProducts() {
+    if (config.sheetUrl) {
+      try {
+        const res = await fetch(config.sheetUrl);
+        const text = await res.text();
+        const rows = text.split(/\r?\n/).slice(1);
+        const parsed = rows.map((r, idx) => {
+          const cols = r.split(',');
+          if (cols.length < 3 || !cols[0].trim()) return null;
+          return {
+            id: idx + 1000,
+            name: cols[0].trim().replace(/"/g, ''),
+            category: (cols[1] || "أدوية وعلاجات").trim().replace(/"/g, ''),
+            price: parseFloat(cols[2]) || 0,
+            status: (cols[3] || "متوفر").trim().replace(/"/g, ''),
+            image: (cols[4] || "").trim().replace(/"/g, ''),
+            desc: (cols[5] || "").trim().replace(/"/g, ''),
+            icon: "💊"
+          };
+        }).filter(Boolean);
+        if (parsed.length > 0) products = parsed;
+      } catch (e) {
+        console.error("Error loading sheet:", e);
+      }
+    } else {
+      products = [...defaultProducts];
+    }
+    renderCategories();
+    renderProducts();
+  }
+
+  function renderCategories() {
+    const cats = ["الكل", ...new Set(products.map(p => p.category))];
+    const bar = document.getElementById('categoryBar');
+    bar.innerHTML = cats.map(c => {
+      const count = c === "الكل" ? products.length : products.filter(p => p.category === c).length;
+      return `<button class="cat-btn ${c === currentCategory ? 'active' : ''}" onclick="selectCategory('${c.replace(/'/g, "\\'")}')">${c} (${count})</button>`;
+    }).join('');
+  }
+
+  function selectCategory(cat) {
+    currentCategory = cat;
+    document.getElementById('currentSectionTitle').innerText = cat === "الكل" ? "جميع أقسام ومنتجات الصيدلية" : "قسم: " + cat;
+    renderCategories();
+    renderProducts();
+  }
+
+  function handleSearch() {
+    const val = document.getElementById('searchInput').value;
+    document.getElementById('clearSearchBtn').style.display = val ? 'block' : 'none';
+    renderProducts();
+  }
+
+  function clearSearch() {
+    document.getElementById('searchInput').value = "";
+    document.getElementById('clearSearchBtn').style.display = 'none';
+    renderProducts();
+  }
+
+  function renderProducts() {
+    const q = document.getElementById('searchInput').value.trim().toLowerCase();
+    const filtered = products.filter(p => {
+      const matchCat = currentCategory === "الكل" || p.category === currentCategory;
+      const matchSearch = !q || 
+        p.name.toLowerCase().includes(q) || 
+        p.category.toLowerCase().includes(q) || 
+        (p.desc && p.desc.toLowerCase().includes(q));
+      return matchCat && matchSearch;
+    });
+
+    document.getElementById('productsCountLabel').innerText = `${filtered.length} صنف`;
+    const grid = document.getElementById('productsGrid');
+
+    if (filtered.length === 0) {
+      grid.innerHTML = `<div style="grid-column:1/-1; text-align:center; padding:40px; background:#fff; border-radius:16px; border:1px solid var(--border);">
+        <p style="font-size:1.1rem; font-weight:800; color:var(--navy); margin-bottom:8px;">لم يتم العثور على هذا المنتج في القائمة الحالية</p>
+        <p style="font-size:0.9rem; color:var(--muted); margin-bottom:14px;">يمكنك طلبه مباشرة عبر واتساب الصيدلية وسنوفره لك فوراً</p>
+        <button class="btn-rx" style="margin:auto;" onclick="openRxModal()">📲 اطلبه عبر واتساب الآن</button>
+      </div>`;
+      return;
+    }
+
+    grid.innerHTML = filtered.map(p => {
+      const available = p.status !== "غير متوفر";
+      const media = p.image ? `<img src="${p.image}" alt="${p.name}">` : p.icon;
+      return `
+        <div class="card">
+          <span class="badge-stock ${available ? '' : 'out'}">${available ? 'متوفر' : 'غير متوفر'}</span>
+          <div>
+            <div class="card-visual">${media}</div>
+            <div class="card-cat">${p.category}</div>
+            <div class="card-title">${p.name}</div>
+            ${p.desc ? `<div class="card-desc">${p.desc}</div>` : ''}
+          </div>
+          <div class="card-footer">
+            <div class="price">${p.price} <small>ج.م</small></div>
+            ${available
+              ? `<button class="add-btn" onclick="addToCart(${p.id})">+ أضف للسلة</button>`
+              : `<button class="add-btn" disabled>نفذت الكمية</button>`}
+          </div>
+        </div>
+      `;
+    }).join('');
+  }
+
+  function addToCart(id) {
+    const prod = products.find(p => p.id === id);
+    if (!prod) return;
+    const existing = cart.find(item => item.id === id);
+    if (existing) existing.qty++;
+    else cart.push({ ...prod, qty: 1 });
+    updateCartUI();
+    showToast(`✓ تمت إضافة "${prod.name}" للسلة`);
+  }
+
+  function changeQty(id, delta) {
+    const idx = cart.findIndex(item => item.id === id);
+    if (idx === -1) return;
+    cart[idx].qty += delta;
+    if (cart[idx].qty <= 0) cart.splice(idx, 1);
+    updateCartUI();
+  }
+
+  function updateCartUI() {
+    const count = cart.reduce((sum, i) => sum + i.qty, 0);
+    document.getElementById('cartCount').innerText = count;
+
+    const container = document.getElementById('cartItems');
+    if (cart.length === 0) {
+      container.innerHTML = `<div style="text-align:center; color:var(--muted); margin-top:50px;">
+        <div style="font-size:42px; margin-bottom:10px;">🛒</div>
+        <p style="font-weight:700;">سلة المشتريات فارغة حالياً</p>
+        <p style="font-size:0.82rem;">اختر المنتجات من الأقسام وأضفها للسلة</p>
+      </div>`;
+    } else {
+      container.innerHTML = cart.map(item => `
+        <div class="cart-item">
+          <div style="flex:1;">
+            <div style="font-weight:800; font-size:0.88rem; color:var(--text);">${item.name}</div>
+            <div style="color:var(--navy); font-weight:800; font-size:0.85rem;">${item.price * item.qty} ج.م <small style="color:var(--muted); font-weight:600;">(${item.price} × ${item.qty})</small></div>
+          </div>
+          <div class="qty-controls">
+            <button class="qty-btn" onclick="changeQty(${item.id}, -1)">-</button>
+            <strong style="min-width:18px; text-align:center;">${item.qty}</strong>
+            <button class="qty-btn" onclick="changeQty(${item.id}, 1)">+</button>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    const sub = cart.reduce((sum, i) => sum + (i.price * i.qty), 0);
+    const total = sub > 0 ? sub + Number(config.delivery) : 0;
+    document.getElementById('subTotal').innerText = sub + " ج.م";
+    document.getElementById('grandTotal').innerText = total + " ج.م";
+  }
+
+  function toggleCart() {
+    closeAll();
+    document.getElementById('overlay').classList.add('open');
+    document.getElementById('cartDrawer').classList.add('open');
+  }
+
+  function openRxModal() {
+    closeAll();
+    document.getElementById('overlay').classList.add('open');
+    document.getElementById('rxModal').classList.add('open');
+  }
+
+  function openSettings() {
+    closeAll();
+    document.getElementById('setPharmName').value = config.name;
+    document.getElementById('setWhatsapp').value = config.whatsapp;
+    document.getElementById('setDelivery').value = config.delivery;
+    document.getElementById('setSheetUrl').value = config.sheetUrl;
+    document.getElementById('overlay').classList.add('open');
+    document.getElementById('settingsModal').classList.add('open');
+  }
+
+  function saveSettings() {
+    config = {
+      name: document.getElementById('setPharmName').value.trim() || defaultConfig.name,
+      whatsapp: document.getElementById('setWhatsapp').value.trim() || defaultConfig.whatsapp,
+      delivery: Number(document.getElementById('setDelivery').value) || 0,
+      sheetUrl: document.getElementById('setSheetUrl').value.trim()
+    };
+    localStorage.setItem('pharmConfig_v2', JSON.stringify(config));
+    applyConfig();
+    loadProducts();
+    updateCartUI();
+    closeAll();
+    showToast("✓ تم حفظ الإعدادات بنجاح");
+  }
+
+  function resetDefaultSettings() {
+    localStorage.removeItem('pharmConfig_v2');
+    config = { ...defaultConfig };
+    applyConfig();
+    loadProducts();
+    updateCartUI();
+    closeAll();
+    showToast("✓ تمت استعادة الإعدادات الافتراضية");
+  }
+
+  function closeAll() {
+    document.getElementById('overlay').classList.remove('open');
+    document.getElementById('cartDrawer').classList.remove('open');
+    document.getElementById('rxModal').classList.remove('open');
+    document.getElementById('settingsModal').classList.remove('open');
+  }
+
+  function sendRxWhatsApp() {
+    const name = document.getElementById('rxName').value.trim();
+    const notes = document.getElementById('rxNotes').value.trim();
+    let msg = `مرحباً *${config.name}*، أرغب في طلب روشتة طبية / دواء.\n`;
+    if (name) msg += `👤 *الاسم:* ${name}\n`;
+    if (notes) msg += `📝 *التفاصيل/العنوان:* ${notes}\n`;
+    msg += `(سأقوم بإرسال الصورة الآن)`;
+    window.open(`https://wa.me/${config.whatsapp}?text=${encodeURIComponent(msg)}`, '_blank');
+    closeAll();
+  }
+
+  function sendWhatsAppOrder() {
+    if (cart.length === 0) return alert("سلة المشتريات فارغة!");
+    const name = document.getElementById('custName').value.trim();
+    const phone = document.getElementById('custPhone').value.trim();
+    const address = document.getElementById('custAddress').value.trim();
+    if (!name || !phone || !address) return alert("يرجى كتابة الاسم ورقم الموبايل والعنوان بالتفصيل لإتمام الطلب.");
+
+    let text = `🏥 *طلب أونلاين جديد - ${config.name}*\n`;
+    text += `━━━━━━━━━━━━━━━━━━━━\n`;
+    text += `👤 *الاسم:* ${name}\n`;
+    text += `📱 *الموبايل:* ${phone}\n`;
+    text += `📍 *العنوان:* ${address}\n`;
+    text += `━━━━━━━━━━━━━━━━━━━━\n`;
+    text += `🛒 *الأصناف المطلوبة:*\n`;
+    cart.forEach((i, idx) => {
+      text += `${idx + 1}. ${i.name} (الكمية: ${i.qty}) = *${i.price * i.qty} ج.م*\n`;
+    });
+    const sub = cart.reduce((s, i) => s + i.price * i.qty, 0);
+    text += `━━━━━━━━━━━━━━━━━━━━\n`;
+    text += `💵 *المجموع:* ${sub} ج.م\n`;
+    text += `🚚 *التوصيل:* ${config.delivery} ج.م\n`;
+    text += `💰 *الإجمالي المطلوب:* *${sub + Number(config.delivery)} ج.م*`;
+
+    window.open(`https://wa.me/${config.whatsapp}?text=${encodeURIComponent(text)}`, '_blank');
+  }
+
+  // Initialize
+  applyConfig();
+  loadProducts();
+  updateCartUI();
+</script>
+</body>
+</html>
