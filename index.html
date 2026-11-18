@@ -20,6 +20,7 @@
       --success: #16A34A;
       --danger: #DC2626;
       --offer: #E11D48;
+      --warning: #D97706;
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Cairo', sans-serif; }
@@ -30,8 +31,12 @@
       background: var(--navy-dark);
       color: #fff;
       font-size: 0.82rem;
-      padding: 6px 20px;
-      text-align: center;
+      padding: 7px 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 18px;
+      flex-wrap: wrap;
       font-weight: 700;
     }
     .top-strip span { color: #7DD3FC; font-weight: 900; }
@@ -46,7 +51,7 @@
       box-shadow: 0 4px 20px rgba(0, 88, 156, 0.08);
     }
     .nav-container {
-      max-width: 1360px;
+      max-width: 1380px;
       margin: auto;
       padding: 10px 20px;
       display: flex;
@@ -55,7 +60,7 @@
       gap: 15px;
       flex-wrap: wrap;
     }
-    .brand { display: flex; align-items: center; gap: 14px; cursor: pointer; }
+    .brand { display: flex; align-items: center; gap: 14px; cursor: pointer; user-select: none; }
     .logo-wrapper {
       position: relative;
       width: 68px;
@@ -65,10 +70,17 @@
       align-items: center;
       justify-content: center;
     }
+    .logo-wrapper img {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid var(--navy);
+    }
     .brand-info h1 { font-size: 1.35rem; font-weight: 900; color: var(--navy); line-height: 1.2; }
     .brand-info p { font-size: 0.8rem; color: var(--cyan); font-weight: 800; }
 
-    /* Search inside Header */
+    /* Header Search */
     .header-search {
       flex: 1;
       max-width: 460px;
@@ -133,18 +145,18 @@
       font-weight: 900;
     }
 
-    /* Main Layout with Right Sidebar */
+    /* Main Layout */
     .main-layout {
-      max-width: 1360px;
+      max-width: 1380px;
       margin: 22px auto;
       padding: 0 20px;
       display: grid;
-      grid-template-columns: 270px 1fr;
+      grid-template-columns: 275px 1fr;
       gap: 24px;
       align-items: start;
     }
 
-    /* Right Sidebar (Categories) */
+    /* Right Sidebar */
     .sidebar {
       background: #fff;
       border-radius: 18px;
@@ -160,9 +172,6 @@
       padding: 15px 18px;
       font-weight: 900;
       font-size: 1rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
     }
     .sidebar-list {
       list-style: none;
@@ -211,8 +220,6 @@
 
     /* Content Area */
     .content-area { min-width: 0; }
-
-    /* Offers Hero Banner */
     .offers-banner {
       background: linear-gradient(120deg, var(--navy) 0%, #006BB8 55%, var(--cyan) 100%);
       border-radius: 20px;
@@ -226,16 +233,6 @@
       position: relative;
       overflow: hidden;
       box-shadow: 0 10px 25px rgba(0, 88, 156, 0.16);
-    }
-    .offers-banner::after {
-      content: "";
-      position: absolute;
-      left: -30px;
-      top: -30px;
-      width: 180px;
-      height: 180px;
-      border-radius: 50%;
-      background: rgba(255,255,255,0.08);
     }
     .offers-banner h2 { font-size: 1.5rem; font-weight: 900; margin-bottom: 6px; }
     .offers-banner p { font-size: 0.92rem; color: #E0F2FE; }
@@ -339,7 +336,6 @@
     .price { font-size: 1.15rem; font-weight: 900; color: var(--navy); }
     .old-price { font-size: 0.85rem; color: var(--muted); text-decoration: line-through; font-weight: 700; }
 
-    /* Card Action / Inline Qty Controls */
     .card-action-area {
       border-top: 1px solid var(--border);
       padding-top: 10px;
@@ -396,8 +392,8 @@
     .overlay {
       position: fixed;
       inset: 0;
-      background: rgba(0, 38, 77, 0.55);
-      backdrop-filter: blur(2px);
+      background: rgba(0, 38, 77, 0.58);
+      backdrop-filter: blur(3px);
       z-index: 200;
       display: none;
     }
@@ -408,7 +404,7 @@
       top: 0;
       left: -100%;
       width: 100%;
-      max-width: 420px;
+      max-width: 430px;
       height: 100%;
       background: #fff;
       z-index: 201;
@@ -446,7 +442,7 @@
       gap: 10px;
     }
     .drawer-footer {
-      padding: 16px 20px;
+      padding: 14px 20px;
       border-top: 2px solid var(--border);
       background: var(--bg);
     }
@@ -459,7 +455,10 @@
       border-radius: 10px;
       font-size: 0.88rem;
       outline: none;
+      background: #fff;
     }
+    .form-group input:focus, .form-group textarea:focus, .form-group select:focus { border-color: var(--cyan); }
+
     .whatsapp-btn {
       width: 100%;
       background: var(--success);
@@ -473,51 +472,184 @@
       margin-top: 8px;
     }
 
-    /* Modals & Admin Dashboard */
+    /* =========================================================
+       ENTERPRISE ADMIN DASHBOARD (FULL SCREEN PROFESSIONAL SUITE)
+       ========================================================= */
+    .admin-fullscreen {
+      position: fixed;
+      inset: 0;
+      background: #EEF4F9;
+      z-index: 250;
+      display: none;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    .admin-fullscreen.open { display: flex; }
+
+    .admin-topbar {
+      background: var(--navy-dark);
+      color: #fff;
+      padding: 14px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 3px solid var(--cyan);
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .admin-topbar h2 { font-size: 1.2rem; font-weight: 900; display: flex; align-items: center; gap: 10px; }
+    .admin-topbar-actions { display: flex; gap: 10px; align-items: center; }
+
+    .admin-shell {
+      display: grid;
+      grid-template-columns: 260px 1fr;
+      flex: 1;
+      overflow: hidden;
+    }
+
+    .admin-nav {
+      background: #fff;
+      border-left: 1.5px solid var(--border);
+      padding: 16px 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      overflow-y: auto;
+    }
+    .admin-nav-btn {
+      width: 100%;
+      text-align: right;
+      padding: 12px 14px;
+      border-radius: 12px;
+      border: none;
+      background: transparent;
+      color: var(--text);
+      font-weight: 800;
+      font-size: 0.9rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transition: 0.2s;
+    }
+    .admin-nav-btn:hover { background: var(--cyan-light); color: var(--navy); }
+    .admin-nav-btn.active {
+      background: linear-gradient(135deg, var(--navy) 0%, #006BB8 100%);
+      color: #fff;
+      box-shadow: 0 4px 12px rgba(0, 88, 156, 0.2);
+    }
+
+    .admin-workspace {
+      padding: 24px;
+      overflow-y: auto;
+    }
+    .admin-panel-view { display: none; max-width: 1050px; margin: auto; }
+    .admin-panel-view.active { display: block; }
+
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+    .kpi-card {
+      background: #fff;
+      padding: 18px;
+      border-radius: 16px;
+      border: 1.5px solid var(--border);
+      border-right: 5px solid var(--cyan);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+    }
+    .kpi-card small { color: var(--muted); font-weight: 800; font-size: 0.82rem; display: block; margin-bottom: 4px; }
+    .kpi-card strong { font-size: 1.65rem; font-weight: 900; color: var(--navy); }
+
+    .admin-card {
+      background: #fff;
+      border-radius: 16px;
+      padding: 22px;
+      border: 1.5px solid var(--border);
+      margin-bottom: 20px;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.03);
+    }
+    .admin-card h3 {
+      font-size: 1.08rem;
+      font-weight: 900;
+      color: var(--navy);
+      margin-bottom: 14px;
+      padding-bottom: 10px;
+      border-bottom: 1.5px solid var(--border);
+    }
+    .form-row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .form-row-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; }
+
+    .btn-primary {
+      background: var(--navy);
+      color: #fff;
+      border: none;
+      padding: 10px 18px;
+      border-radius: 10px;
+      font-weight: 800;
+      font-size: 0.88rem;
+      cursor: pointer;
+    }
+    .btn-primary:hover { background: var(--cyan); }
+    .btn-success {
+      background: var(--success);
+      color: #fff;
+      border: none;
+      padding: 10px 18px;
+      border-radius: 10px;
+      font-weight: 800;
+      font-size: 0.88rem;
+      cursor: pointer;
+    }
+    .btn-danger-outline {
+      background: #FEE2E2;
+      color: var(--danger);
+      border: 1px solid #FCA5A5;
+      padding: 8px 14px;
+      border-radius: 10px;
+      font-weight: 800;
+      font-size: 0.85rem;
+      cursor: pointer;
+    }
+
+    .admin-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.86rem;
+    }
+    .admin-table th {
+      background: var(--bg);
+      color: var(--navy);
+      text-align: right;
+      padding: 10px 12px;
+      border-bottom: 2px solid var(--border);
+      font-weight: 900;
+    }
+    .admin-table td {
+      padding: 10px 12px;
+      border-bottom: 1px solid var(--border);
+      vertical-align: middle;
+    }
+
+    /* Modals */
     .modal {
       position: fixed;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
       background: #fff;
-      width: 94%;
-      max-width: 720px;
-      max-height: 90vh;
-      overflow-y: auto;
+      width: 92%;
+      max-width: 460px;
       border-radius: 20px;
-      z-index: 202;
+      z-index: 260;
       padding: 24px;
       display: none;
       border-top: 6px solid var(--navy);
-      box-shadow: 0 25px 50px rgba(0, 38, 77, 0.3);
+      box-shadow: 0 25px 50px rgba(0, 38, 77, 0.35);
     }
     .modal.open { display: block; }
-
-    .admin-tabs { display: flex; gap: 8px; margin-bottom: 16px; border-bottom: 2px solid var(--border); padding-bottom: 10px; flex-wrap: wrap; }
-    .admin-tab {
-      padding: 8px 14px;
-      border-radius: 10px;
-      border: 1.5px solid var(--border);
-      background: var(--bg);
-      font-weight: 800;
-      font-size: 0.85rem;
-      cursor: pointer;
-    }
-    .admin-tab.active { background: var(--navy); color: #fff; border-color: var(--navy); }
-    .admin-section { display: none; }
-    .admin-section.active { display: block; }
-
-    .admin-prod-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 10px;
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      margin-bottom: 8px;
-      gap: 10px;
-      flex-wrap: wrap;
-    }
 
     .toast {
       position: fixed;
@@ -531,7 +663,7 @@
       font-size: 0.9rem;
       border-right: 5px solid var(--cyan);
       box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-      z-index: 300;
+      z-index: 400;
       transform: translateY(120px);
       transition: 0.3s;
     }
@@ -541,7 +673,7 @@
       background: var(--navy-dark);
       color: #E0F2FE;
       text-align: center;
-      padding: 28px 20px;
+      padding: 30px 20px;
       margin-top: 50px;
       border-top: 4px solid var(--cyan);
     }
@@ -551,27 +683,31 @@
       .sidebar { position: static; }
       .sidebar-list { flex-direction: row; overflow-x: auto; padding: 10px; }
       .sidebar-item { width: auto; white-space: nowrap; }
+      .admin-shell { grid-template-columns: 1fr; }
+      .admin-nav { flex-direction: row; overflow-x: auto; border-left: none; border-bottom: 1.5px solid var(--border); }
+      .admin-nav-btn { white-space: nowrap; width: auto; }
+      .form-row-2, .form-row-3 { grid-template-columns: 1fr; }
     }
   </style>
 </head>
 <body>
 
 <div class="top-strip">
-  خدمة التوصيل السريع والاستشارات الصيدلانية عبر واتساب: <span id="topPhoneDisplay">01119713199</span>
+  <div>خدمة التوصيل والاستشارات الصيدلانية: <span id="topPhoneDisplay">01119713199</span></div>
+  <div id="topHoursDisplay">🕒 مواعيد العمل: 24 ساعة يومياً</div>
+  <div id="topFreeShipDisplay" style="display:none;">🚚 توصيل مجاني للطلبات فوق <span>500 ج.م</span></div>
 </div>
 
 <header>
   <div class="nav-container">
-    <!-- Clicking logo 5 times quickly OR pressing Ctrl+Shift+A opens Admin Panel -->
     <div class="brand" id="brandLogoArea" title="صيدلية د/ أحمد عبدالرحيم">
-      <div class="logo-wrapper">
-        <!-- Exact Replica of Dr. Ahmed Abdelrehim Pharmacy Emblem from Banner -->
+      <div class="logo-wrapper" id="headerLogoContainer">
+        <!-- Default Emblem -->
         <svg width="68" height="68" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
           <defs>
             <path id="topTextArc" d="M 22,60 A 38,38 0 1,1 98,60" />
             <path id="bottomTextArc" d="M 18,62 A 42,42 0 0,0 102,62" />
           </defs>
-          <!-- Diagonal Navy Stripes on Left (matching banner) -->
           <g stroke="#00589C" stroke-width="3.2">
             <line x1="16" y1="6" x2="4" y2="38" />
             <line x1="22" y1="6" x2="6" y2="50" />
@@ -580,33 +716,26 @@
             <line x1="18" y1="86" x2="8" y2="114" />
             <line x1="24" y1="90" x2="14" y2="116" />
           </g>
-          <!-- Outer Navy Ring -->
           <circle cx="62" cy="60" r="52" fill="#B5E3F8" stroke="#00589C" stroke-width="3.5" />
-          <!-- Inner White Circle -->
           <circle cx="62" cy="60" r="34" fill="#FFFFFF" stroke="#00589C" stroke-width="2.5" />
-          <!-- Curved Text: Dr. Ahmed Abdelrehim -->
           <text fill="#00589C" font-size="9.6" font-weight="bold" font-family="Georgia, serif" letter-spacing="0.4">
             <textPath href="#topTextArc" startOffset="50%" text-anchor="middle">Dr. Ahmed Abdelrehim</textPath>
           </text>
-          <!-- Curved Text: Pharmacy -->
           <text fill="#00589C" font-size="11.5" font-weight="bold" font-family="Georgia, serif" letter-spacing="0.8">
             <textPath href="#bottomTextArc" startOffset="50%" text-anchor="middle">Pharmacy</textPath>
           </text>
-          <!-- Side Dots -->
           <circle cx="19" cy="60" r="3.2" fill="#1DA1DB" />
           <circle cx="105" cy="60" r="3.2" fill="#1DA1DB" />
-          <!-- Bowl of Hygieia (Cyan Chalice & Snake) -->
           <path d="M 46,50 H 78 L 72,62 C 70,66 66,68 62,68 C 58,68 54,66 52,62 L 46,50 Z" fill="#29ABE2" />
           <rect x="59.5" y="67" width="5" height="14" fill="#29ABE2" />
           <path d="M 50,81 H 74 L 77,85 H 47 L 50,81 Z" fill="#29ABE2" />
-          <!-- Coiled Serpent -->
           <path d="M 60,36 C 53,36 52,42 58,45 C 65,48 70,51 66,56 C 63,59 55,61 58,66 C 60,69 65,71 62,76" fill="none" stroke="#1DA1DB" stroke-width="4" stroke-linecap="round" />
           <ellipse cx="60" cy="36" rx="4" ry="2.8" fill="#1DA1DB" />
         </svg>
       </div>
       <div class="brand-info">
         <h1 id="pharmacyNameDisplay">صيدلية د/ أحمد عبدالرحيم</h1>
-        <p>لصاحبها د/ أحمد عبدالرحيم • رعاية صيدلانية متكاملة</p>
+        <p id="pharmacyTaglineDisplay">لصاحبها د/ أحمد عبدالرحيم • رعاية صيدلانية متكاملة</p>
       </div>
     </div>
 
@@ -626,11 +755,9 @@
 </header>
 
 <div class="main-layout">
-  <!-- Right Sidebar: Categories -->
+  <!-- Right Sidebar -->
   <aside class="sidebar">
-    <div class="sidebar-header">
-      <span>📂 أقسام الصيدلية</span>
-    </div>
+    <div class="sidebar-header">📂 أقسام الصيدلية</div>
     <ul class="sidebar-list" id="sidebarCategories"></ul>
   </aside>
 
@@ -638,7 +765,7 @@
   <section class="content-area">
     <div class="offers-banner" id="offersHeroBanner">
       <div>
-        <span class="offer-tag-pill">🔥 عروض وخصومات حصرية</span>
+        <span class="offer-tag-pill" id="bannerBadgeText">🔥 عروض وخصومات حصرية</span>
         <h2 id="bannerTitle">أقوى عروض صيدلية د/ أحمد عبدالرحيم</h2>
         <p id="bannerSub">خصومات تصل إلى 30% على منتجات العناية بالبشرة والشعر ومستلزمات الأطفال</p>
       </div>
@@ -655,7 +782,8 @@
 
 <footer>
   <h3 id="footerPharmacyName">صيدلية د/ أحمد عبدالرحيم</h3>
-  <p>لصاحبها د/ أحمد عبدالرحيم — واتساب وتوصيل: <strong id="footerPhone">01119713199</strong></p>
+  <p id="footerAddressDisplay">لصاحبها د/ أحمد عبدالرحيم — خدمة التوصيل السريع لجميع المناطق</p>
+  <p style="margin-top:6px;">واتساب وتوصيل: <strong id="footerPhone">01119713199</strong></p>
 </footer>
 
 <div class="overlay" id="overlay" onclick="closeAll()"></div>
@@ -668,15 +796,31 @@
   </div>
   <div class="drawer-body" id="cartItems"></div>
   <div class="drawer-footer">
-    <div style="display:flex; justify-content:space-between; margin-bottom:6px; font-size:0.9rem;">
+    <!-- Coupon Box -->
+    <div style="display:flex; gap:6px; margin-bottom:10px;" id="couponBoxWrapper">
+      <input type="text" id="couponInput" placeholder="عندك كود خصم؟ اكتبه هنا" style="flex:1; padding:8px 10px; border:1.5px solid var(--border); border-radius:9px; font-size:0.85rem;" />
+      <button class="btn-primary" style="padding:8px 14px;" onclick="applyCouponCode()">تطبيق</button>
+    </div>
+    <div id="couponAppliedMsg" style="display:none; font-size:0.8rem; color:var(--success); font-weight:800; margin-bottom:8px;"></div>
+
+    <!-- Delivery Zone Selector -->
+    <div class="form-group" id="zoneSelectWrapper">
+      <select id="deliveryZoneSelect" onchange="updateCartUI()"></select>
+    </div>
+
+    <div style="display:flex; justify-content:space-between; margin-bottom:4px; font-size:0.88rem;">
       <span>إجمالي الأصناف:</span> <strong id="subTotal">0 ج.م</strong>
     </div>
-    <div style="display:flex; justify-content:space-between; margin-bottom:10px; font-size:0.88rem; color:var(--muted);">
-      <span>خدمة التوصيل:</span> <span id="deliveryDisplay">20 ج.م</span>
+    <div id="discountRow" style="display:none; justify-content:space-between; margin-bottom:4px; font-size:0.88rem; color:var(--success);">
+      <span>قيمة الخصم:</span> <strong id="discountAmountDisplay">- 0 ج.م</strong>
     </div>
-    <div style="display:flex; justify-content:space-between; margin-bottom:14px; font-size:1.15rem; color:var(--navy); border-top:1px solid var(--border); padding-top:8px;">
+    <div style="display:flex; justify-content:space-between; margin-bottom:8px; font-size:0.86rem; color:var(--muted);">
+      <span>خدمة التوصيل:</span> <strong id="deliveryDisplay">20 ج.م</strong>
+    </div>
+    <div style="display:flex; justify-content:space-between; margin-bottom:12px; font-size:1.15rem; color:var(--navy); border-top:1px solid var(--border); padding-top:8px;">
       <strong>الإجمالي النهائي:</strong> <strong id="grandTotal">0 ج.م</strong>
     </div>
+
     <div class="form-group">
       <input type="text" id="custName" placeholder="الاسم بالكامل *" />
     </div>
@@ -684,17 +828,17 @@
       <input type="tel" id="custPhone" placeholder="رقم الموبايل للتواصل *" />
     </div>
     <div class="form-group">
-      <textarea id="custAddress" rows="2" placeholder="العنوان بالتفصيل (المنطقة، الشارع، رقم العمارة، الدور) *"></textarea>
+      <textarea id="custAddress" rows="2" placeholder="العنوان بالتفصيل (الشارع، رقم العمارة، الدور) *"></textarea>
     </div>
     <button class="whatsapp-btn" onclick="sendWhatsAppOrder()">📲 تأكيد وإرسال الطلب على واتساب</button>
   </div>
 </div>
 
 <!-- Prescription Modal -->
-<div class="modal" id="rxModal" style="max-width:480px;">
+<div class="modal" id="rxModal">
   <h3 style="color:var(--navy); margin-bottom:10px;">📸 طلب صرف روشتة أو استشارة</h3>
   <p style="font-size:0.88rem; color:var(--muted); margin-bottom:14px;">
-    اكتب اسمك وعنوانك واضغط على الزر بالأسفل لفتح واتساب الصيدلية مباشرة وإرفاق صورة الروشتة.
+    اكتب اسمك وعنوانك واضغط بالأسفل لفتح واتساب الصيدلية مباشرة وإرفاق صورة الروشتة.
   </p>
   <div class="form-group">
     <label>الاسم:</label>
@@ -706,178 +850,438 @@
   </div>
   <div style="display:flex; gap:10px; margin-top:14px;">
     <button class="whatsapp-btn" style="margin-top:0; flex:1;" onclick="sendRxWhatsApp()">📲 فتح واتساب وإرسال الروشتة</button>
-    <button class="admin-tab" onclick="closeAll()">إغلاق</button>
+    <button class="btn-danger-outline" onclick="closeAll()">إغلاق</button>
   </div>
 </div>
 
 <!-- Secret Admin Login Modal -->
 <div class="modal" id="adminLoginModal" style="max-width:400px;">
-  <h3 style="color:var(--navy); margin-bottom:8px;">🔐 دخول إدارة المتجر</h3>
-  <p style="font-size:0.84rem; color:var(--muted); margin-bottom:14px;">أدخل كلمة المرور للتحكم الكامل في المتجر، العروض، الأسعار، وربط Google Sheets.</p>
+  <h3 style="color:var(--navy); margin-bottom:8px;">🔐 بوابة إدارة الصيدلية</h3>
+  <p style="font-size:0.84rem; color:var(--muted); margin-bottom:14px;">أدخل كلمة المرور للوصول إلى لوحة التحكم الكاملة.</p>
   <div class="form-group">
     <label>كلمة المرور (الافتراضية: 1234):</label>
     <input type="password" id="adminPassInput" placeholder="••••" onkeydown="if(event.key==='Enter') verifyAdminPass()" />
   </div>
   <div style="display:flex; gap:10px; margin-top:14px;">
-    <button class="add-btn" style="flex:1;" onclick="verifyAdminPass()">دخول لوحة التحكم</button>
-    <button class="admin-tab" onclick="closeAll()">إلغاء</button>
+    <button class="btn-primary" style="flex:1;" onclick="verifyAdminPass()">دخول لوحة الإدارة</button>
+    <button class="btn-danger-outline" onclick="closeAll()">إلغاء</button>
   </div>
 </div>
 
-<!-- Full Admin Control Panel Modal -->
-<div class="modal" id="adminPanelModal">
-  <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px;">
-    <h3 style="color:var(--navy);">🛠️ لوحة تحكم إدارة الصيدلية</h3>
-    <button class="admin-tab" style="background:#FEE2E2; color:#DC2626;" onclick="closeAll()">✕ إغلاق</button>
-  </div>
-
-  <div class="admin-tabs">
-    <button class="admin-tab active" onclick="switchAdminTab('general', this)">⚙️ الإعدادات العامة والشيت</button>
-    <button class="admin-tab" onclick="switchAdminTab('addProd', this)">➕ إضافة صنف / عرض جديد</button>
-    <button class="admin-tab" onclick="switchAdminTab('manageProds', this)">📦 إدارة الأصناف والأسعار</button>
-  </div>
-
-  <!-- Tab 1: General Settings -->
-  <div class="admin-section active" id="tab-general">
-    <div class="form-group">
-      <label>اسم الصيدلية:</label>
-      <input type="text" id="setPharmName" />
-    </div>
-    <div class="form-group">
-      <label>رقم واتساب الصيدلية (بصيغة 201119713199):</label>
-      <input type="text" id="setWhatsapp" />
-    </div>
-    <div class="form-group">
-      <label>قيمة خدمة التوصيل (ج.م):</label>
-      <input type="number" id="setDelivery" />
-    </div>
-    <div class="form-group">
-      <label>عنوان بانر العروض الرئيسي:</label>
-      <input type="text" id="setBannerTitle" />
-    </div>
-    <div class="form-group">
-      <label>رابط Google Sheet (CSV من Publish to web):</label>
-      <input type="url" id="setSheetUrl" placeholder="https://docs.google.com/spreadsheets/d/.../pub?output=csv" />
-    </div>
-    <div class="form-group">
-      <label>تغيير كلمة مرور لوحة التحكم:</label>
-      <input type="text" id="setAdminPass" />
-    </div>
-    <div style="display:flex; gap:10px; margin-top:14px;">
-      <button class="add-btn" style="flex:1;" onclick="saveGeneralSettings()">💾 حفظ الإعدادات</button>
-      <button class="admin-tab" style="color:#DC2626;" onclick="resetAllData()">إعادة ضبط المصنع</button>
+<!-- =========================================================
+     FULL ENTERPRISE ADMIN DASHBOARD
+     ========================================================= -->
+<div class="admin-fullscreen" id="adminDashboard">
+  <div class="admin-topbar">
+    <h2>🛠️ لوحة تحكم إدارة المتجر — <span id="adminTopPharmName" style="color:#7DD3FC;">صيدلية د/ أحمد عبدالرحيم</span></h2>
+    <div class="admin-topbar-actions">
+      <button class="btn-success" onclick="exportBackupJSON()">💾 تحميل نسخة احتياطية</button>
+      <button class="btn-danger-outline" style="background:#fff;" onclick="closeAdminDashboard()">✕ خروج للمتجر</button>
     </div>
   </div>
 
-  <!-- Tab 2: Add Product / Offer -->
-  <div class="admin-section" id="tab-addProd">
-    <div class="form-group">
-      <label>اسم الصنف *</label>
-      <input type="text" id="newProdName" placeholder="مثال: CeraVe Cleanser 236ml" />
-    </div>
-    <div class="form-group">
-      <label>القسم *</label>
-      <select id="newProdCat">
-        <option value="أدوية المسكنات والبرد">أدوية المسكنات والبرد</option>
-        <option value="الباطنة والجهاز الهضمي">الباطنة والجهاز الهضمي</option>
-        <option value="المضادات الحيوية">المضادات الحيوية</option>
-        <option value="الفيتامينات والمكملات">الفيتامينات والمكملات</option>
-        <option value="العناية بالبشرة">العناية بالبشرة</option>
-        <option value="العناية بالشعر">العناية بالشعر</option>
-        <option value="الأم والطفل">الأم والطفل</option>
-        <option value="العناية الشخصية والأسنان">العناية الشخصية والأسنان</option>
-        <option value="الأجهزة والمستلزمات الطبية">الأجهزة والمستلزمات الطبية</option>
-      </select>
-    </div>
-    <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">
-      <div class="form-group">
-        <label>السعر الحالي (ج.م) *</label>
-        <input type="number" id="newProdPrice" placeholder="150" />
+  <div class="admin-shell">
+    <!-- Left/Right Admin Navigation -->
+    <nav class="admin-nav">
+      <button class="admin-nav-btn active" onclick="switchAdminPanel('overview', this)">📊 نظرة عامة وإحصائيات</button>
+      <button class="admin-nav-btn" onclick="switchAdminPanel('products', this)">💊 إدارة المنتجات والمخزون</button>
+      <button class="admin-nav-btn" onclick="switchAdminPanel('categories', this)">📂 إدارة الأقسام والترتيب</button>
+      <button class="admin-nav-btn" onclick="switchAdminPanel('offers', this)">🔥 العروض والبانر وكوبونات الخصم</button>
+      <button class="admin-nav-btn" onclick="switchAdminPanel('delivery', this)">🚚 مناطق التوصيل والشحن</button>
+      <button class="admin-nav-btn" onclick="switchAdminPanel('sheets', this)">📊 الربط التلقائي (Google Sheets)</button>
+      <button class="admin-nav-btn" onclick="switchAdminPanel('branding', this)">🎨 الهوية والألوان والأمان</button>
+      <button class="admin-nav-btn" onclick="switchAdminPanel('backup', this)">🔄 النسخ الاحتياطي والاستعادة</button>
+    </nav>
+
+    <!-- Admin Workspace -->
+    <div class="admin-workspace">
+
+      <!-- 1. OVERVIEW -->
+      <div class="admin-panel-view active" id="panel-overview">
+        <div class="kpi-grid">
+          <div class="kpi-card">
+            <small>إجمالي الأصناف بالمتجر</small>
+            <strong id="kpiTotalProds">0</strong>
+          </div>
+          <div class="kpi-card" style="border-right-color: var(--success);">
+            <small>الأصناف المتوفرة حالياً</small>
+            <strong id="kpiAvailProds" style="color:var(--success);">0</strong>
+          </div>
+          <div class="kpi-card" style="border-right-color: var(--offer);">
+            <small>الأصناف في قسم العروض</small>
+            <strong id="kpiOfferProds" style="color:var(--offer);">0</strong>
+          </div>
+          <div class="kpi-card" style="border-right-color: var(--navy);">
+            <small>عدد أقسام الصيدلية</small>
+            <strong id="kpiCatsCount">0</strong>
+          </div>
+        </div>
+
+        <div class="admin-card">
+          <h3>⚡ إجراءات سريعة</h3>
+          <div style="display:flex; gap:12px; flex-wrap:wrap;">
+            <button class="btn-primary" onclick="document.querySelectorAll('.admin-nav-btn')[1].click()">➕ إضافة صنف جديد</button>
+            <button class="btn-primary" onclick="document.querySelectorAll('.admin-nav-btn')[3].click()">🔥 تعديل بانر العروض أو إنشاء كوبون</button>
+            <button class="btn-primary" onclick="document.querySelectorAll('.admin-nav-btn')[4].click()">🚚 تعديل أسعار التوصيل للمناطق</button>
+            <button class="btn-success" onclick="exportProductsCSV()">📥 تصدير الأصناف ملف Excel (CSV)</button>
+          </div>
+        </div>
       </div>
-      <div class="form-group">
-        <label>السعر قبل الخصم (اختياري - يضعه في العروض)</label>
-        <input type="number" id="newProdOldPrice" placeholder="200" />
-      </div>
-    </div>
-    <div class="form-group">
-      <label>وصف مختصر للصنف:</label>
-      <input type="text" id="newProdDesc" placeholder="وصف سريع يظهر تحت اسم المنتج" />
-    </div>
-    <div class="form-group">
-      <label>رابط صورة المنتج (اختياري):</label>
-      <input type="url" id="newProdImg" placeholder="https://..." />
-    </div>
-    <button class="add-btn" onclick="addNewProductManual()">➕ إضافة الصنف للمتجر فوراً</button>
-  </div>
 
-  <!-- Tab 3: Manage Existing Products -->
-  <div class="admin-section" id="tab-manageProds">
-    <input type="text" id="adminSearchProd" placeholder="ابحث لتعديل سعر أو حالة صنف..." oninput="renderAdminProductsList()" style="width:100%; padding:9px; border:1.5px solid var(--border); border-radius:10px; margin-bottom:12px;" />
-    <div id="adminProductsList"></div>
+      <!-- 2. PRODUCTS MANAGEMENT -->
+      <div class="admin-panel-view" id="panel-products">
+        <div class="admin-card">
+          <h3>➕ إضافة صنف جديد</h3>
+          <div class="form-row-3">
+            <div class="form-group">
+              <label>اسم الصنف *</label>
+              <input type="text" id="newProdName" placeholder="مثال: Panadol Extra 24 Tabs" />
+            </div>
+            <div class="form-group">
+              <label>القسم *</label>
+              <select id="newProdCat"></select>
+            </div>
+            <div class="form-group">
+              <label>حالة التوفر</label>
+              <select id="newProdStatus">
+                <option value="متوفر">متوفر</option>
+                <option value="غير متوفر">غير متوفر</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-row-3">
+            <div class="form-group">
+              <label>السعر الحالي (ج.م) *</label>
+              <input type="number" id="newProdPrice" placeholder="120" />
+            </div>
+            <div class="form-group">
+              <label>السعر قبل الخصم (اختياري للعرض)</label>
+              <input type="number" id="newProdOldPrice" placeholder="150" />
+            </div>
+            <div class="form-group">
+              <label>رابط الصورة المباشر (اختياري)</label>
+              <input type="url" id="newProdImg" placeholder="https://..." />
+            </div>
+          </div>
+          <div class="form-group">
+            <label>وصف مختصر للصنف</label>
+            <input type="text" id="newProdDesc" placeholder="دواعي الاستخدام أو الحجم..." />
+          </div>
+          <button class="btn-primary" onclick="addNewProduct()">➕ حفظ وإضافة الصنف للمتجر</button>
+        </div>
+
+        <div class="admin-card">
+          <h3>📦 قائمة المنتجات (تعديل فوري للأسعار، العروض، والتوفر)</h3>
+          <div style="display:flex; gap:10px; margin-bottom:14px; flex-wrap:wrap;">
+            <input type="text" id="adminProdSearch" placeholder="ابحث باسم الصنف..." oninput="renderAdminProdTable()" style="flex:1; min-width:200px; padding:9px 12px; border:1.5px solid var(--border); border-radius:10px;" />
+            <select id="adminProdCatFilter" onchange="renderAdminProdTable()" style="padding:9px 12px; border:1.5px solid var(--border); border-radius:10px;">
+              <option value="الكل">كل الأقسام</option>
+            </select>
+          </div>
+          <div style="overflow-x:auto;">
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th>الصنف</th>
+                  <th>القسم</th>
+                  <th>السعر الحالي</th>
+                  <th>قبل الخصم</th>
+                  <th>عرض؟</th>
+                  <th>الحالة</th>
+                  <th>حذف</th>
+                </tr>
+              </thead>
+              <tbody id="adminProdTableBody"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3. CATEGORIES MANAGEMENT -->
+      <div class="admin-panel-view" id="panel-categories">
+        <div class="admin-card">
+          <h3>➕ إضافة قسم جديد للصيدلية</h3>
+          <div style="display:flex; gap:10px; flex-wrap:wrap;">
+            <input type="text" id="newCatNameInput" placeholder="اسم القسم الجديد (مثال: مستحضرات تجميل مستوردة)" style="flex:1; min-width:240px; padding:10px 12px; border:1.5px solid var(--border); border-radius:10px;" />
+            <button class="btn-primary" onclick="addNewCategory()">➕ إضافة القسم</button>
+          </div>
+        </div>
+
+        <div class="admin-card">
+          <h3>📂 الأقسام الحالية (ترتيب العرض، إعادة التسمية، أو الإخفاء)</h3>
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th>الترتيب</th>
+                <th>اسم القسم</th>
+                <th>عدد الأصناف</th>
+                <th>الحالة في المتجر</th>
+                <th>إجراءات</th>
+              </tr>
+            </thead>
+            <tbody id="adminCatTableBody"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- 4. OFFERS & COUPONS -->
+      <div class="admin-panel-view" id="panel-offers">
+        <div class="admin-card">
+          <h3>🖼️ إعدادات بانر العروض الرئيسي</h3>
+          <div class="form-row-2">
+            <div class="form-group">
+              <label>شارة البانر العلوية</label>
+              <input type="text" id="setBannerBadge" />
+            </div>
+            <div class="form-group">
+              <label>عنوان البانر الرئيسي</label>
+              <input type="text" id="setBannerTitle" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label>النص الفرعي للبانر</label>
+            <input type="text" id="setBannerSub" />
+          </div>
+          <button class="btn-primary" onclick="saveBannerSettings()">💾 حفظ إعدادات البانر</button>
+        </div>
+
+        <div class="admin-card">
+          <h3>🎟️ إدارة كوبونات الخصم للعملاء</h3>
+          <div class="form-row-3">
+            <div class="form-group">
+              <label>كود الكوبون (إنجليزي بدون مسافات)</label>
+              <input type="text" id="newCouponCode" placeholder="مثال: AHMED10" style="text-transform:uppercase;" />
+            </div>
+            <div class="form-group">
+              <label>نوع الخصم</label>
+              <select id="newCouponType">
+                <option value="percent">نسبة مئوية (%)</option>
+                <option value="fixed">مبلغ ثابت (ج.م)</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>قيمة الخصم</label>
+              <input type="number" id="newCouponVal" placeholder="10" />
+            </div>
+          </div>
+          <button class="btn-primary" onclick="addCoupon()">➕ تفعيل الكوبون</button>
+
+          <div style="margin-top:16px;" id="adminCouponsList"></div>
+        </div>
+      </div>
+
+      <!-- 5. DELIVERY ZONES -->
+      <div class="admin-panel-view" id="panel-delivery">
+        <div class="admin-card">
+          <h3>🚚 إعدادات التوصيل المجاني</h3>
+          <div class="form-row-2">
+            <div class="form-group">
+              <label>تفعيل التوصيل المجاني للطلبات الكبيرة؟</label>
+              <select id="setFreeShipEnabled">
+                <option value="true">نعم، مفعل</option>
+                <option value="false">لا، غير مفعل</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>الحد الأدنى للطلب للحصول على توصيل مجاني (ج.م)</label>
+              <input type="number" id="setFreeShipMin" placeholder="500" />
+            </div>
+          </div>
+          <button class="btn-primary" onclick="saveFreeShipSettings()">💾 حفظ إعداد التوصيل المجاني</button>
+        </div>
+
+        <div class="admin-card">
+          <h3>📍 مناطق التوصيل وأسعار الشحن</h3>
+          <div class="form-row-2">
+            <div class="form-group">
+              <label>اسم المنطقة / الحي</label>
+              <input type="text" id="newZoneName" placeholder="مثال: المجاورة الأولى / الحي الثاني" />
+            </div>
+            <div class="form-group">
+              <label>تكلفة التوصيل (ج.م)</label>
+              <input type="number" id="newZoneFee" placeholder="15" />
+            </div>
+          </div>
+          <button class="btn-primary" onclick="addDeliveryZone()">➕ إضافة منطقة توصيل</button>
+
+          <table class="admin-table" style="margin-top:16px;">
+            <thead>
+              <tr>
+                <th>المنطقة</th>
+                <th>تكلفة التوصيل</th>
+                <th>حذف</th>
+              </tr>
+            </thead>
+            <tbody id="adminZonesTableBody"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- 6. GOOGLE SHEETS SYNC -->
+      <div class="admin-panel-view" id="panel-sheets">
+        <div class="admin-card">
+          <h3>📊 الربط التلقائي مع Google Sheets</h3>
+          <p style="font-size:0.86rem; color:var(--muted); margin-bottom:14px;">
+            عند وضع رابط شيت جوجل المنشور بصيغة CSV، سيقوم المتجر بسحب الأسعار والأرصدة والصور تلقائياً عند فتح الموقع.
+          </p>
+          <div class="form-group">
+            <label>رابط Google Sheet (CSV URL):</label>
+            <input type="url" id="setSheetUrl" placeholder="https://docs.google.com/spreadsheets/d/.../pub?output=csv" />
+          </div>
+          <div style="display:flex; gap:10px; flex-wrap:wrap;">
+            <button class="btn-primary" onclick="saveSheetSettings()">💾 حفظ الرابط ومزامنة الآن</button>
+            <button class="btn-danger-outline" onclick="disconnectSheet()">فصل الشيت والاعتماد على البيانات المحلية</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- 7. BRANDING & SECURITY -->
+      <div class="admin-panel-view" id="panel-branding">
+        <div class="admin-card">
+          <h3>🏥 بيانات الصيدلية والتواصل</h3>
+          <div class="form-row-2">
+            <div class="form-group">
+              <label>اسم الصيدلية</label>
+              <input type="text" id="setPharmName" />
+            </div>
+            <div class="form-group">
+              <label>الوصف أسفل الاسم</label>
+              <input type="text" id="setPharmTagline" />
+            </div>
+          </div>
+          <div class="form-row-2">
+            <div class="form-group">
+              <label>رقم واتساب الطلبات الأساسي (بصيغة 201119713199)</label>
+              <input type="text" id="setWhatsapp" />
+            </div>
+            <div class="form-group">
+              <label>رقم واتساب الروشتات (اتركه فارغاً لاستخدام الأساسي)</label>
+              <input type="text" id="setRxWhatsapp" />
+            </div>
+          </div>
+          <div class="form-row-2">
+            <div class="form-group">
+              <label>عنوان الصيدلية (يظهر في الفوتر)</label>
+              <input type="text" id="setPharmAddress" />
+            </div>
+            <div class="form-group">
+              <label>مواعيد العمل (تظهر في الشريط العلوي)</label>
+              <input type="text" id="setPharmHours" />
+            </div>
+          </div>
+          <button class="btn-primary" onclick="saveBrandingSettings()">💾 حفظ بيانات الهوية</button>
+        </div>
+
+        <div class="admin-card">
+          <h3>🖼️ تغيير شعار الصيدلية (Logo)</h3>
+          <div class="form-group">
+            <label>ارفع صورة شعار جديدة من جهازك (أو اتركه للشعار المرسوم الافتراضي):</label>
+            <input type="file" accept="image/*" onchange="handleLogoUpload(event)" />
+          </div>
+          <button class="btn-danger-outline" onclick="resetCustomLogo()">استعادة الشعار الدائري الأصلي</button>
+        </div>
+
+        <div class="admin-card">
+          <h3>🔐 الأمان وكلمة مرور لوحة التحكم</h3>
+          <div class="form-group" style="max-width:320px;">
+            <label>كلمة المرور الجديدة:</label>
+            <input type="text" id="setAdminPass" />
+          </div>
+          <button class="btn-primary" onclick="saveAdminPassword()">تحديث كلمة المرور</button>
+        </div>
+      </div>
+
+      <!-- 8. BACKUP & RESTORE -->
+      <div class="admin-panel-view" id="panel-backup">
+        <div class="admin-card">
+          <h3>💾 تصدير واستيراد نسخة احتياطية كاملة</h3>
+          <p style="font-size:0.86rem; color:var(--muted); margin-bottom:14px;">
+            تُحفظ تعديلاتك في المتصفح الحالي. لتحميل نسخة احتياطية أو نقل بياناتك وأسعارك وإعداداتك إلى موبايلك أو كمبيوتر آخر، استخدم الأزرار التالية:
+          </p>
+          <div style="display:flex; gap:12px; flex-wrap:wrap; margin-bottom:18px;">
+            <button class="btn-success" onclick="exportBackupJSON()">📥 تحميل ملف النسخة الاحتياطية (JSON)</button>
+            <button class="btn-primary" onclick="exportProductsCSV()">📊 تصدير الأصناف كملف Excel (CSV)</button>
+          </div>
+          <div class="form-group" style="max-width:420px;">
+            <label>استعادة من ملف نسخة احتياطية (JSON):</label>
+            <input type="file" accept=".json" onchange="importBackupJSON(event)" />
+          </div>
+        </div>
+
+        <div class="admin-card" style="border-color:#FCA5A5;">
+          <h3 style="color:var(--danger);">⚠️ منطقة الخطر</h3>
+          <button class="btn-danger-outline" onclick="factoryReset()">إعادة ضبط المصنع وحذف جميع التعديلات</button>
+        </div>
+      </div>
+
+    </div>
   </div>
 </div>
 
-<div class="toast" id="toast">تمت الإضافة للسلة</div>
+<div class="toast" id="toast">تم الحفظ</div>
 
 <script>
-  const defaultProducts = [
-    // 1. أدوية المسكنات والبرد
+  const initialCategories = [
+    { name: "أدوية المسكنات والبرد", hidden: false },
+    { name: "الباطنة والجهاز الهضمي", hidden: false },
+    { name: "المضادات الحيوية", hidden: false },
+    { name: "الفيتامينات والمكملات", hidden: false },
+    { name: "العناية بالبشرة", hidden: false },
+    { name: "العناية بالشعر", hidden: false },
+    { name: "الأم والطفل", hidden: false },
+    { name: "العناية الشخصية والأسنان", hidden: false },
+    { name: "الأجهزة والمستلزمات الطبية", hidden: false }
+  ];
+
+  const initialProducts = [
     { id: 101, name: "Panadol Extra 24 Tablets", category: "أدوية المسكنات والبرد", desc: "مسكن للآلام وخافض للحرارة", price: 48, oldPrice: null, isOffer: false, status: "متوفر", icon: "💊" },
     { id: 102, name: "Cataflam 50mg 20 Tablets", category: "أدوية المسكنات والبرد", desc: "مسكن سريع ومضاد للالتهابات", price: 62, oldPrice: null, isOffer: false, status: "متوفر", icon: "💊" },
     { id: 103, name: "Congestal 20 Tablets", category: "أدوية المسكنات والبرد", desc: "علاج أعراض البرد والإنفلونزا والرشح", price: 39, oldPrice: null, isOffer: false, status: "متوفر", icon: "🤧" },
     { id: 104, name: "Brufen 400mg 30 Tablets", category: "أدوية المسكنات والبرد", desc: "مسكن للصداع وآلام الأسنان والمفاصل", price: 54, oldPrice: null, isOffer: false, status: "متوفر", icon: "💊" },
     { id: 105, name: "Otrivin Adult Nasal Drops 15ml", category: "أدوية المسكنات والبرد", desc: "نقط للأنف لفتح الاحتقان السريع", price: 28, oldPrice: null, isOffer: false, status: "متوفر", icon: "💧" },
 
-    // 2. أدوية الباطنة والجهاز الهضمي
     { id: 201, name: "Controloc 40mg 14 Tablets", category: "الباطنة والجهاز الهضمي", desc: "علاج حموضة المعدة وارتجاع المريء", price: 112, oldPrice: null, isOffer: false, status: "متوفر", icon: "🩺" },
     { id: 202, name: "Antinal 200mg 24 Capsules", category: "الباطنة والجهاز الهضمي", desc: "مطهر معوي واسع المجال", price: 42, oldPrice: null, isOffer: false, status: "متوفر", icon: "💊" },
     { id: 203, name: "Gaviscon Advance Syrup 150ml", category: "الباطنة والجهاز الهضمي", desc: "شراب سريع المفعول لحرقان المعدة", price: 135, oldPrice: null, isOffer: false, status: "متوفر", icon: "🧴" },
     { id: 204, name: "Coloverin D 30 Tablets", category: "الباطنة والجهاز الهضمي", desc: "علاج تقلصات القولون العصبي والانتفاخ", price: 78, oldPrice: null, isOffer: false, status: "متوفر", icon: "💊" },
     { id: 205, name: "Motilium 10mg 30 Tablets", category: "الباطنة والجهاز الهضمي", desc: "لتنظيم حركة المعدة وعلاج الغثيان", price: 66, oldPrice: null, isOffer: false, status: "متوفر", icon: "💊" },
 
-    // 3. المضادات الحيوية
     { id: 301, name: "Augmentin 1g 14 Tablets", category: "المضادات الحيوية", desc: "مضاد حيوي واسع المجال", price: 138, oldPrice: null, isOffer: false, status: "متوفر", icon: "🛡️" },
     { id: 302, name: "Hibiotic 1g 16 Tablets", category: "المضادات الحيوية", desc: "أموكسيسيلين + كلافولانيك أسيد", price: 105, oldPrice: null, isOffer: false, status: "متوفر", icon: "🛡️" },
     { id: 303, name: "Zithromax 500mg 3 Capsules", category: "المضادات الحيوية", desc: "أزيثروميسين لعلاج عدوى الجهاز التنفسي", price: 118, oldPrice: null, isOffer: false, status: "متوفر", icon: "💊" },
     { id: 304, name: "Tavacin 500mg 5 Tablets", category: "المضادات الحيوية", desc: "ليفوفلوكساسين مضاد حيوي", price: 95, oldPrice: null, isOffer: false, status: "متوفر", icon: "💊" },
     { id: 305, name: "Curam 1g 14 Tablets", category: "المضادات الحيوية", desc: "مضاد حيوي لعلاج الالتهابات البكتيرية", price: 124, oldPrice: null, isOffer: false, status: "متوفر", icon: "🛡️" },
 
-    // 4. الفيتامينات والمكملات الغذائية
     { id: 401, name: "Centrum Lutein 30 Tablets", category: "الفيتامينات والمكملات", desc: "مجموعة فيتامينات ومعادن متكاملة يومية", price: 365, oldPrice: 420, isOffer: true, status: "متوفر", icon: "🌿" },
     { id: 402, name: "Limitless Omega 3 30 Capsules", category: "الفيتامينات والمكملات", desc: "زيت السمك لصحة القلب والذاكرة", price: 170, oldPrice: 205, isOffer: true, status: "متوفر", icon: "🐟" },
     { id: 403, name: "Kerovit 30 Capsules", category: "الفيتامينات والمكملات", desc: "مكمل غذائي لزيادة النشاط والتركيز", price: 165, oldPrice: null, isOffer: false, status: "متوفر", icon: "⚡" },
     { id: 404, name: "Osteocare 30 Tablets", category: "الفيتامينات والمكملات", desc: "كالسيوم وماغنسيوم وفيتامين د للعظام", price: 145, oldPrice: null, isOffer: false, status: "متوفر", icon: "🦴" },
     { id: 405, name: "Feroglobin B12 30 Capsules", category: "الفيتامينات والمكملات", desc: "حديد وزنك وفيتامينات لعلاج الأنيميا", price: 130, oldPrice: null, isOffer: false, status: "متوفر", icon: "🩸" },
 
-    // 5. العناية بالبشرة
     { id: 501, name: "CeraVe Hydrating Cleanser 236ml", category: "العناية بالبشرة", desc: "غسول مرطب للبشرة العادية والجافة", price: 475, oldPrice: 560, isOffer: true, status: "متوفر", icon: "🧴" },
     { id: 502, name: "La Roche-Posay Anthelios SPF50+", category: "العناية بالبشرة", desc: "واقي شمس عالي الحماية مقاوم للماء", price: 690, oldPrice: 820, isOffer: true, status: "متوفر", icon: "☀️" },
     { id: 503, name: "Bioderma Sensibio H2O 250ml", category: "العناية بالبشرة", desc: "ماء ميسيلار لإزالة المكياج وتنظيف البشرة", price: 430, oldPrice: 510, isOffer: true, status: "متوفر", icon: "💧" },
     { id: 504, name: "Eucerin Hyaluron-Filler Cream", category: "العناية بالبشرة", desc: "كريم ترطيب ومقاومة التجاعيد", price: 980, oldPrice: null, isOffer: false, status: "متوفر", icon: "✨" },
     { id: 505, name: "Starville Acne Prone Gel 200ml", category: "العناية بالبشرة", desc: "غسول للبشرة الدهنية والمختلطة", price: 140, oldPrice: 175, isOffer: true, status: "متوفر", icon: "🧼" },
 
-    // 6. العناية بالشعر
     { id: 601, name: "Vichy Dercos Anti-Dandruff Shampoo", category: "العناية بالشعر", desc: "شامبو طبي لعلاج القشرة وتهدئة الفروة", price: 540, oldPrice: 640, isOffer: true, status: "متوفر", icon: "💆‍♀️" },
     { id: 602, name: "Strongville Hair Spray 120ml", category: "العناية بالشعر", desc: "سبراي لتقوية البصيلات ومنع التساقط", price: 210, oldPrice: 255, isOffer: true, status: "متوفر", icon: "💇‍♀️" },
     { id: 603, name: "Hair Back 5% Minoxidil Spray", category: "العناية بالشعر", desc: "علاج تساقط الشعر الوراثي وإنبات الفراغات", price: 155, oldPrice: null, isOffer: false, status: "متوفر", icon: "🧴" },
     { id: 604, name: "Bless Leave-In Curl Cream 300ml", category: "العناية بالشعر", desc: "كريم تصفيف وترطيب للشعر الكيرلي", price: 185, oldPrice: null, isOffer: false, status: "متوفر", icon: "✨" },
     { id: 605, name: "Seropipe Hair Serum 100ml", category: "العناية بالشعر", desc: "سيروم حماية الشعر من التقصف والهيشان", price: 210, oldPrice: null, isOffer: false, status: "متوفر", icon: "💧" },
 
-    // 7. الأم والطفل
     { id: 701, name: "Bebelac 1 Infant Formula 400g", category: "الأم والطفل", desc: "حليب أطفال للرضع من عمر يوم إلى 6 شهور", price: 235, oldPrice: null, isOffer: false, status: "متوفر", icon: "🍼" },
     { id: 702, name: "Pampers Premium Care Size 3", category: "الأم والطفل", desc: "حفاضات ناعمة فائقة الامتصاص للطفل", price: 325, oldPrice: 380, isOffer: true, status: "متوفر", icon: "👶" },
     { id: 703, name: "Sudocrem Antiseptic Cream 125g", category: "الأم والطفل", desc: "كريم الحماية من التهابات الحفاض", price: 210, oldPrice: 250, isOffer: true, status: "متوفر", icon: "🧴" },
     { id: 704, name: "Sanosan Baby Bath & Shampoo 200ml", category: "الأم والطفل", desc: "شامبو وشاور لطيف لا يسبب الدموع", price: 260, oldPrice: null, isOffer: false, status: "متوفر", icon: "🛁" },
     { id: 705, name: "Avent Natural Feeding Bottle 260ml", category: "الأم والطفل", desc: "ببرونة رضاعة طبيعية مضادة للمغص", price: 340, oldPrice: null, isOffer: false, status: "متوفر", icon: "🍼" },
 
-    // 8. العناية الشخصية والأسنان
     { id: 801, name: "Sensodyne Repair & Protect 75ml", category: "العناية الشخصية والأسنان", desc: "معجون أسنان لحماية الأسنان الحساسة", price: 98, oldPrice: 120, isOffer: true, status: "متوفر", icon: "🦷" },
     { id: 802, name: "Listerine Cool Mint Mouthwash 250ml", category: "العناية الشخصية والأسنان", desc: "غسول فم لانتعاش يدوم طويلاً", price: 125, oldPrice: null, isOffer: false, status: "متوفر", icon: "💧" },
     { id: 803, name: "Beesline Whitening Roll-On Deo", category: "العناية الشخصية والأسنان", desc: "مزيل عرق طبيعي لطيف على البشرة", price: 215, oldPrice: 260, isOffer: true, status: "متوفر", icon: "🌸" },
     { id: 804, name: "Gillette Blue3 Comfort Razors", category: "العناية الشخصية والأسنان", desc: "شفرات حلاقة ثلاثية الشفرات", price: 140, oldPrice: null, isOffer: false, status: "متوفر", icon: "🪒" },
     { id: 805, name: "Dettol Original Liquid Antiseptic 250ml", category: "العناية الشخصية والأسنان", desc: "مطهر ومعقم متعدد الاستخدامات", price: 95, oldPrice: null, isOffer: false, status: "متوفر", icon: "🧼" },
 
-    // 9. الأجهزة والمستلزمات الطبية
     { id: 901, name: "Omron M2 Basic Blood Pressure", category: "الأجهزة والمستلزمات الطبية", desc: "جهاز قياس ضغط الدم الديجيتال الأوتوماتيك", price: 1290, oldPrice: 1480, isOffer: true, status: "متوفر", icon: "🩺" },
     { id: 902, name: "Accu-Chek Instant Glucometer", category: "الأجهزة والمستلزمات الطبية", desc: "جهاز قياس السكر في الدم مع شرائط", price: 690, oldPrice: null, isOffer: false, status: "متوفر", icon: "🩸" },
     { id: 903, name: "Beurer Digital Thermometer", category: "الأجهزة والمستلزمات الطبية", desc: "ترمومتر ديجيتال سريع لقياس الحرارة", price: 185, oldPrice: null, isOffer: false, status: "متوفر", icon: "🌡️" },
@@ -885,31 +1289,62 @@
     { id: 905, name: "Hansaplast Elastic Bandages 20pcs", category: "الأجهزة والمستلزمات الطبية", desc: "بلاستر جروح طبي مرن مقاوم للماء", price: 38, oldPrice: null, isOffer: false, status: "متوفر", icon: "🩹" }
   ];
 
-  const defaultConfig = {
-    name: "صيدلية د/ أحمد عبدالرحيم",
-    whatsapp: "201119713199",
-    delivery: 20,
-    bannerTitle: "أقوى عروض صيدلية د/ أحمد عبدالرحيم",
-    sheetUrl: "",
-    adminPass: "1234"
+  const defaultStoreState = {
+    config: {
+      name: "صيدلية د/ أحمد عبدالرحيم",
+      tagline: "لصاحبها د/ أحمد عبدالرحيم • رعاية صيدلانية متكاملة",
+      whatsapp: "201119713199",
+      rxWhatsapp: "",
+      address: "لصاحبها د/ أحمد عبدالرحيم — خدمة التوصيل السريع لجميع المناطق",
+      hours: "🕒 مواعيد العمل: 24 ساعة يومياً",
+      bannerBadge: "🔥 عروض وخصومات حصرية",
+      bannerTitle: "أقوى عروض صيدلية د/ أحمد عبدالرحيم",
+      bannerSub: "خصومات تصل إلى 30% على منتجات العناية بالبشرة والشعر ومستلزمات الأطفال",
+      freeShipEnabled: true,
+      freeShipMin: 500,
+      sheetUrl: "",
+      customLogo: "",
+      adminPass: "1234"
+    },
+    categories: initialCategories,
+    products: initialProducts,
+    zones: [
+      { id: 1, name: "توصيل داخلي (قريب من الصيدلية)", fee: 15 },
+      { id: 2, name: "توصيل عام (داخل المدينة)", fee: 20 },
+      { id: 3, name: "مناطق بعيدة / مجاورات خارجية", fee: 30 }
+    ],
+    coupons: [
+      { code: "AHMED10", type: "percent", value: 10 }
+    ]
   };
 
-  let config = JSON.parse(localStorage.getItem('pharmConfig_v3')) || { ...defaultConfig };
-  let products = JSON.parse(localStorage.getItem('pharmProducts_v3')) || [...defaultProducts];
+  let store = JSON.parse(localStorage.getItem('drAhmedPharmacy_Enterprise_v1')) || JSON.parse(JSON.stringify(defaultStoreState));
   let cart = [];
-  let currentCategory = "العروض"; // Default home view is Offers!
+  let currentCategory = "العروض";
+  let appliedCoupon = null;
 
-  // Secret Admin Access: 1) Keyboard shortcut Ctrl+Shift+A  2) 5 rapid clicks on the Pharmacy Logo
+  function persistStore() {
+    localStorage.setItem('drAhmedPharmacy_Enterprise_v1', JSON.stringify(store));
+  }
+
+  function showToast(msg) {
+    const t = document.getElementById('toast');
+    t.innerText = msg;
+    t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 2300);
+  }
+
+  // Secret Access: 5 rapid clicks on Logo OR Ctrl+Shift+A
   let logoClicks = 0;
-  let logoClickTimer = null;
+  let logoTimer = null;
   document.getElementById('brandLogoArea').addEventListener('click', () => {
     logoClicks++;
-    clearTimeout(logoClickTimer);
+    clearTimeout(logoTimer);
     if (logoClicks >= 5) {
       logoClicks = 0;
       openAdminLogin();
     } else {
-      logoClickTimer = setTimeout(() => { logoClicks = 0; }, 1500);
+      logoTimer = setTimeout(() => { logoClicks = 0; }, 1500);
     }
   });
 
@@ -920,60 +1355,75 @@
     }
   });
 
-  function showToast(msg) {
-    const t = document.getElementById('toast');
-    t.innerText = msg;
-    t.classList.add('show');
-    setTimeout(() => t.classList.remove('show'), 2200);
-  }
+  function applyBranding() {
+    const c = store.config;
+    document.getElementById('pharmacyNameDisplay').innerText = c.name;
+    document.getElementById('pharmacyTaglineDisplay').innerText = c.tagline;
+    document.getElementById('footerPharmacyName').innerText = c.name;
+    document.getElementById('footerAddressDisplay').innerText = c.address;
+    document.getElementById('topHoursDisplay').innerText = c.hours;
+    document.getElementById('bannerBadgeText').innerText = c.bannerBadge;
+    document.getElementById('bannerTitle').innerText = c.bannerTitle;
+    document.getElementById('bannerSub').innerText = c.bannerSub;
+    document.title = c.name + " | المتجر الإلكتروني الرسمي";
 
-  function applyConfig() {
-    document.getElementById('pharmacyNameDisplay').innerText = config.name;
-    document.getElementById('footerPharmacyName').innerText = config.name;
-    document.getElementById('bannerTitle').innerText = config.bannerTitle;
-    document.title = config.name + " | المتجر الإلكتروني الرسمي";
-    document.getElementById('deliveryDisplay').innerText = config.delivery + " ج.م";
-    const cleanPhone = config.whatsapp.startsWith('20') ? '0' + config.whatsapp.slice(2) : config.whatsapp;
+    const cleanPhone = c.whatsapp.startsWith('20') ? '0' + c.whatsapp.slice(2) : c.whatsapp;
     document.getElementById('topPhoneDisplay').innerText = cleanPhone;
     document.getElementById('footerPhone').innerText = cleanPhone;
+
+    const freeShipEl = document.getElementById('topFreeShipDisplay');
+    if (c.freeShipEnabled && c.freeShipMin > 0) {
+      freeShipEl.style.display = 'block';
+      freeShipEl.innerHTML = `🚚 توصيل مجاني للطلبات فوق <span>${c.freeShipMin} ج.م</span>`;
+    } else {
+      freeShipEl.style.display = 'none';
+    }
+
+    if (c.customLogo) {
+      document.getElementById('headerLogoContainer').innerHTML = `<img src="${c.customLogo}" alt="Logo">`;
+    }
+
+    // Populate Delivery Zones in Cart
+    const zoneSelect = document.getElementById('deliveryZoneSelect');
+    zoneSelect.innerHTML = store.zones.map(z => `<option value="${z.fee}">${z.name} (${z.fee} ج.م)</option>`).join('');
   }
 
-  async function loadProducts() {
-    if (config.sheetUrl) {
-      try {
-        const res = await fetch(config.sheetUrl);
-        const text = await res.text();
-        const rows = text.split(/\r?\n/).slice(1);
-        const parsed = rows.map((r, idx) => {
-          const cols = r.split(',');
-          if (cols.length < 3 || !cols[0].trim()) return null;
-          const price = parseFloat(cols[2]) || 0;
-          const oldP = parseFloat(cols[6]) || null;
-          return {
-            id: idx + 2000,
-            name: cols[0].trim().replace(/"/g, ''),
-            category: (cols[1] || "أدوية وعلاجات").trim().replace(/"/g, ''),
-            price: price,
-            status: (cols[3] || "متوفر").trim().replace(/"/g, ''),
-            image: (cols[4] || "").trim().replace(/"/g, ''),
-            desc: (cols[5] || "").trim().replace(/"/g, ''),
-            oldPrice: oldP,
-            isOffer: Boolean(oldP && oldP > price),
-            icon: "💊"
-          };
-        }).filter(Boolean);
-        if (parsed.length > 0) products = parsed;
-      } catch (e) {
-        console.error("Sheet load error:", e);
+  async function syncSheetIfConfigured() {
+    if (!store.config.sheetUrl) return;
+    try {
+      const res = await fetch(store.config.sheetUrl);
+      const text = await res.text();
+      const rows = text.split(/\r?\n/).slice(1);
+      const parsed = rows.map((r, idx) => {
+        const cols = r.split(',');
+        if (cols.length < 3 || !cols[0].trim()) return null;
+        const price = parseFloat(cols[2]) || 0;
+        const oldP = parseFloat(cols[6]) || null;
+        return {
+          id: idx + 5000,
+          name: cols[0].trim().replace(/"/g, ''),
+          category: (cols[1] || "أدوية وعلاجات").trim().replace(/"/g, ''),
+          price: price,
+          status: (cols[3] || "متوفر").trim().replace(/"/g, ''),
+          image: (cols[4] || "").trim().replace(/"/g, ''),
+          desc: (cols[5] || "").trim().replace(/"/g, ''),
+          oldPrice: oldP,
+          isOffer: Boolean(oldP && oldP > price),
+          icon: "💊"
+        };
+      }).filter(Boolean);
+      if (parsed.length > 0) {
+        store.products = parsed;
+        persistStore();
       }
+    } catch (e) {
+      console.error("Sheet sync failed", e);
     }
-    renderSidebar();
-    renderProducts();
   }
 
   function renderSidebar() {
-    const offersCount = products.filter(p => p.isOffer || (p.oldPrice && p.oldPrice > p.price)).length;
-    const cats = [...new Set(products.map(p => p.category))];
+    const visibleCats = store.categories.filter(c => !c.hidden);
+    const offersCount = store.products.filter(p => p.isOffer || (p.oldPrice && p.oldPrice > p.price)).length;
     const list = document.getElementById('sidebarCategories');
 
     let html = `
@@ -986,17 +1436,17 @@
       <li>
         <button class="sidebar-item ${currentCategory === 'الكل' ? 'active' : ''}" onclick="selectCategory('الكل')">
           <span>🏥 كل منتجات الصيدلية</span>
-          <span class="sidebar-count">${products.length}</span>
+          <span class="sidebar-count">${store.products.length}</span>
         </button>
       </li>
     `;
 
-    cats.forEach(c => {
-      const count = products.filter(p => p.category === c).length;
+    visibleCats.forEach(c => {
+      const count = store.products.filter(p => p.category === c.name).length;
       html += `
         <li>
-          <button class="sidebar-item ${currentCategory === c ? 'active' : ''}" onclick="selectCategory('${c.replace(/'/g, "\\'")}')">
-            <span>${c}</span>
+          <button class="sidebar-item ${currentCategory === c.name ? 'active' : ''}" onclick="selectCategory('${c.name.replace(/'/g, "\\'")}')">
+            <span>${c.name}</span>
             <span class="sidebar-count">${count}</span>
           </button>
         </li>
@@ -1037,7 +1487,10 @@
 
   function renderProducts() {
     const q = document.getElementById('searchInput').value.trim().toLowerCase();
-    const filtered = products.filter(p => {
+    const hiddenCatNames = new Set(store.categories.filter(c => c.hidden).map(c => c.name));
+
+    const filtered = store.products.filter(p => {
+      if (hiddenCatNames.has(p.category)) return false;
       if (q) {
         return p.name.toLowerCase().includes(q) ||
                p.category.toLowerCase().includes(q) ||
@@ -1048,16 +1501,13 @@
       return p.category === currentCategory;
     });
 
-    if (q) {
-      document.getElementById('currentSectionTitle').innerText = `🔍 نتائج البحث عن: "${q}"`;
-    }
-
+    if (q) document.getElementById('currentSectionTitle').innerText = `🔍 نتائج البحث عن: "${q}"`;
     document.getElementById('productsCountLabel').innerText = `${filtered.length} صنف`;
-    const grid = document.getElementById('productsGrid');
 
+    const grid = document.getElementById('productsGrid');
     if (filtered.length === 0) {
       grid.innerHTML = `<div style="grid-column:1/-1; text-align:center; padding:40px; background:#fff; border-radius:16px; border:1px solid var(--border);">
-        <p style="font-size:1.1rem; font-weight:800; color:var(--navy); margin-bottom:8px;">لا توجد أصناف مطابقة حالياً</p>
+        <p style="font-size:1.05rem; font-weight:800; color:var(--navy); margin-bottom:10px;">لا توجد أصناف مطابقة حالياً</p>
         <button class="btn-rx" style="margin:auto;" onclick="openRxModal()">📲 اطلبه عبر واتساب الآن</button>
       </div>`;
       return;
@@ -1108,7 +1558,7 @@
   }
 
   function addToCart(id) {
-    const prod = products.find(p => p.id === id);
+    const prod = store.products.find(p => p.id === id);
     if (!prod) return;
     const existing = cart.find(item => item.id === id);
     if (existing) existing.qty++;
@@ -1125,6 +1575,24 @@
     if (cart[idx].qty <= 0) cart.splice(idx, 1);
     updateCartUI();
     renderProducts();
+  }
+
+  function applyCouponCode() {
+    const code = document.getElementById('couponInput').value.trim().toUpperCase();
+    const found = store.coupons.find(c => c.code.toUpperCase() === code);
+    const msgEl = document.getElementById('couponAppliedMsg');
+    if (!found) {
+      appliedCoupon = null;
+      msgEl.style.display = 'block';
+      msgEl.style.color = 'var(--danger)';
+      msgEl.innerText = "✕ كود الخصم غير صحيح أو منتهي";
+    } else {
+      appliedCoupon = found;
+      msgEl.style.display = 'block';
+      msgEl.style.color = 'var(--success)';
+      msgEl.innerText = `✓ تم تفعيل كود (${found.code}) بخصم ${found.value}${found.type === 'percent' ? '%' : ' ج.م'}`;
+    }
+    updateCartUI();
   }
 
   function updateCartUI() {
@@ -1154,9 +1622,29 @@
     }
 
     const sub = cart.reduce((sum, i) => sum + (i.price * i.qty), 0);
-    const total = sub > 0 ? sub + Number(config.delivery) : 0;
+    let discountVal = 0;
+    if (appliedCoupon && sub > 0) {
+      discountVal = appliedCoupon.type === 'percent'
+        ? Math.round((sub * appliedCoupon.value) / 100)
+        : Math.min(sub, appliedCoupon.value);
+    }
+
+    const discountRow = document.getElementById('discountRow');
+    if (discountVal > 0) {
+      discountRow.style.display = 'flex';
+      document.getElementById('discountAmountDisplay').innerText = `- ${discountVal} ج.م`;
+    } else {
+      discountRow.style.display = 'none';
+    }
+
+    const afterDiscount = Math.max(0, sub - discountVal);
+    const zoneFee = Number(document.getElementById('deliveryZoneSelect').value) || 0;
+    const isFreeShip = store.config.freeShipEnabled && afterDiscount >= store.config.freeShipMin && sub > 0;
+    const finalDelivery = sub === 0 ? 0 : (isFreeShip ? 0 : zoneFee);
+
     document.getElementById('subTotal').innerText = sub + " ج.م";
-    document.getElementById('grandTotal').innerText = total + " ج.م";
+    document.getElementById('deliveryDisplay').innerText = isFreeShip ? "مجاني 🎉" : finalDelivery + " ج.م";
+    document.getElementById('grandTotal').innerText = (afterDiscount + finalDelivery) + " ج.م";
   }
 
   function toggleCart() {
@@ -1171,7 +1659,9 @@
     document.getElementById('rxModal').classList.add('open');
   }
 
-  /* Admin Controls */
+  /* =========================================================
+     ADMIN DASHBOARD FUNCTIONS
+     ========================================================= */
   function openAdminLogin() {
     closeAll();
     document.getElementById('adminPassInput').value = "";
@@ -1181,145 +1671,387 @@
   }
 
   function verifyAdminPass() {
-    const entered = document.getElementById('adminPassInput').value;
-    if (entered === config.adminPass) {
-      openAdminPanel();
+    if (document.getElementById('adminPassInput').value === store.config.adminPass) {
+      closeAll();
+      openAdminDashboard();
     } else {
       alert("كلمة المرور غير صحيحة!");
     }
   }
 
-  function openAdminPanel() {
-    closeAll();
-    document.getElementById('setPharmName').value = config.name;
-    document.getElementById('setWhatsapp').value = config.whatsapp;
-    document.getElementById('setDelivery').value = config.delivery;
-    document.getElementById('setBannerTitle').value = config.bannerTitle;
-    document.getElementById('setSheetUrl').value = config.sheetUrl;
-    document.getElementById('setAdminPass').value = config.adminPass;
-    renderAdminProductsList();
-    document.getElementById('overlay').classList.add('open');
-    document.getElementById('adminPanelModal').classList.add('open');
+  function openAdminDashboard() {
+    document.getElementById('adminTopPharmName').innerText = store.config.name;
+    refreshAdminKPIs();
+    populateAdminForms();
+    renderAdminProdTable();
+    renderAdminCatTable();
+    renderAdminCoupons();
+    renderAdminZones();
+    document.getElementById('adminDashboard').classList.add('open');
   }
 
-  function switchAdminTab(tabName, btn) {
-    document.querySelectorAll('.admin-tab').forEach(b => b.classList.remove('active'));
-    document.querySelectorAll('.admin-section').forEach(s => s.classList.remove('active'));
-    btn.classList.add('active');
-    document.getElementById('tab-' + tabName).classList.add('active');
-  }
-
-  function saveGeneralSettings() {
-    config = {
-      name: document.getElementById('setPharmName').value.trim() || defaultConfig.name,
-      whatsapp: document.getElementById('setWhatsapp').value.trim() || defaultConfig.whatsapp,
-      delivery: Number(document.getElementById('setDelivery').value) || 0,
-      bannerTitle: document.getElementById('setBannerTitle').value.trim() || defaultConfig.bannerTitle,
-      sheetUrl: document.getElementById('setSheetUrl').value.trim(),
-      adminPass: document.getElementById('setAdminPass').value.trim() || "1234"
-    };
-    localStorage.setItem('pharmConfig_v3', JSON.stringify(config));
-    applyConfig();
-    loadProducts();
-    updateCartUI();
-    showToast("✓ تم حفظ إعدادات المتجر بنجاح");
-  }
-
-  function addNewProductManual() {
-    const name = document.getElementById('newProdName').value.trim();
-    const category = document.getElementById('newProdCat').value;
-    const price = parseFloat(document.getElementById('newProdPrice').value);
-    const oldPrice = parseFloat(document.getElementById('newProdOldPrice').value) || null;
-    const desc = document.getElementById('newProdDesc').value.trim();
-    const image = document.getElementById('newProdImg').value.trim();
-
-    if (!name || !price) return alert("يرجى إدخال اسم الصنف والسعر");
-
-    products.unshift({
-      id: Date.now(),
-      name,
-      category,
-      price,
-      oldPrice,
-      isOffer: Boolean(oldPrice && oldPrice > price),
-      desc,
-      image,
-      status: "متوفر",
-      icon: "💊"
-    });
-
-    localStorage.setItem('pharmProducts_v3', JSON.stringify(products));
+  function closeAdminDashboard() {
+    document.getElementById('adminDashboard').classList.remove('open');
+    applyBranding();
     renderSidebar();
     renderProducts();
-    renderAdminProductsList();
+    updateCartUI();
+  }
+
+  function switchAdminPanel(panelKey, btn) {
+    document.querySelectorAll('.admin-nav-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.admin-panel-view').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('panel-' + panelKey).classList.add('active');
+  }
+
+  function refreshAdminKPIs() {
+    document.getElementById('kpiTotalProds').innerText = store.products.length;
+    document.getElementById('kpiAvailProds').innerText = store.products.filter(p => p.status === 'متوفر').length;
+    document.getElementById('kpiOfferProds').innerText = store.products.filter(p => p.isOffer || (p.oldPrice && p.oldPrice > p.price)).length;
+    document.getElementById('kpiCatsCount').innerText = store.categories.length;
+  }
+
+  function populateAdminForms() {
+    const c = store.config;
+    document.getElementById('setPharmName').value = c.name;
+    document.getElementById('setPharmTagline').value = c.tagline;
+    document.getElementById('setWhatsapp').value = c.whatsapp;
+    document.getElementById('setRxWhatsapp').value = c.rxWhatsapp || "";
+    document.getElementById('setPharmAddress').value = c.address;
+    document.getElementById('setPharmHours').value = c.hours;
+    document.getElementById('setBannerBadge').value = c.bannerBadge;
+    document.getElementById('setBannerTitle').value = c.bannerTitle;
+    document.getElementById('setBannerSub').value = c.bannerSub;
+    document.getElementById('setFreeShipEnabled').value = String(c.freeShipEnabled);
+    document.getElementById('setFreeShipMin').value = c.freeShipMin;
+    document.getElementById('setSheetUrl').value = c.sheetUrl;
+    document.getElementById('setAdminPass').value = c.adminPass;
+
+    // Category dropdowns
+    const catOptions = store.categories.map(cat => `<option value="${cat.name}">${cat.name}</option>`).join('');
+    document.getElementById('newProdCat').innerHTML = catOptions;
+    document.getElementById('adminProdCatFilter').innerHTML = `<option value="الكل">كل الأقسام</option>` + catOptions;
+  }
+
+  /* Products Admin */
+  function addNewProduct() {
+    const name = document.getElementById('newProdName').value.trim();
+    const category = document.getElementById('newProdCat').value;
+    const status = document.getElementById('newProdStatus').value;
+    const price = parseFloat(document.getElementById('newProdPrice').value);
+    const oldPrice = parseFloat(document.getElementById('newProdOldPrice').value) || null;
+    const image = document.getElementById('newProdImg').value.trim();
+    const desc = document.getElementById('newProdDesc').value.trim();
+
+    if (!name || !price) return alert("يرجى إدخال اسم الصنف والسعر الحالي");
+
+    store.products.unshift({
+      id: Date.now(),
+      name, category, status, price, oldPrice,
+      isOffer: Boolean(oldPrice && oldPrice > price),
+      image, desc, icon: "💊"
+    });
+    persistStore();
+    refreshAdminKPIs();
+    renderAdminProdTable();
     document.getElementById('newProdName').value = "";
     document.getElementById('newProdPrice').value = "";
     document.getElementById('newProdOldPrice').value = "";
-    document.getElementById('newProdDesc').value = "";
     document.getElementById('newProdImg').value = "";
-    showToast("✓ تمت إضافة الصنف للمتجر بنجاح");
+    document.getElementById('newProdDesc').value = "";
+    showToast("✓ تمت إضافة الصنف بنجاح");
   }
 
-  function renderAdminProductsList() {
-    const q = (document.getElementById('adminSearchProd').value || "").toLowerCase();
-    const filtered = products.filter(p => p.name.toLowerCase().includes(q) || p.category.toLowerCase().includes(q));
-    const list = document.getElementById('adminProductsList');
-    list.innerHTML = filtered.map(p => `
-      <div class="admin-prod-row">
-        <div style="flex:1; min-width:180px;">
-          <strong style="font-size:0.88rem; display:block;">${p.name}</strong>
-          <small style="color:var(--muted);">${p.category}</small>
-        </div>
-        <div style="display:flex; align-items:center; gap:6px;">
-          <input type="number" value="${p.price}" style="width:75px; padding:5px; border:1px solid var(--border); border-radius:6px;" onchange="updateProdPrice(${p.id}, this.value)" />
-          <small>ج.م</small>
-          <button class="admin-tab" style="padding:5px 10px; background:${p.status==='متوفر'?'#DCFCE7':'#FEE2E2'}; color:${p.status==='متوفر'?'#16A34A':'#DC2626'};" onclick="toggleProdStock(${p.id})">${p.status}</button>
-          <button class="admin-tab" style="padding:5px 9px; color:#DC2626;" onclick="deleteProd(${p.id})">🗑️</button>
-        </div>
+  function renderAdminProdTable() {
+    const q = (document.getElementById('adminProdSearch').value || "").toLowerCase();
+    const catF = document.getElementById('adminProdCatFilter').value;
+    const filtered = store.products.filter(p => {
+      const mQ = p.name.toLowerCase().includes(q);
+      const mC = catF === "الكل" || p.category === catF;
+      return mQ && mC;
+    });
+
+    document.getElementById('adminProdTableBody').innerHTML = filtered.map(p => `
+      <tr>
+        <td><strong>${p.name}</strong></td>
+        <td>${p.category}</td>
+        <td><input type="number" value="${p.price}" style="width:72px; padding:4px; border:1px solid var(--border); border-radius:6px;" onchange="editProdField(${p.id}, 'price', Number(this.value))" /></td>
+        <td><input type="number" value="${p.oldPrice || ''}" placeholder="-" style="width:72px; padding:4px; border:1px solid var(--border); border-radius:6px;" onchange="editProdField(${p.id}, 'oldPrice', this.value ? Number(this.value) : null)" /></td>
+        <td><input type="checkbox" ${p.isOffer ? 'checked' : ''} onchange="editProdField(${p.id}, 'isOffer', this.checked)" /></td>
+        <td>
+          <button class="admin-nav-btn" style="padding:4px 10px; width:auto; font-size:0.78rem; background:${p.status==='متوفر'?'#DCFCE7':'#FEE2E2'}; color:${p.status==='متوفر'?'#16A34A':'#DC2626'};" onclick="toggleProdStatus(${p.id})">${p.status}</button>
+        </td>
+        <td><button class="btn-danger-outline" style="padding:4px 8px;" onclick="removeProduct(${p.id})">🗑️</button></td>
+      </tr>
+    `).join('');
+  }
+
+  function editProdField(id, field, val) {
+    const p = store.products.find(x => x.id === id);
+    if (!p) return;
+    p[field] = val;
+    if (field === 'oldPrice' && val && val > p.price) p.isOffer = true;
+    persistStore();
+    refreshAdminKPIs();
+    showToast("✓ تم التحديث");
+  }
+
+  function toggleProdStatus(id) {
+    const p = store.products.find(x => x.id === id);
+    if (!p) return;
+    p.status = p.status === 'متوفر' ? 'غير متوفر' : 'متوفر';
+    persistStore();
+    refreshAdminKPIs();
+    renderAdminProdTable();
+  }
+
+  function removeProduct(id) {
+    if (!confirm("حذف هذا الصنف نهائياً؟")) return;
+    store.products = store.products.filter(x => x.id !== id);
+    persistStore();
+    refreshAdminKPIs();
+    renderAdminProdTable();
+  }
+
+  /* Categories Admin */
+  function addNewCategory() {
+    const name = document.getElementById('newCatNameInput').value.trim();
+    if (!name) return;
+    if (store.categories.some(c => c.name === name)) return alert("هذا القسم موجود بالفعل");
+    store.categories.push({ name, hidden: false });
+    persistStore();
+    populateAdminForms();
+    renderAdminCatTable();
+    refreshAdminKPIs();
+    document.getElementById('newCatNameInput').value = "";
+    showToast("✓ تمت إضافة القسم");
+  }
+
+  function renderAdminCatTable() {
+    document.getElementById('adminCatTableBody').innerHTML = store.categories.map((c, idx) => {
+      const count = store.products.filter(p => p.category === c.name).length;
+      return `
+        <tr>
+          <td>
+            <button class="admin-nav-btn" style="display:inline; width:auto; padding:2px 7px;" onclick="moveCategory(${idx}, -1)">⬆️</button>
+            <button class="admin-nav-btn" style="display:inline; width:auto; padding:2px 7px;" onclick="moveCategory(${idx}, 1)">⬇️</button>
+          </td>
+          <td><strong>${c.name}</strong></td>
+          <td>${count} صنف</td>
+          <td>${c.hidden ? '<span style="color:var(--danger); font-weight:800;">مخفي</span>' : '<span style="color:var(--success); font-weight:800;">ظاهر</span>'}</td>
+          <td style="display:flex; gap:6px;">
+            <button class="btn-primary" style="padding:4px 10px; font-size:0.78rem;" onclick="toggleCatHidden(${idx})">${c.hidden ? 'إظهار' : 'إخفاء'}</button>
+            <button class="btn-danger-outline" style="padding:4px 10px; font-size:0.78rem;" onclick="deleteCategory(${idx})">حذف</button>
+          </td>
+        </tr>
+      `;
+    }).join('');
+  }
+
+  function moveCategory(idx, dir) {
+    const target = idx + dir;
+    if (target < 0 || target >= store.categories.length) return;
+    const temp = store.categories[idx];
+    store.categories[idx] = store.categories[target];
+    store.categories[target] = temp;
+    persistStore();
+    renderAdminCatTable();
+  }
+
+  function toggleCatHidden(idx) {
+    store.categories[idx].hidden = !store.categories[idx].hidden;
+    persistStore();
+    renderAdminCatTable();
+  }
+
+  function deleteCategory(idx) {
+    if (!confirm("حذف القسم؟")) return;
+    store.categories.splice(idx, 1);
+    persistStore();
+    populateAdminForms();
+    renderAdminCatTable();
+    refreshAdminKPIs();
+  }
+
+  /* Offers & Coupons */
+  function saveBannerSettings() {
+    store.config.bannerBadge = document.getElementById('setBannerBadge').value.trim();
+    store.config.bannerTitle = document.getElementById('setBannerTitle').value.trim();
+    store.config.bannerSub = document.getElementById('setBannerSub').value.trim();
+    persistStore();
+    showToast("✓ تم تحديث بانر العروض");
+  }
+
+  function addCoupon() {
+    const code = document.getElementById('newCouponCode').value.trim().toUpperCase();
+    const type = document.getElementById('newCouponType').value;
+    const value = parseFloat(document.getElementById('newCouponVal').value);
+    if (!code || !value) return alert("يرجى إدخال الكود والقيمة");
+    store.coupons.push({ code, type, value });
+    persistStore();
+    renderAdminCoupons();
+    document.getElementById('newCouponCode').value = "";
+    document.getElementById('newCouponVal').value = "";
+    showToast("✓ تم تفعيل الكوبون");
+  }
+
+  function renderAdminCoupons() {
+    document.getElementById('adminCouponsList').innerHTML = store.coupons.map((cp, idx) => `
+      <div style="display:flex; justify-content:space-between; align-items:center; padding:10px; border:1px solid var(--border); border-radius:10px; margin-bottom:8px;">
+        <div><strong>${cp.code}</strong> — خصم ${cp.value}${cp.type === 'percent' ? '%' : ' ج.م'}</div>
+        <button class="btn-danger-outline" style="padding:4px 10px;" onclick="deleteCoupon(${idx})">حذف</button>
       </div>
     `).join('');
   }
 
-  function updateProdPrice(id, newPrice) {
-    const p = products.find(x => x.id === id);
-    if (p) {
-      p.price = parseFloat(newPrice) || 0;
-      localStorage.setItem('pharmProducts_v3', JSON.stringify(products));
-      renderProducts();
-      showToast("✓ تم تحديث السعر");
-    }
+  function deleteCoupon(idx) {
+    store.coupons.splice(idx, 1);
+    persistStore();
+    renderAdminCoupons();
   }
 
-  function toggleProdStock(id) {
-    const p = products.find(x => x.id === id);
-    if (p) {
-      p.status = p.status === "متوفر" ? "غير متوفر" : "متوفر";
-      localStorage.setItem('pharmProducts_v3', JSON.stringify(products));
-      renderAdminProductsList();
-      renderProducts();
-    }
+  /* Delivery Zones */
+  function saveFreeShipSettings() {
+    store.config.freeShipEnabled = document.getElementById('setFreeShipEnabled').value === "true";
+    store.config.freeShipMin = Number(document.getElementById('setFreeShipMin').value) || 0;
+    persistStore();
+    showToast("✓ تم حفظ إعدادات التوصيل المجاني");
   }
 
-  function deleteProd(id) {
-    if (!confirm("هل تريد حذف هذا الصنف؟")) return;
-    products = products.filter(x => x.id !== id);
-    localStorage.setItem('pharmProducts_v3', JSON.stringify(products));
-    renderAdminProductsList();
-    renderSidebar();
-    renderProducts();
+  function addDeliveryZone() {
+    const name = document.getElementById('newZoneName').value.trim();
+    const fee = Number(document.getElementById('newZoneFee').value);
+    if (!name || isNaN(fee)) return alert("يرجى إدخال اسم المنطقة والتكلفة");
+    store.zones.push({ id: Date.now(), name, fee });
+    persistStore();
+    renderAdminZones();
+    document.getElementById('newZoneName').value = "";
+    document.getElementById('newZoneFee').value = "";
+    showToast("✓ تمت إضافة المنطقة");
   }
 
-  function resetAllData() {
-    if (!confirm("هل تريد استعادة جميع الأصناف والإعدادات الافتراضية؟")) return;
-    localStorage.removeItem('pharmConfig_v3');
-    localStorage.removeItem('pharmProducts_v3');
-    config = { ...defaultConfig };
-    products = [...defaultProducts];
-    applyConfig();
-    renderSidebar();
-    renderProducts();
-    closeAll();
-    showToast("✓ تمت استعادة ضبط المصنع");
+  function renderAdminZones() {
+    document.getElementById('adminZonesTableBody').innerHTML = store.zones.map((z, idx) => `
+      <tr>
+        <td><strong>${z.name}</strong></td>
+        <td>${z.fee} ج.م</td>
+        <td><button class="btn-danger-outline" style="padding:4px 10px;" onclick="deleteZone(${idx})">حذف</button></td>
+      </tr>
+    `).join('');
+  }
+
+  function deleteZone(idx) {
+    if (store.zones.length <= 1) return alert("يجب الإبقاء على منطقة توصيل واحدة على الأقل");
+    store.zones.splice(idx, 1);
+    persistStore();
+    renderAdminZones();
+  }
+
+  /* Sheets & Branding */
+  async function saveSheetSettings() {
+    store.config.sheetUrl = document.getElementById('setSheetUrl').value.trim();
+    persistStore();
+    await syncSheetIfConfigured();
+    refreshAdminKPIs();
+    renderAdminProdTable();
+    showToast("✓ تم حفظ الرابط وتحديث البيانات");
+  }
+
+  function disconnectSheet() {
+    store.config.sheetUrl = "";
+    document.getElementById('setSheetUrl').value = "";
+    persistStore();
+    showToast("✓ تم فصل Google Sheet");
+  }
+
+  function saveBrandingSettings() {
+    store.config.name = document.getElementById('setPharmName').value.trim() || defaultStoreState.config.name;
+    store.config.tagline = document.getElementById('setPharmTagline').value.trim();
+    store.config.whatsapp = document.getElementById('setWhatsapp').value.trim() || defaultStoreState.config.whatsapp;
+    store.config.rxWhatsapp = document.getElementById('setRxWhatsapp').value.trim();
+    store.config.address = document.getElementById('setPharmAddress').value.trim();
+    store.config.hours = document.getElementById('setPharmHours').value.trim();
+    persistStore();
+    document.getElementById('adminTopPharmName').innerText = store.config.name;
+    showToast("✓ تم حفظ بيانات الهوية والتواصل");
+  }
+
+  function handleLogoUpload(event) {
+    const file = event.target.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = function(e) {
+      store.config.customLogo = e.target.result;
+      persistStore();
+      showToast("✓ تم رفع الشعار الجديد");
+    };
+    reader.readAsDataURL(file);
+  }
+
+  function resetCustomLogo() {
+    store.config.customLogo = "";
+    persistStore();
+    showToast("✓ تمت استعادة الشعار الأصلي");
+  }
+
+  function saveAdminPassword() {
+    const p = document.getElementById('setAdminPass').value.trim();
+    if (p.length < 4) return alert("كلمة المرور يجب أن تكون 4 أرقام/حروف على الأقل");
+    store.config.adminPass = p;
+    persistStore();
+    showToast("✓ تم تغيير كلمة المرور بنجاح");
+  }
+
+  /* Backup & Restore */
+  function exportBackupJSON() {
+    const blob = new Blob([JSON.stringify(store, null, 2)], { type: "application/json" });
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = "Dr-Ahmed-Pharmacy-Backup.json";
+    a.click();
+  }
+
+  function importBackupJSON(event) {
+    const file = event.target.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = function(e) {
+      try {
+        const imported = JSON.parse(e.target.result);
+        if (imported.config && imported.products) {
+          store = imported;
+          persistStore();
+          openAdminDashboard();
+          showToast("✓ تمت استعادة النسخة الاحتياطية بنجاح");
+        } else {
+          alert("ملف النسخة الاحتياطية غير صالح");
+        }
+      } catch (err) {
+        alert("خطأ في قراءة الملف");
+      }
+    };
+    reader.readAsText(file);
+  }
+
+  function exportProductsCSV() {
+    let csv = "\uFEFFName,Category,Price,Status,Image,Desc,OldPrice\n";
+    store.products.forEach(p => {
+      csv += `"${p.name}","${p.category}",${p.price},"${p.status}","${p.image || ''}","${p.desc || ''}",${p.oldPrice || ''}\n`;
+    });
+    const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = "Pharmacy-Products.csv";
+    a.click();
+  }
+
+  function factoryReset() {
+    if (!confirm("هل أنت متأكد من مسح كل التعديلات والعودة للوضع الافتراضي؟")) return;
+    localStorage.removeItem('drAhmedPharmacy_Enterprise_v1');
+    store = JSON.parse(JSON.stringify(defaultStoreState));
+    openAdminDashboard();
+    showToast("✓ تمت إعادة ضبط المصنع");
   }
 
   function closeAll() {
@@ -1327,17 +2059,17 @@
     document.getElementById('cartDrawer').classList.remove('open');
     document.getElementById('rxModal').classList.remove('open');
     document.getElementById('adminLoginModal').classList.remove('open');
-    document.getElementById('adminPanelModal').classList.remove('open');
   }
 
   function sendRxWhatsApp() {
     const name = document.getElementById('rxName').value.trim();
     const notes = document.getElementById('rxNotes').value.trim();
-    let msg = `مرحباً *${config.name}*، أرغب في طلب روشتة طبية / دواء.\n`;
+    const targetPhone = store.config.rxWhatsapp || store.config.whatsapp;
+    let msg = `مرحباً *${store.config.name}*، أرغب في طلب روشتة طبية / دواء.\n`;
     if (name) msg += `👤 *الاسم:* ${name}\n`;
     if (notes) msg += `📝 *التفاصيل/العنوان:* ${notes}\n`;
     msg += `(سأقوم بإرسال الصورة الآن)`;
-    window.open(`https://wa.me/${config.whatsapp}?text=${encodeURIComponent(msg)}`, '_blank');
+    window.open(`https://wa.me/${targetPhone}?text=${encodeURIComponent(msg)}`, '_blank');
     closeAll();
   }
 
@@ -1346,31 +2078,47 @@
     const name = document.getElementById('custName').value.trim();
     const phone = document.getElementById('custPhone').value.trim();
     const address = document.getElementById('custAddress').value.trim();
-    if (!name || !phone || !address) return alert("يرجى كتابة الاسم ورقم الموبايل والعنوان بالتفصيل لإتمام الطلب.");
+    if (!name || !phone || !address) return alert("يرجى كتابة الاسم ورقم الموبايل والعنوان بالتفصيل.");
 
-    let text = `🏥 *طلب أونلاين جديد - ${config.name}*\n`;
+    const zoneSelect = document.getElementById('deliveryZoneSelect');
+    const zoneText = zoneSelect.options[zoneSelect.selectedIndex].text;
+    const sub = cart.reduce((s, i) => s + i.price * i.qty, 0);
+    const discountVal = appliedCoupon
+      ? (appliedCoupon.type === 'percent' ? Math.round((sub * appliedCoupon.value) / 100) : Math.min(sub, appliedCoupon.value))
+      : 0;
+    const afterDiscount = Math.max(0, sub - discountVal);
+    const zoneFee = Number(zoneSelect.value) || 0;
+    const isFreeShip = store.config.freeShipEnabled && afterDiscount >= store.config.freeShipMin;
+    const finalDelivery = isFreeShip ? 0 : zoneFee;
+
+    let text = `🏥 *طلب أونلاين جديد - ${store.config.name}*\n`;
     text += `━━━━━━━━━━━━━━━━━━━━\n`;
     text += `👤 *الاسم:* ${name}\n`;
     text += `📱 *الموبايل:* ${phone}\n`;
-    text += `📍 *العنوان:* ${address}\n`;
+    text += `📍 *المنطقة:* ${zoneText}\n`;
+    text += `🏠 *العنوان:* ${address}\n`;
     text += `━━━━━━━━━━━━━━━━━━━━\n`;
     text += `🛒 *الأصناف المطلوبة:*\n`;
     cart.forEach((i, idx) => {
       text += `${idx + 1}. ${i.name} (الكمية: ${i.qty}) = *${i.price * i.qty} ج.م*\n`;
     });
-    const sub = cart.reduce((s, i) => s + i.price * i.qty, 0);
     text += `━━━━━━━━━━━━━━━━━━━━\n`;
     text += `💵 *المجموع:* ${sub} ج.م\n`;
-    text += `🚚 *التوصيل:* ${config.delivery} ج.م\n`;
-    text += `💰 *الإجمالي المطلوب:* *${sub + Number(config.delivery)} ج.م*`;
+    if (discountVal > 0) text += `🎟️ *خصم (${appliedCoupon.code}):* -${discountVal} ج.م\n`;
+    text += `🚚 *التوصيل:* ${isFreeShip ? 'مجاني 🎉' : finalDelivery + ' ج.م'}\n`;
+    text += `💰 *الإجمالي المطلوب:* *${afterDiscount + finalDelivery} ج.م*`;
 
-    window.open(`https://wa.me/${config.whatsapp}?text=${encodeURIComponent(text)}`, '_blank');
+    window.open(`https://wa.me/${store.config.whatsapp}?text=${encodeURIComponent(text)}`, '_blank');
   }
 
-  // Init
-  applyConfig();
-  loadProducts();
-  updateCartUI();
+  // Boot
+  (async function init() {
+    applyBranding();
+    await syncSheetIfConfigured();
+    renderSidebar();
+    renderProducts();
+    updateCartUI();
+  })();
 </script>
 </body>
 </html>
