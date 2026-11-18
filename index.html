@@ -10,29 +10,31 @@
       --navy: #00589C;
       --navy-dark: #003E70;
       --cyan: #1DA1DB;
-      --cyan-light: #E6F6FD;
-      --bg: #F4F8FB;
+      --cyan-soft: #B9E6FA;
+      --cyan-light: #E8F6FD;
+      --bg: #F3F8FC;
       --card: #FFFFFF;
       --text: #0F2942;
       --muted: #5A7184;
-      --border: #DCE8F2;
+      --border: #D6E6F2;
       --success: #16A34A;
       --danger: #DC2626;
+      --offer: #E11D48;
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Cairo', sans-serif; }
-    body { background: var(--bg); color: var(--text); padding-bottom: 70px; overflow-x: hidden; }
+    body { background: var(--bg); color: var(--text); padding-bottom: 60px; overflow-x: hidden; }
 
-    /* Top Bar */
+    /* Top Strip */
     .top-strip {
       background: var(--navy-dark);
       color: #fff;
-      font-size: 0.8rem;
+      font-size: 0.82rem;
       padding: 6px 20px;
       text-align: center;
-      font-weight: 600;
+      font-weight: 700;
     }
-    .top-strip span { color: #7DD3FC; font-weight: 800; }
+    .top-strip span { color: #7DD3FC; font-weight: 900; }
 
     /* Header */
     header {
@@ -44,45 +46,63 @@
       box-shadow: 0 4px 20px rgba(0, 88, 156, 0.08);
     }
     .nav-container {
-      max-width: 1280px;
+      max-width: 1360px;
       margin: auto;
-      padding: 12px 20px;
+      padding: 10px 20px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      gap: 12px;
+      gap: 15px;
       flex-wrap: wrap;
     }
-    .brand { display: flex; align-items: center; gap: 14px; }
-    .logo-emblem {
-      width: 54px;
-      height: 54px;
-      border-radius: 50%;
-      border: 3px solid var(--navy);
-      background: radial-gradient(circle, #ffffff 60%, var(--cyan-light) 100%);
+    .brand { display: flex; align-items: center; gap: 14px; cursor: pointer; }
+    .logo-wrapper {
+      position: relative;
+      width: 68px;
+      height: 68px;
+      flex-shrink: 0;
       display: flex;
       align-items: center;
       justify-content: center;
-      box-shadow: 0 3px 10px rgba(29, 161, 219, 0.25);
-      flex-shrink: 0;
     }
-    .brand-info h1 { font-size: 1.3rem; font-weight: 900; color: var(--navy); line-height: 1.2; }
-    .brand-info p { font-size: 0.78rem; color: var(--cyan); font-weight: 700; }
+    .brand-info h1 { font-size: 1.35rem; font-weight: 900; color: var(--navy); line-height: 1.2; }
+    .brand-info p { font-size: 0.8rem; color: var(--cyan); font-weight: 800; }
+
+    /* Search inside Header */
+    .header-search {
+      flex: 1;
+      max-width: 460px;
+      min-width: 240px;
+      display: flex;
+      background: var(--bg);
+      border: 1.5px solid var(--border);
+      border-radius: 12px;
+      padding: 4px 10px;
+      align-items: center;
+    }
+    .header-search:focus-within { border-color: var(--cyan); background: #fff; }
+    .header-search input {
+      flex: 1;
+      border: none;
+      background: transparent;
+      padding: 8px;
+      font-size: 0.9rem;
+      outline: none;
+      color: var(--text);
+    }
+    .clear-btn { background: none; border: none; color: var(--muted); cursor: pointer; font-size: 1rem; display: none; padding: 0 6px; }
 
     .header-actions { display: flex; gap: 10px; align-items: center; }
     .btn-rx {
       background: var(--cyan-light);
       color: var(--navy);
       border: 1.5px solid var(--cyan);
-      padding: 9px 15px;
+      padding: 9px 14px;
       border-radius: 12px;
       font-weight: 800;
       font-size: 0.85rem;
       cursor: pointer;
       transition: 0.2s;
-      display: flex;
-      align-items: center;
-      gap: 6px;
     }
     .btn-rx:hover { background: var(--cyan); color: #fff; }
 
@@ -99,9 +119,7 @@
       align-items: center;
       gap: 8px;
       box-shadow: 0 4px 12px rgba(0, 88, 156, 0.25);
-      transition: 0.2s;
     }
-    .cart-btn:hover { transform: translateY(-1px); }
     .cart-badge {
       background: #fff;
       color: var(--navy);
@@ -115,102 +133,132 @@
       font-weight: 900;
     }
 
-    /* Hero Banner */
-    .hero {
-      background: linear-gradient(125deg, var(--navy) 0%, #006BB8 55%, var(--cyan) 100%);
-      color: #fff;
-      padding: 32px 20px 52px;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-    }
-    .hero::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background-image: radial-gradient(rgba(255,255,255,0.12) 1px, transparent 1px);
-      background-size: 20px 20px;
-      pointer-events: none;
-    }
-    .hero-content { position: relative; z-index: 2; max-width: 760px; margin: auto; }
-    .hero h2 { font-size: 1.65rem; font-weight: 900; margin-bottom: 8px; }
-    .hero p { font-size: 0.95rem; color: #E0F2FE; margin-bottom: 22px; }
-
-    .search-wrapper {
-      display: flex;
-      background: #fff;
-      border-radius: 14px;
-      padding: 5px;
-      box-shadow: 0 12px 30px rgba(0, 38, 77, 0.22);
-      border: 2px solid rgba(255,255,255,0.4);
-    }
-    .search-wrapper input {
-      flex: 1;
-      border: none;
-      padding: 12px 16px;
-      font-size: 0.95rem;
-      outline: none;
-      color: var(--text);
-      background: transparent;
-    }
-    .search-clear {
-      background: none;
-      border: none;
-      color: var(--muted);
-      font-size: 1.2rem;
-      padding: 0 12px;
-      cursor: pointer;
-      display: none;
-    }
-
-    /* Categories Bar */
-    .categories-wrap {
-      max-width: 1280px;
-      margin: -24px auto 20px;
+    /* Main Layout with Right Sidebar */
+    .main-layout {
+      max-width: 1360px;
+      margin: 22px auto;
       padding: 0 20px;
-      position: relative;
-      z-index: 5;
+      display: grid;
+      grid-template-columns: 270px 1fr;
+      gap: 24px;
+      align-items: start;
     }
-    .categories {
-      display: flex;
-      gap: 10px;
-      overflow-x: auto;
-      padding-bottom: 8px;
-      scrollbar-width: thin;
-    }
-    .cat-btn {
+
+    /* Right Sidebar (Categories) */
+    .sidebar {
       background: #fff;
+      border-radius: 18px;
       border: 1.5px solid var(--border);
-      padding: 10px 16px;
-      border-radius: 12px;
-      white-space: nowrap;
-      font-weight: 800;
-      font-size: 0.85rem;
-      color: var(--navy);
-      cursor: pointer;
-      box-shadow: 0 4px 10px rgba(0, 88, 156, 0.06);
-      transition: 0.2s;
+      box-shadow: 0 6px 20px rgba(0, 88, 156, 0.05);
+      overflow: hidden;
+      position: sticky;
+      top: 96px;
+    }
+    .sidebar-header {
+      background: linear-gradient(135deg, var(--navy) 0%, #006BB8 100%);
+      color: #fff;
+      padding: 15px 18px;
+      font-weight: 900;
+      font-size: 1rem;
       display: flex;
       align-items: center;
+      justify-content: space-between;
+    }
+    .sidebar-list {
+      list-style: none;
+      padding: 10px;
+      display: flex;
+      flex-direction: column;
       gap: 6px;
     }
-    .cat-btn:hover { border-color: var(--cyan); background: var(--cyan-light); }
-    .cat-btn.active {
+    .sidebar-item {
+      width: 100%;
+      text-align: right;
+      background: transparent;
+      border: 1px solid transparent;
+      padding: 11px 14px;
+      border-radius: 12px;
+      font-size: 0.9rem;
+      font-weight: 800;
+      color: var(--text);
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: 0.2s;
+    }
+    .sidebar-item:hover { background: var(--cyan-light); color: var(--navy); }
+    .sidebar-item.active {
       background: var(--navy);
       color: #fff;
-      border-color: var(--navy);
-      box-shadow: 0 6px 15px rgba(0, 88, 156, 0.25);
+      box-shadow: 0 4px 12px rgba(0, 88, 156, 0.2);
+    }
+    .sidebar-item.offer-tab.active {
+      background: linear-gradient(135deg, var(--offer) 0%, #BE123C 100%);
+    }
+    .sidebar-count {
+      font-size: 0.75rem;
+      padding: 2px 8px;
+      border-radius: 10px;
+      background: var(--bg);
+      color: var(--navy);
+      font-weight: 800;
+    }
+    .sidebar-item.active .sidebar-count {
+      background: rgba(255,255,255,0.22);
+      color: #fff;
     }
 
-    /* Filter Status Bar */
-    .container { max-width: 1280px; margin: auto; padding: 0 20px; }
+    /* Content Area */
+    .content-area { min-width: 0; }
+
+    /* Offers Hero Banner */
+    .offers-banner {
+      background: linear-gradient(120deg, var(--navy) 0%, #006BB8 55%, var(--cyan) 100%);
+      border-radius: 20px;
+      padding: 26px 28px;
+      color: #fff;
+      margin-bottom: 22px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 10px 25px rgba(0, 88, 156, 0.16);
+    }
+    .offers-banner::after {
+      content: "";
+      position: absolute;
+      left: -30px;
+      top: -30px;
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.08);
+    }
+    .offers-banner h2 { font-size: 1.5rem; font-weight: 900; margin-bottom: 6px; }
+    .offers-banner p { font-size: 0.92rem; color: #E0F2FE; }
+    .offer-tag-pill {
+      display: inline-block;
+      background: #FACC15;
+      color: #0F2942;
+      font-weight: 900;
+      font-size: 0.78rem;
+      padding: 4px 12px;
+      border-radius: 20px;
+      margin-bottom: 8px;
+    }
+
     .toolbar {
       display: flex;
       justify-content: space-between;
       align-items: center;
       margin-bottom: 16px;
-      flex-wrap: wrap;
-      gap: 10px;
+      background: #fff;
+      padding: 12px 18px;
+      border-radius: 14px;
+      border: 1.5px solid var(--border);
     }
     .section-title { font-size: 1.15rem; font-weight: 900; color: var(--navy); }
     .count-pill {
@@ -218,32 +266,44 @@
       color: var(--navy);
       padding: 4px 12px;
       border-radius: 20px;
-      font-size: 0.8rem;
+      font-size: 0.82rem;
       font-weight: 800;
     }
 
     /* Products Grid */
     .grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(245px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(235px, 1fr));
       gap: 18px;
     }
     .card {
       background: var(--card);
       border-radius: 16px;
-      padding: 16px;
+      padding: 15px;
       border: 1.5px solid var(--border);
       box-shadow: 0 4px 14px rgba(0, 88, 156, 0.04);
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      transition: 0.22s;
+      transition: 0.2s;
       position: relative;
     }
     .card:hover {
       transform: translateY(-4px);
       border-color: var(--cyan);
       box-shadow: 0 12px 26px rgba(29, 161, 219, 0.14);
+    }
+    .badge-discount {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      background: var(--offer);
+      color: #fff;
+      font-size: 0.72rem;
+      font-weight: 900;
+      padding: 3px 9px;
+      border-radius: 8px;
+      z-index: 2;
     }
     .badge-stock {
       position: absolute;
@@ -255,6 +315,7 @@
       border-radius: 8px;
       background: #DCFCE7;
       color: var(--success);
+      z-index: 2;
     }
     .badge-stock.out { background: #FEE2E2; color: var(--danger); }
 
@@ -265,39 +326,71 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 46px;
+      font-size: 44px;
       margin-bottom: 12px;
       overflow: hidden;
     }
     .card-visual img { width: 100%; height: 100%; object-fit: cover; }
-    .card-cat { font-size: 0.75rem; color: var(--cyan); font-weight: 800; margin-bottom: 4px; }
-    .card-title { font-size: 0.98rem; font-weight: 800; color: var(--text); margin-bottom: 4px; line-height: 1.4; }
+    .card-cat { font-size: 0.74rem; color: var(--cyan); font-weight: 800; margin-bottom: 3px; }
+    .card-title { font-size: 0.96rem; font-weight: 800; color: var(--text); margin-bottom: 4px; line-height: 1.4; }
     .card-desc { font-size: 0.78rem; color: var(--muted); margin-bottom: 10px; line-height: 1.4; }
 
-    .card-footer {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding-top: 12px;
+    .price-row { display: flex; align-items: baseline; gap: 8px; margin-bottom: 10px; }
+    .price { font-size: 1.15rem; font-weight: 900; color: var(--navy); }
+    .old-price { font-size: 0.85rem; color: var(--muted); text-decoration: line-through; font-weight: 700; }
+
+    /* Card Action / Inline Qty Controls */
+    .card-action-area {
       border-top: 1px solid var(--border);
+      padding-top: 10px;
       margin-top: auto;
     }
-    .price { font-size: 1.15rem; font-weight: 900; color: var(--navy); }
-    .price small { font-size: 0.75rem; font-weight: 700; color: var(--muted); }
-
     .add-btn {
+      width: 100%;
       background: var(--navy);
       color: #fff;
       border: none;
-      padding: 8px 14px;
+      padding: 9px 14px;
       border-radius: 10px;
       font-weight: 800;
-      font-size: 0.85rem;
+      font-size: 0.88rem;
       cursor: pointer;
       transition: 0.2s;
     }
     .add-btn:hover { background: var(--cyan); }
     .add-btn:disabled { background: #CBD5E1; cursor: not-allowed; }
+
+    .inline-qty-box {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: var(--cyan-light);
+      border: 1.5px solid var(--cyan);
+      border-radius: 10px;
+      padding: 4px 8px;
+    }
+    .inline-qty-btn {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      border: none;
+      background: var(--navy);
+      color: #fff;
+      font-size: 1.1rem;
+      font-weight: 900;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .inline-qty-btn:hover { background: var(--cyan); }
+    .inline-qty-num {
+      font-size: 1rem;
+      font-weight: 900;
+      color: var(--navy);
+      min-width: 30px;
+      text-align: center;
+    }
 
     /* Overlay & Drawers */
     .overlay {
@@ -325,7 +418,6 @@
       box-shadow: 6px 0 30px rgba(0, 0, 0, 0.2);
     }
     .drawer.open { left: 0; }
-
     .drawer-header {
       padding: 18px 20px;
       background: linear-gradient(135deg, var(--navy) 0%, var(--cyan) 100%);
@@ -353,25 +445,14 @@
       border-bottom: 1px solid var(--border);
       gap: 10px;
     }
-    .qty-controls { display: flex; align-items: center; gap: 8px; }
-    .qty-btn {
-      width: 28px;
-      height: 28px;
-      border-radius: 8px;
-      border: 1.5px solid var(--cyan);
-      background: var(--cyan-light);
-      color: var(--navy);
-      font-weight: 900;
-      cursor: pointer;
-    }
     .drawer-footer {
       padding: 16px 20px;
       border-top: 2px solid var(--border);
       background: var(--bg);
     }
     .form-group { margin-bottom: 10px; }
-    .form-group label { display: block; font-size: 0.8rem; font-weight: 800; color: var(--navy); margin-bottom: 4px; }
-    .form-group input, .form-group textarea {
+    .form-group label { display: block; font-size: 0.82rem; font-weight: 800; color: var(--navy); margin-bottom: 4px; }
+    .form-group input, .form-group textarea, .form-group select {
       width: 100%;
       padding: 10px 12px;
       border: 1.5px solid var(--border);
@@ -379,8 +460,6 @@
       font-size: 0.88rem;
       outline: none;
     }
-    .form-group input:focus, .form-group textarea:focus { border-color: var(--cyan); }
-
     .whatsapp-btn {
       width: 100%;
       background: var(--success);
@@ -392,30 +471,54 @@
       font-weight: 900;
       cursor: pointer;
       margin-top: 8px;
-      box-shadow: 0 4px 14px rgba(22, 163, 74, 0.3);
     }
 
-    /* Modals */
+    /* Modals & Admin Dashboard */
     .modal {
       position: fixed;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
       background: #fff;
-      width: 92%;
-      max-width: 500px;
+      width: 94%;
+      max-width: 720px;
       max-height: 90vh;
       overflow-y: auto;
       border-radius: 20px;
       z-index: 202;
       padding: 24px;
       display: none;
-      border-top: 5px solid var(--cyan);
-      box-shadow: 0 25px 50px rgba(0, 38, 77, 0.25);
+      border-top: 6px solid var(--navy);
+      box-shadow: 0 25px 50px rgba(0, 38, 77, 0.3);
     }
     .modal.open { display: block; }
 
-    /* Toast Notification */
+    .admin-tabs { display: flex; gap: 8px; margin-bottom: 16px; border-bottom: 2px solid var(--border); padding-bottom: 10px; flex-wrap: wrap; }
+    .admin-tab {
+      padding: 8px 14px;
+      border-radius: 10px;
+      border: 1.5px solid var(--border);
+      background: var(--bg);
+      font-weight: 800;
+      font-size: 0.85rem;
+      cursor: pointer;
+    }
+    .admin-tab.active { background: var(--navy); color: #fff; border-color: var(--navy); }
+    .admin-section { display: none; }
+    .admin-section.active { display: block; }
+
+    .admin-prod-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      margin-bottom: 8px;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
     .toast {
       position: fixed;
       bottom: 24px;
@@ -434,28 +537,21 @@
     }
     .toast.show { transform: translateY(0); }
 
-    /* Footer */
     footer {
       background: var(--navy-dark);
       color: #E0F2FE;
       text-align: center;
-      padding: 32px 20px;
+      padding: 28px 20px;
       margin-top: 50px;
       border-top: 4px solid var(--cyan);
     }
-    footer h3 { color: #fff; font-size: 1.15rem; margin-bottom: 6px; }
-    .footer-links { margin-top: 14px; display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; }
-    .footer-btn {
-      background: rgba(255,255,255,0.1);
-      color: #fff;
-      border: 1px solid rgba(255,255,255,0.2);
-      padding: 7px 14px;
-      border-radius: 8px;
-      font-size: 0.82rem;
-      font-weight: 700;
-      cursor: pointer;
+
+    @media (max-width: 860px) {
+      .main-layout { grid-template-columns: 1fr; }
+      .sidebar { position: static; }
+      .sidebar-list { flex-direction: row; overflow-x: auto; padding: 10px; }
+      .sidebar-item { width: auto; white-space: nowrap; }
     }
-    .footer-btn:hover { background: var(--cyan); }
   </style>
 </head>
 <body>
@@ -466,20 +562,58 @@
 
 <header>
   <div class="nav-container">
-    <div class="brand">
-      <div class="logo-emblem" title="Dr. Ahmed Abdelrehim Pharmacy">
-        <svg width="32" height="32" viewBox="0 0 64 64" fill="none">
-          <path d="M18 22H46L41 34C39 38 35 40 32 40C29 40 25 38 23 34L18 22Z" fill="#1DA1DB"/>
-          <rect x="29" y="39" width="6" height="14" fill="#00589C"/>
-          <rect x="21" y="52" width="22" height="4" rx="2" fill="#00589C"/>
-          <path d="M32 10C26 10 24 15 28 18C33 21 38 23 35 28C33 31 27 32 29 36" stroke="#00589C" stroke-width="3.5" stroke-linecap="round"/>
-          <circle cx="30" cy="11" r="2.5" fill="#00589C"/>
+    <!-- Clicking logo 5 times quickly OR pressing Ctrl+Shift+A opens Admin Panel -->
+    <div class="brand" id="brandLogoArea" title="صيدلية د/ أحمد عبدالرحيم">
+      <div class="logo-wrapper">
+        <!-- Exact Replica of Dr. Ahmed Abdelrehim Pharmacy Emblem from Banner -->
+        <svg width="68" height="68" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <path id="topTextArc" d="M 22,60 A 38,38 0 1,1 98,60" />
+            <path id="bottomTextArc" d="M 18,62 A 42,42 0 0,0 102,62" />
+          </defs>
+          <!-- Diagonal Navy Stripes on Left (matching banner) -->
+          <g stroke="#00589C" stroke-width="3.2">
+            <line x1="16" y1="6" x2="4" y2="38" />
+            <line x1="22" y1="6" x2="6" y2="50" />
+            <line x1="28" y1="6" x2="10" y2="60" />
+            <line x1="12" y1="82" x2="2" y2="112" />
+            <line x1="18" y1="86" x2="8" y2="114" />
+            <line x1="24" y1="90" x2="14" y2="116" />
+          </g>
+          <!-- Outer Navy Ring -->
+          <circle cx="62" cy="60" r="52" fill="#B5E3F8" stroke="#00589C" stroke-width="3.5" />
+          <!-- Inner White Circle -->
+          <circle cx="62" cy="60" r="34" fill="#FFFFFF" stroke="#00589C" stroke-width="2.5" />
+          <!-- Curved Text: Dr. Ahmed Abdelrehim -->
+          <text fill="#00589C" font-size="9.6" font-weight="bold" font-family="Georgia, serif" letter-spacing="0.4">
+            <textPath href="#topTextArc" startOffset="50%" text-anchor="middle">Dr. Ahmed Abdelrehim</textPath>
+          </text>
+          <!-- Curved Text: Pharmacy -->
+          <text fill="#00589C" font-size="11.5" font-weight="bold" font-family="Georgia, serif" letter-spacing="0.8">
+            <textPath href="#bottomTextArc" startOffset="50%" text-anchor="middle">Pharmacy</textPath>
+          </text>
+          <!-- Side Dots -->
+          <circle cx="19" cy="60" r="3.2" fill="#1DA1DB" />
+          <circle cx="105" cy="60" r="3.2" fill="#1DA1DB" />
+          <!-- Bowl of Hygieia (Cyan Chalice & Snake) -->
+          <path d="M 46,50 H 78 L 72,62 C 70,66 66,68 62,68 C 58,68 54,66 52,62 L 46,50 Z" fill="#29ABE2" />
+          <rect x="59.5" y="67" width="5" height="14" fill="#29ABE2" />
+          <path d="M 50,81 H 74 L 77,85 H 47 L 50,81 Z" fill="#29ABE2" />
+          <!-- Coiled Serpent -->
+          <path d="M 60,36 C 53,36 52,42 58,45 C 65,48 70,51 66,56 C 63,59 55,61 58,66 C 60,69 65,71 62,76" fill="none" stroke="#1DA1DB" stroke-width="4" stroke-linecap="round" />
+          <ellipse cx="60" cy="36" rx="4" ry="2.8" fill="#1DA1DB" />
         </svg>
       </div>
       <div class="brand-info">
         <h1 id="pharmacyNameDisplay">صيدلية د/ أحمد عبدالرحيم</h1>
         <p>لصاحبها د/ أحمد عبدالرحيم • رعاية صيدلانية متكاملة</p>
       </div>
+    </div>
+
+    <div class="header-search">
+      <span>🔍</span>
+      <input type="text" id="searchInput" placeholder="ابحث عن دواء، عرض، أو منتج..." oninput="handleSearch()" />
+      <button class="clear-btn" id="clearSearchBtn" onclick="clearSearch()">✕</button>
     </div>
 
     <div class="header-actions">
@@ -491,36 +625,37 @@
   </div>
 </header>
 
-<section class="hero">
-  <div class="hero-content">
-    <h2>أهلاً بك في صيدلية د/ أحمد عبدالرحيم</h2>
-    <p>اطلب أدويتك ومنتجات العناية بالبشرة والشعر ومستلزمات الأطفال أونلاين بسهولة</p>
-    <div class="search-wrapper">
-      <input type="text" id="searchInput" placeholder="ابحث باسم الدواء، المنتج، أو القسم (مثال: Panadol, CeraVe, حليب أطفال)..." oninput="handleSearch()" />
-      <button class="search-clear" id="clearSearchBtn" onclick="clearSearch()">✕</button>
+<div class="main-layout">
+  <!-- Right Sidebar: Categories -->
+  <aside class="sidebar">
+    <div class="sidebar-header">
+      <span>📂 أقسام الصيدلية</span>
     </div>
-  </div>
-</section>
+    <ul class="sidebar-list" id="sidebarCategories"></ul>
+  </aside>
 
-<div class="categories-wrap">
-  <div class="categories" id="categoryBar"></div>
+  <!-- Main Content -->
+  <section class="content-area">
+    <div class="offers-banner" id="offersHeroBanner">
+      <div>
+        <span class="offer-tag-pill">🔥 عروض وخصومات حصرية</span>
+        <h2 id="bannerTitle">أقوى عروض صيدلية د/ أحمد عبدالرحيم</h2>
+        <p id="bannerSub">خصومات تصل إلى 30% على منتجات العناية بالبشرة والشعر ومستلزمات الأطفال</p>
+      </div>
+    </div>
+
+    <div class="toolbar">
+      <div class="section-title" id="currentSectionTitle">🔥 عروض وخصومات الصيدلية</div>
+      <div class="count-pill" id="productsCountLabel">0 صنف</div>
+    </div>
+
+    <div class="grid" id="productsGrid"></div>
+  </section>
 </div>
-
-<main class="container">
-  <div class="toolbar">
-    <div class="section-title" id="currentSectionTitle">جميع منتجات الصيدلية</div>
-    <div class="count-pill" id="productsCountLabel">0 صنف</div>
-  </div>
-  <div class="grid" id="productsGrid"></div>
-</main>
 
 <footer>
   <h3 id="footerPharmacyName">صيدلية د/ أحمد عبدالرحيم</h3>
   <p>لصاحبها د/ أحمد عبدالرحيم — واتساب وتوصيل: <strong id="footerPhone">01119713199</strong></p>
-  <div class="footer-links">
-    <button class="footer-btn" onclick="openRxModal()">📸 إرسال روشتة واتساب</button>
-    <button class="footer-btn" onclick="openSettings()">⚙️ إعدادات المتجر وربط Google Sheets</button>
-  </div>
 </footer>
 
 <div class="overlay" id="overlay" onclick="closeAll()"></div>
@@ -556,48 +691,129 @@
 </div>
 
 <!-- Prescription Modal -->
-<div class="modal" id="rxModal">
+<div class="modal" id="rxModal" style="max-width:480px;">
   <h3 style="color:var(--navy); margin-bottom:10px;">📸 طلب صرف روشتة أو استشارة</h3>
   <p style="font-size:0.88rem; color:var(--muted); margin-bottom:14px;">
-    اكتب اسمك وعنوانك واضغط على الزر بالأسفل لفتح محادثة واتساب الصيدلية مباشرة وإرفاق صورة الروشتة أو علبة الدواء.
+    اكتب اسمك وعنوانك واضغط على الزر بالأسفل لفتح واتساب الصيدلية مباشرة وإرفاق صورة الروشتة.
   </p>
   <div class="form-group">
     <label>الاسم:</label>
     <input type="text" id="rxName" placeholder="اكتب اسمك" />
   </div>
   <div class="form-group">
-    <label>العنوان أو ملاحظات إضافية:</label>
+    <label>العنوان أو ملاحظات:</label>
     <textarea id="rxNotes" rows="2" placeholder="اكتب عنوانك أو اسم الدواء المطلوب..."></textarea>
   </div>
   <div style="display:flex; gap:10px; margin-top:14px;">
     <button class="whatsapp-btn" style="margin-top:0; flex:1;" onclick="sendRxWhatsApp()">📲 فتح واتساب وإرسال الروشتة</button>
-    <button class="cat-btn" onclick="closeAll()">إغلاق</button>
+    <button class="admin-tab" onclick="closeAll()">إغلاق</button>
   </div>
 </div>
 
-<!-- Settings Modal -->
-<div class="modal" id="settingsModal">
-  <h3 style="color:var(--navy); margin-bottom:14px;">⚙️ إعدادات الصيدلية وربط البيانات</h3>
+<!-- Secret Admin Login Modal -->
+<div class="modal" id="adminLoginModal" style="max-width:400px;">
+  <h3 style="color:var(--navy); margin-bottom:8px;">🔐 دخول إدارة المتجر</h3>
+  <p style="font-size:0.84rem; color:var(--muted); margin-bottom:14px;">أدخل كلمة المرور للتحكم الكامل في المتجر، العروض، الأسعار، وربط Google Sheets.</p>
   <div class="form-group">
-    <label>اسم الصيدلية:</label>
-    <input type="text" id="setPharmName" />
+    <label>كلمة المرور (الافتراضية: 1234):</label>
+    <input type="password" id="adminPassInput" placeholder="••••" onkeydown="if(event.key==='Enter') verifyAdminPass()" />
   </div>
-  <div class="form-group">
-    <label>رقم واتساب الصيدلية (بصيغة دولية مثل 201119713199):</label>
-    <input type="text" id="setWhatsapp" />
+  <div style="display:flex; gap:10px; margin-top:14px;">
+    <button class="add-btn" style="flex:1;" onclick="verifyAdminPass()">دخول لوحة التحكم</button>
+    <button class="admin-tab" onclick="closeAll()">إلغاء</button>
   </div>
-  <div class="form-group">
-    <label>قيمة التوصيل (ج.م):</label>
-    <input type="number" id="setDelivery" />
+</div>
+
+<!-- Full Admin Control Panel Modal -->
+<div class="modal" id="adminPanelModal">
+  <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px;">
+    <h3 style="color:var(--navy);">🛠️ لوحة تحكم إدارة الصيدلية</h3>
+    <button class="admin-tab" style="background:#FEE2E2; color:#DC2626;" onclick="closeAll()">✕ إغلاق</button>
   </div>
-  <div class="form-group">
-    <label>رابط Google Sheet (CSV من Publish to web):</label>
-    <input type="url" id="setSheetUrl" placeholder="https://docs.google.com/spreadsheets/d/.../pub?output=csv" />
+
+  <div class="admin-tabs">
+    <button class="admin-tab active" onclick="switchAdminTab('general', this)">⚙️ الإعدادات العامة والشيت</button>
+    <button class="admin-tab" onclick="switchAdminTab('addProd', this)">➕ إضافة صنف / عرض جديد</button>
+    <button class="admin-tab" onclick="switchAdminTab('manageProds', this)">📦 إدارة الأصناف والأسعار</button>
   </div>
-  <div style="display:flex; gap:10px; margin-top:16px;">
-    <button class="add-btn" style="flex:1; padding:11px;" onclick="saveSettings()">💾 حفظ وتطبيق</button>
-    <button class="cat-btn" style="background:#FEE2E2; color:#DC2626; border-color:#FCA5A5;" onclick="resetDefaultSettings()">استعادة الافتراضي</button>
-    <button class="cat-btn" onclick="closeAll()">إلغاء</button>
+
+  <!-- Tab 1: General Settings -->
+  <div class="admin-section active" id="tab-general">
+    <div class="form-group">
+      <label>اسم الصيدلية:</label>
+      <input type="text" id="setPharmName" />
+    </div>
+    <div class="form-group">
+      <label>رقم واتساب الصيدلية (بصيغة 201119713199):</label>
+      <input type="text" id="setWhatsapp" />
+    </div>
+    <div class="form-group">
+      <label>قيمة خدمة التوصيل (ج.م):</label>
+      <input type="number" id="setDelivery" />
+    </div>
+    <div class="form-group">
+      <label>عنوان بانر العروض الرئيسي:</label>
+      <input type="text" id="setBannerTitle" />
+    </div>
+    <div class="form-group">
+      <label>رابط Google Sheet (CSV من Publish to web):</label>
+      <input type="url" id="setSheetUrl" placeholder="https://docs.google.com/spreadsheets/d/.../pub?output=csv" />
+    </div>
+    <div class="form-group">
+      <label>تغيير كلمة مرور لوحة التحكم:</label>
+      <input type="text" id="setAdminPass" />
+    </div>
+    <div style="display:flex; gap:10px; margin-top:14px;">
+      <button class="add-btn" style="flex:1;" onclick="saveGeneralSettings()">💾 حفظ الإعدادات</button>
+      <button class="admin-tab" style="color:#DC2626;" onclick="resetAllData()">إعادة ضبط المصنع</button>
+    </div>
+  </div>
+
+  <!-- Tab 2: Add Product / Offer -->
+  <div class="admin-section" id="tab-addProd">
+    <div class="form-group">
+      <label>اسم الصنف *</label>
+      <input type="text" id="newProdName" placeholder="مثال: CeraVe Cleanser 236ml" />
+    </div>
+    <div class="form-group">
+      <label>القسم *</label>
+      <select id="newProdCat">
+        <option value="أدوية المسكنات والبرد">أدوية المسكنات والبرد</option>
+        <option value="الباطنة والجهاز الهضمي">الباطنة والجهاز الهضمي</option>
+        <option value="المضادات الحيوية">المضادات الحيوية</option>
+        <option value="الفيتامينات والمكملات">الفيتامينات والمكملات</option>
+        <option value="العناية بالبشرة">العناية بالبشرة</option>
+        <option value="العناية بالشعر">العناية بالشعر</option>
+        <option value="الأم والطفل">الأم والطفل</option>
+        <option value="العناية الشخصية والأسنان">العناية الشخصية والأسنان</option>
+        <option value="الأجهزة والمستلزمات الطبية">الأجهزة والمستلزمات الطبية</option>
+      </select>
+    </div>
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">
+      <div class="form-group">
+        <label>السعر الحالي (ج.م) *</label>
+        <input type="number" id="newProdPrice" placeholder="150" />
+      </div>
+      <div class="form-group">
+        <label>السعر قبل الخصم (اختياري - يضعه في العروض)</label>
+        <input type="number" id="newProdOldPrice" placeholder="200" />
+      </div>
+    </div>
+    <div class="form-group">
+      <label>وصف مختصر للصنف:</label>
+      <input type="text" id="newProdDesc" placeholder="وصف سريع يظهر تحت اسم المنتج" />
+    </div>
+    <div class="form-group">
+      <label>رابط صورة المنتج (اختياري):</label>
+      <input type="url" id="newProdImg" placeholder="https://..." />
+    </div>
+    <button class="add-btn" onclick="addNewProductManual()">➕ إضافة الصنف للمتجر فوراً</button>
+  </div>
+
+  <!-- Tab 3: Manage Existing Products -->
+  <div class="admin-section" id="tab-manageProds">
+    <input type="text" id="adminSearchProd" placeholder="ابحث لتعديل سعر أو حالة صنف..." oninput="renderAdminProductsList()" style="width:100%; padding:9px; border:1.5px solid var(--border); border-radius:10px; margin-bottom:12px;" />
+    <div id="adminProductsList"></div>
   </div>
 </div>
 
@@ -606,81 +822,103 @@
 <script>
   const defaultProducts = [
     // 1. أدوية المسكنات والبرد
-    { id: 101, name: "Panadol Extra 24 Tablets", category: "أدوية المسكنات والبرد", desc: "مسكن للآلام وخافض للحرارة", price: 48, status: "متوفر", icon: "💊" },
-    { id: 102, name: "Cataflam 50mg 20 Tablets", category: "أدوية المسكنات والبرد", desc: "مسكن سريع ومضاد للالتهابات", price: 62, status: "متوفر", icon: "💊" },
-    { id: 103, name: "Congestal 20 Tablets", category: "أدوية المسكنات والبرد", desc: "علاج أعراض البرد والإنفلونزا والرشح", price: 39, status: "متوفر", icon: "🤧" },
-    { id: 104, name: "Brufen 400mg 30 Tablets", category: "أدوية المسكنات والبرد", desc: "مسكن للصداع وآلام الأسنان والمفاصل", price: 54, status: "متوفر", icon: "💊" },
-    { id: 105, name: "Otrivin Adult Nasal Drops 15ml", category: "أدوية المسكنات والبرد", desc: "نقط للأنف لفتح الاحتقان السريع", price: 28, status: "متوفر", icon: "💧" },
+    { id: 101, name: "Panadol Extra 24 Tablets", category: "أدوية المسكنات والبرد", desc: "مسكن للآلام وخافض للحرارة", price: 48, oldPrice: null, isOffer: false, status: "متوفر", icon: "💊" },
+    { id: 102, name: "Cataflam 50mg 20 Tablets", category: "أدوية المسكنات والبرد", desc: "مسكن سريع ومضاد للالتهابات", price: 62, oldPrice: null, isOffer: false, status: "متوفر", icon: "💊" },
+    { id: 103, name: "Congestal 20 Tablets", category: "أدوية المسكنات والبرد", desc: "علاج أعراض البرد والإنفلونزا والرشح", price: 39, oldPrice: null, isOffer: false, status: "متوفر", icon: "🤧" },
+    { id: 104, name: "Brufen 400mg 30 Tablets", category: "أدوية المسكنات والبرد", desc: "مسكن للصداع وآلام الأسنان والمفاصل", price: 54, oldPrice: null, isOffer: false, status: "متوفر", icon: "💊" },
+    { id: 105, name: "Otrivin Adult Nasal Drops 15ml", category: "أدوية المسكنات والبرد", desc: "نقط للأنف لفتح الاحتقان السريع", price: 28, oldPrice: null, isOffer: false, status: "متوفر", icon: "💧" },
 
     // 2. أدوية الباطنة والجهاز الهضمي
-    { id: 201, name: "Controloc 40mg 14 Tablets", category: "الباطنة والجهاز الهضمي", desc: "علاج حموضة المعدة وارتجاع المريء", price: 112, status: "متوفر", icon: "🩺" },
-    { id: 202, name: "Antinal 200mg 24 Capsules", category: "الباطنة والجهاز الهضمي", desc: "مطهر معوي واسع المجال", price: 42, status: "متوفر", icon: "💊" },
-    { id: 203, name: "Gaviscon Advance Syrup 150ml", category: "الباطنة والجهاز الهضمي", desc: "شراب سريع المفعول لحرقان المعدة", price: 135, status: "متوفر", icon: "🧴" },
-    { id: 204, name: "Coloverin D 30 Tablets", category: "الباطنة والجهاز الهضمي", desc: "علاج تقلصات القولون العصبي والانتفاخ", price: 78, status: "متوفر", icon: "💊" },
-    { id: 205, name: "Motilium 10mg 30 Tablets", category: "الباطنة والجهاز الهضمي", desc: "لتنظيم حركة المعدة وعلاج الغثيان", price: 66, status: "متوفر", icon: "💊" },
+    { id: 201, name: "Controloc 40mg 14 Tablets", category: "الباطنة والجهاز الهضمي", desc: "علاج حموضة المعدة وارتجاع المريء", price: 112, oldPrice: null, isOffer: false, status: "متوفر", icon: "🩺" },
+    { id: 202, name: "Antinal 200mg 24 Capsules", category: "الباطنة والجهاز الهضمي", desc: "مطهر معوي واسع المجال", price: 42, oldPrice: null, isOffer: false, status: "متوفر", icon: "💊" },
+    { id: 203, name: "Gaviscon Advance Syrup 150ml", category: "الباطنة والجهاز الهضمي", desc: "شراب سريع المفعول لحرقان المعدة", price: 135, oldPrice: null, isOffer: false, status: "متوفر", icon: "🧴" },
+    { id: 204, name: "Coloverin D 30 Tablets", category: "الباطنة والجهاز الهضمي", desc: "علاج تقلصات القولون العصبي والانتفاخ", price: 78, oldPrice: null, isOffer: false, status: "متوفر", icon: "💊" },
+    { id: 205, name: "Motilium 10mg 30 Tablets", category: "الباطنة والجهاز الهضمي", desc: "لتنظيم حركة المعدة وعلاج الغثيان", price: 66, oldPrice: null, isOffer: false, status: "متوفر", icon: "💊" },
 
     // 3. المضادات الحيوية
-    { id: 301, name: "Augmentin 1g 14 Tablets", category: "المضادات الحيوية", desc: "مضاد حيوي واسع المجال", price: 138, status: "متوفر", icon: "🛡️" },
-    { id: 302, name: "Hibiotic 1g 16 Tablets", category: "المضادات الحيوية", desc: "أموكسيسيلين + كلافولانيك أسيد", price: 105, status: "متوفر", icon: "🛡️" },
-    { id: 303, name: "Zithromax 500mg 3 Capsules", category: "المضادات الحيوية", desc: "أزيثروميسين لعلاج عدوى الجهاز التنفسي", price: 118, status: "متوفر", icon: "💊" },
-    { id: 304, name: "Tavacin 500mg 5 Tablets", category: "المضادات الحيوية", desc: "ليفوفلوكساسين مضاد حيوي", price: 95, status: "متوفر", icon: "💊" },
-    { id: 305, name: "Curam 1g 14 Tablets", category: "المضادات الحيوية", desc: "مضاد حيوي لعلاج الالتهابات البكتيرية", price: 124, status: "متوفر", icon: "🛡️" },
+    { id: 301, name: "Augmentin 1g 14 Tablets", category: "المضادات الحيوية", desc: "مضاد حيوي واسع المجال", price: 138, oldPrice: null, isOffer: false, status: "متوفر", icon: "🛡️" },
+    { id: 302, name: "Hibiotic 1g 16 Tablets", category: "المضادات الحيوية", desc: "أموكسيسيلين + كلافولانيك أسيد", price: 105, oldPrice: null, isOffer: false, status: "متوفر", icon: "🛡️" },
+    { id: 303, name: "Zithromax 500mg 3 Capsules", category: "المضادات الحيوية", desc: "أزيثروميسين لعلاج عدوى الجهاز التنفسي", price: 118, oldPrice: null, isOffer: false, status: "متوفر", icon: "💊" },
+    { id: 304, name: "Tavacin 500mg 5 Tablets", category: "المضادات الحيوية", desc: "ليفوفلوكساسين مضاد حيوي", price: 95, oldPrice: null, isOffer: false, status: "متوفر", icon: "💊" },
+    { id: 305, name: "Curam 1g 14 Tablets", category: "المضادات الحيوية", desc: "مضاد حيوي لعلاج الالتهابات البكتيرية", price: 124, oldPrice: null, isOffer: false, status: "متوفر", icon: "🛡️" },
 
     // 4. الفيتامينات والمكملات الغذائية
-    { id: 401, name: "Centrum Lutein 30 Tablets", category: "الفيتامينات والمكملات", desc: "مجموعة فيتامينات ومعادن متكاملة يومية", price: 410, status: "متوفر", icon: "🌿" },
-    { id: 402, name: "Limitless Omega 3 30 Capsules", category: "الفيتامينات والمكملات", desc: "زيت السمك لصحة القلب والذاكرة", price: 195, status: "متوفر", icon: "🐟" },
-    { id: 403, name: "Kerovit 30 Capsules", category: "الفيتامينات والمكملات", desc: "مكمل غذائي لزيادة النشاط والتركيز", price: 165, status: "متوفر", icon: "⚡" },
-    { id: 404, name: "Osteocare 30 Tablets", category: "الفيتامينات والمكملات", desc: "كالسيوم وماغنسيوم وفيتامين د للعظام", price: 145, status: "متوفر", icon: "🦴" },
-    { id: 405, name: "Feroglobin B12 30 Capsules", category: "الفيتامينات والمكملات", desc: "حديد وزنك وفيتامينات لعلاج الأنيميا", price: 130, status: "متوفر", icon: "🩸" },
+    { id: 401, name: "Centrum Lutein 30 Tablets", category: "الفيتامينات والمكملات", desc: "مجموعة فيتامينات ومعادن متكاملة يومية", price: 365, oldPrice: 420, isOffer: true, status: "متوفر", icon: "🌿" },
+    { id: 402, name: "Limitless Omega 3 30 Capsules", category: "الفيتامينات والمكملات", desc: "زيت السمك لصحة القلب والذاكرة", price: 170, oldPrice: 205, isOffer: true, status: "متوفر", icon: "🐟" },
+    { id: 403, name: "Kerovit 30 Capsules", category: "الفيتامينات والمكملات", desc: "مكمل غذائي لزيادة النشاط والتركيز", price: 165, oldPrice: null, isOffer: false, status: "متوفر", icon: "⚡" },
+    { id: 404, name: "Osteocare 30 Tablets", category: "الفيتامينات والمكملات", desc: "كالسيوم وماغنسيوم وفيتامين د للعظام", price: 145, oldPrice: null, isOffer: false, status: "متوفر", icon: "🦴" },
+    { id: 405, name: "Feroglobin B12 30 Capsules", category: "الفيتامينات والمكملات", desc: "حديد وزنك وفيتامينات لعلاج الأنيميا", price: 130, oldPrice: null, isOffer: false, status: "متوفر", icon: "🩸" },
 
     // 5. العناية بالبشرة
-    { id: 501, name: "CeraVe Hydrating Cleanser 236ml", category: "العناية بالبشرة", desc: "غسول مرطب للبشرة العادية والجافة", price: 540, status: "متوفر", icon: "🧴" },
-    { id: 502, name: "La Roche-Posay Anthelios SPF50+", category: "العناية بالبشرة", desc: "واقي شمس عالي الحماية مقاوم للماء", price: 790, status: "متوفر", icon: "☀️" },
-    { id: 503, name: "Bioderma Sensibio H2O 250ml", category: "العناية بالبشرة", desc: "ماء ميسيلار لإزالة المكياج وتنظيف البشرة", price: 495, status: "متوفر", icon: "💧" },
-    { id: 504, name: "Eucerin Hyaluron-Filler Cream", category: "العناية بالبشرة", desc: "كريم ترطيب ومقاومة التجاعيد", price: 980, status: "متوفر", icon: "✨" },
-    { id: 505, name: "Starville Acne Prone Gel 200ml", category: "العناية بالبشرة", desc: "غسول للبشرة الدهنية والمختلطة", price: 165, status: "متوفر", icon: "🧼" },
+    { id: 501, name: "CeraVe Hydrating Cleanser 236ml", category: "العناية بالبشرة", desc: "غسول مرطب للبشرة العادية والجافة", price: 475, oldPrice: 560, isOffer: true, status: "متوفر", icon: "🧴" },
+    { id: 502, name: "La Roche-Posay Anthelios SPF50+", category: "العناية بالبشرة", desc: "واقي شمس عالي الحماية مقاوم للماء", price: 690, oldPrice: 820, isOffer: true, status: "متوفر", icon: "☀️" },
+    { id: 503, name: "Bioderma Sensibio H2O 250ml", category: "العناية بالبشرة", desc: "ماء ميسيلار لإزالة المكياج وتنظيف البشرة", price: 430, oldPrice: 510, isOffer: true, status: "متوفر", icon: "💧" },
+    { id: 504, name: "Eucerin Hyaluron-Filler Cream", category: "العناية بالبشرة", desc: "كريم ترطيب ومقاومة التجاعيد", price: 980, oldPrice: null, isOffer: false, status: "متوفر", icon: "✨" },
+    { id: 505, name: "Starville Acne Prone Gel 200ml", category: "العناية بالبشرة", desc: "غسول للبشرة الدهنية والمختلطة", price: 140, oldPrice: 175, isOffer: true, status: "متوفر", icon: "🧼" },
 
     // 6. العناية بالشعر
-    { id: 601, name: "Vichy Dercos Anti-Dandruff Shampoo", category: "العناية بالشعر", desc: "شامبو طبي لعلاج القشرة وتهدئة الفروة", price: 620, status: "متوفر", icon: "💆‍♀️" },
-    { id: 602, name: "Strongville Hair Spray 120ml", category: "العناية بالشعر", desc: "سبراي لتقوية البصيلات ومنع التساقط", price: 245, status: "متوفر", icon: "💇‍♀️" },
-    { id: 603, name: "Hair Back 5% Minoxidil Spray", category: "العناية بالشعر", desc: "علاج تساقط الشعر الوراثي وإنبات الفراغات", price: 155, status: "متوفر", icon: "🧴" },
-    { id: 604, name: "Bless Leave-In Curl Cream 300ml", category: "العناية بالشعر", desc: "كريم تصفيف وترطيب للشعر الكيرلي", price: 185, status: "متوفر", icon: "✨" },
-    { id: 605, name: "Seropipe Hair Serum 100ml", category: "العناية بالشعر", desc: "سيروم حماية الشعر من التقصف والهيشان", price: 210, status: "متوفر", icon: "💧" },
+    { id: 601, name: "Vichy Dercos Anti-Dandruff Shampoo", category: "العناية بالشعر", desc: "شامبو طبي لعلاج القشرة وتهدئة الفروة", price: 540, oldPrice: 640, isOffer: true, status: "متوفر", icon: "💆‍♀️" },
+    { id: 602, name: "Strongville Hair Spray 120ml", category: "العناية بالشعر", desc: "سبراي لتقوية البصيلات ومنع التساقط", price: 210, oldPrice: 255, isOffer: true, status: "متوفر", icon: "💇‍♀️" },
+    { id: 603, name: "Hair Back 5% Minoxidil Spray", category: "العناية بالشعر", desc: "علاج تساقط الشعر الوراثي وإنبات الفراغات", price: 155, oldPrice: null, isOffer: false, status: "متوفر", icon: "🧴" },
+    { id: 604, name: "Bless Leave-In Curl Cream 300ml", category: "العناية بالشعر", desc: "كريم تصفيف وترطيب للشعر الكيرلي", price: 185, oldPrice: null, isOffer: false, status: "متوفر", icon: "✨" },
+    { id: 605, name: "Seropipe Hair Serum 100ml", category: "العناية بالشعر", desc: "سيروم حماية الشعر من التقصف والهيشان", price: 210, oldPrice: null, isOffer: false, status: "متوفر", icon: "💧" },
 
     // 7. الأم والطفل
-    { id: 701, name: "Bebelac 1 Infant Formula 400g", category: "الأم والطفل", desc: "حليب أطفال للرضع من عمر يوم إلى 6 شهور", price: 235, status: "متوفر", icon: "🍼" },
-    { id: 702, name: "Pampers Premium Care Size 3", category: "الأم والطفل", desc: "حفاضات ناعمة فائقة الامتصاص للطفل", price: 365, status: "متوفر", icon: "👶" },
-    { id: 703, name: "Sudocrem Antiseptic Cream 125g", category: "الأم والطفل", desc: "كريم الحماية من التهابات الحفاض", price: 240, status: "متوفر", icon: "🧴" },
-    { id: 704, name: "Sanosan Baby Bath & Shampoo 200ml", category: "الأم والطفل", desc: "شامبو وشاور لطيف لا يسبب الدموع", price: 260, status: "متوفر", icon: "🛁" },
-    { id: 705, name: "Avent Natural Feeding Bottle 260ml", category: "الأم والطفل", desc: "ببرونة رضاعة طبيعية مضادة للمغص", price: 340, status: "متوفر", icon: "🍼" },
+    { id: 701, name: "Bebelac 1 Infant Formula 400g", category: "الأم والطفل", desc: "حليب أطفال للرضع من عمر يوم إلى 6 شهور", price: 235, oldPrice: null, isOffer: false, status: "متوفر", icon: "🍼" },
+    { id: 702, name: "Pampers Premium Care Size 3", category: "الأم والطفل", desc: "حفاضات ناعمة فائقة الامتصاص للطفل", price: 325, oldPrice: 380, isOffer: true, status: "متوفر", icon: "👶" },
+    { id: 703, name: "Sudocrem Antiseptic Cream 125g", category: "الأم والطفل", desc: "كريم الحماية من التهابات الحفاض", price: 210, oldPrice: 250, isOffer: true, status: "متوفر", icon: "🧴" },
+    { id: 704, name: "Sanosan Baby Bath & Shampoo 200ml", category: "الأم والطفل", desc: "شامبو وشاور لطيف لا يسبب الدموع", price: 260, oldPrice: null, isOffer: false, status: "متوفر", icon: "🛁" },
+    { id: 705, name: "Avent Natural Feeding Bottle 260ml", category: "الأم والطفل", desc: "ببرونة رضاعة طبيعية مضادة للمغص", price: 340, oldPrice: null, isOffer: false, status: "متوفر", icon: "🍼" },
 
     // 8. العناية الشخصية والأسنان
-    { id: 801, name: "Sensodyne Repair & Protect 75ml", category: "العناية الشخصية والأسنان", desc: "معجون أسنان لحماية الأسنان الحساسة", price: 115, status: "متوفر", icon: "🦷" },
-    { id: 802, name: "Listerine Cool Mint Mouthwash 250ml", category: "العناية الشخصية والأسنان", desc: "غسول فم لانتعاش يدوم طويلاً", price: 125, status: "متوفر", icon: "💧" },
-    { id: 803, name: "Beesline Whitening Roll-On Deo", category: "العناية الشخصية والأسنان", desc: "مزيل عرق طبيعي لطيف على البشرة", price: 250, status: "متوفر", icon: "🌸" },
-    { id: 804, name: "Gillette Blue3 Comfort Razors", category: "العناية الشخصية والأسنان", desc: "شفرات حلاقة ثلاثية الشفرات", price: 140, status: "متوفر", icon: "🪒" },
-    { id: 805, name: "Dettol Original Liquid Antiseptic 250ml", category: "العناية الشخصية والأسنان", desc: "مطهر ومعقم متعدد الاستخدامات", price: 95, status: "متوفر", icon: "🧼" },
+    { id: 801, name: "Sensodyne Repair & Protect 75ml", category: "العناية الشخصية والأسنان", desc: "معجون أسنان لحماية الأسنان الحساسة", price: 98, oldPrice: 120, isOffer: true, status: "متوفر", icon: "🦷" },
+    { id: 802, name: "Listerine Cool Mint Mouthwash 250ml", category: "العناية الشخصية والأسنان", desc: "غسول فم لانتعاش يدوم طويلاً", price: 125, oldPrice: null, isOffer: false, status: "متوفر", icon: "💧" },
+    { id: 803, name: "Beesline Whitening Roll-On Deo", category: "العناية الشخصية والأسنان", desc: "مزيل عرق طبيعي لطيف على البشرة", price: 215, oldPrice: 260, isOffer: true, status: "متوفر", icon: "🌸" },
+    { id: 804, name: "Gillette Blue3 Comfort Razors", category: "العناية الشخصية والأسنان", desc: "شفرات حلاقة ثلاثية الشفرات", price: 140, oldPrice: null, isOffer: false, status: "متوفر", icon: "🪒" },
+    { id: 805, name: "Dettol Original Liquid Antiseptic 250ml", category: "العناية الشخصية والأسنان", desc: "مطهر ومعقم متعدد الاستخدامات", price: 95, oldPrice: null, isOffer: false, status: "متوفر", icon: "🧼" },
 
     // 9. الأجهزة والمستلزمات الطبية
-    { id: 901, name: "Omron M2 Basic Blood Pressure", category: "الأجهزة والمستلزمات الطبية", desc: "جهاز قياس ضغط الدم الديجيتال الأوتوماتيك", price: 1450, status: "متوفر", icon: "🩺" },
-    { id: 902, name: "Accu-Chek Instant Glucometer", category: "الأجهزة والمستلزمات الطبية", desc: "جهاز قياس السكر في الدم مع شرائط", price: 690, status: "متوفر", icon: "🩸" },
-    { id: 903, name: "Beurer Digital Thermometer", category: "الأجهزة والمستلزمات الطبية", desc: "ترمومتر ديجيتال سريع لقياس الحرارة", price: 185, status: "متوفر", icon: "🌡️" },
-    { id: 904, name: "Granzia Compressor Nebulizer", category: "الأجهزة والمستلزمات الطبية", desc: "جهاز استنشاق بخار لعلاج ضيق التنفس", price: 920, status: "متوفر", icon: "🫁" },
-    { id: 905, name: "Hansaplast Elastic Bandages 20pcs", category: "الأجهزة والمستلزمات الطبية", desc: "بلاستر جروح طبي مرن مقاوم للماء", price: 38, status: "متوفر", icon: "🩹" }
+    { id: 901, name: "Omron M2 Basic Blood Pressure", category: "الأجهزة والمستلزمات الطبية", desc: "جهاز قياس ضغط الدم الديجيتال الأوتوماتيك", price: 1290, oldPrice: 1480, isOffer: true, status: "متوفر", icon: "🩺" },
+    { id: 902, name: "Accu-Chek Instant Glucometer", category: "الأجهزة والمستلزمات الطبية", desc: "جهاز قياس السكر في الدم مع شرائط", price: 690, oldPrice: null, isOffer: false, status: "متوفر", icon: "🩸" },
+    { id: 903, name: "Beurer Digital Thermometer", category: "الأجهزة والمستلزمات الطبية", desc: "ترمومتر ديجيتال سريع لقياس الحرارة", price: 185, oldPrice: null, isOffer: false, status: "متوفر", icon: "🌡️" },
+    { id: 904, name: "Granzia Compressor Nebulizer", category: "الأجهزة والمستلزمات الطبية", desc: "جهاز استنشاق بخار لعلاج ضيق التنفس", price: 920, oldPrice: null, isOffer: false, status: "متوفر", icon: "🫁" },
+    { id: 905, name: "Hansaplast Elastic Bandages 20pcs", category: "الأجهزة والمستلزمات الطبية", desc: "بلاستر جروح طبي مرن مقاوم للماء", price: 38, oldPrice: null, isOffer: false, status: "متوفر", icon: "🩹" }
   ];
 
   const defaultConfig = {
     name: "صيدلية د/ أحمد عبدالرحيم",
     whatsapp: "201119713199",
-    displayPhone: "01119713199",
     delivery: 20,
-    sheetUrl: ""
+    bannerTitle: "أقوى عروض صيدلية د/ أحمد عبدالرحيم",
+    sheetUrl: "",
+    adminPass: "1234"
   };
 
-  let config = JSON.parse(localStorage.getItem('pharmConfig_v2')) || { ...defaultConfig };
-  let products = [...defaultProducts];
+  let config = JSON.parse(localStorage.getItem('pharmConfig_v3')) || { ...defaultConfig };
+  let products = JSON.parse(localStorage.getItem('pharmProducts_v3')) || [...defaultProducts];
   let cart = [];
-  let currentCategory = "الكل";
+  let currentCategory = "العروض"; // Default home view is Offers!
+
+  // Secret Admin Access: 1) Keyboard shortcut Ctrl+Shift+A  2) 5 rapid clicks on the Pharmacy Logo
+  let logoClicks = 0;
+  let logoClickTimer = null;
+  document.getElementById('brandLogoArea').addEventListener('click', () => {
+    logoClicks++;
+    clearTimeout(logoClickTimer);
+    if (logoClicks >= 5) {
+      logoClicks = 0;
+      openAdminLogin();
+    } else {
+      logoClickTimer = setTimeout(() => { logoClicks = 0; }, 1500);
+    }
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.ctrlKey && e.shiftKey && (e.key === 'A' || e.key === 'a' || e.key === 'ش')) {
+      e.preventDefault();
+      openAdminLogin();
+    }
+  });
 
   function showToast(msg) {
     const t = document.getElementById('toast');
@@ -692,6 +930,7 @@
   function applyConfig() {
     document.getElementById('pharmacyNameDisplay').innerText = config.name;
     document.getElementById('footerPharmacyName').innerText = config.name;
+    document.getElementById('bannerTitle').innerText = config.bannerTitle;
     document.title = config.name + " | المتجر الإلكتروني الرسمي";
     document.getElementById('deliveryDisplay').innerText = config.delivery + " ج.م";
     const cleanPhone = config.whatsapp.startsWith('20') ? '0' + config.whatsapp.slice(2) : config.whatsapp;
@@ -708,41 +947,79 @@
         const parsed = rows.map((r, idx) => {
           const cols = r.split(',');
           if (cols.length < 3 || !cols[0].trim()) return null;
+          const price = parseFloat(cols[2]) || 0;
+          const oldP = parseFloat(cols[6]) || null;
           return {
-            id: idx + 1000,
+            id: idx + 2000,
             name: cols[0].trim().replace(/"/g, ''),
             category: (cols[1] || "أدوية وعلاجات").trim().replace(/"/g, ''),
-            price: parseFloat(cols[2]) || 0,
+            price: price,
             status: (cols[3] || "متوفر").trim().replace(/"/g, ''),
             image: (cols[4] || "").trim().replace(/"/g, ''),
             desc: (cols[5] || "").trim().replace(/"/g, ''),
+            oldPrice: oldP,
+            isOffer: Boolean(oldP && oldP > price),
             icon: "💊"
           };
         }).filter(Boolean);
         if (parsed.length > 0) products = parsed;
       } catch (e) {
-        console.error("Error loading sheet:", e);
+        console.error("Sheet load error:", e);
       }
-    } else {
-      products = [...defaultProducts];
     }
-    renderCategories();
+    renderSidebar();
     renderProducts();
   }
 
-  function renderCategories() {
-    const cats = ["الكل", ...new Set(products.map(p => p.category))];
-    const bar = document.getElementById('categoryBar');
-    bar.innerHTML = cats.map(c => {
-      const count = c === "الكل" ? products.length : products.filter(p => p.category === c).length;
-      return `<button class="cat-btn ${c === currentCategory ? 'active' : ''}" onclick="selectCategory('${c.replace(/'/g, "\\'")}')">${c} (${count})</button>`;
-    }).join('');
+  function renderSidebar() {
+    const offersCount = products.filter(p => p.isOffer || (p.oldPrice && p.oldPrice > p.price)).length;
+    const cats = [...new Set(products.map(p => p.category))];
+    const list = document.getElementById('sidebarCategories');
+
+    let html = `
+      <li>
+        <button class="sidebar-item offer-tab ${currentCategory === 'العروض' ? 'active' : ''}" onclick="selectCategory('العروض')">
+          <span>🔥 العروض والخصومات</span>
+          <span class="sidebar-count">${offersCount}</span>
+        </button>
+      </li>
+      <li>
+        <button class="sidebar-item ${currentCategory === 'الكل' ? 'active' : ''}" onclick="selectCategory('الكل')">
+          <span>🏥 كل منتجات الصيدلية</span>
+          <span class="sidebar-count">${products.length}</span>
+        </button>
+      </li>
+    `;
+
+    cats.forEach(c => {
+      const count = products.filter(p => p.category === c).length;
+      html += `
+        <li>
+          <button class="sidebar-item ${currentCategory === c ? 'active' : ''}" onclick="selectCategory('${c.replace(/'/g, "\\'")}')">
+            <span>${c}</span>
+            <span class="sidebar-count">${count}</span>
+          </button>
+        </li>
+      `;
+    });
+
+    list.innerHTML = html;
   }
 
   function selectCategory(cat) {
     currentCategory = cat;
-    document.getElementById('currentSectionTitle').innerText = cat === "الكل" ? "جميع أقسام ومنتجات الصيدلية" : "قسم: " + cat;
-    renderCategories();
+    const banner = document.getElementById('offersHeroBanner');
+    if (cat === 'العروض') {
+      banner.style.display = 'flex';
+      document.getElementById('currentSectionTitle').innerText = "🔥 عروض وخصومات الصيدلية";
+    } else if (cat === 'الكل') {
+      banner.style.display = 'none';
+      document.getElementById('currentSectionTitle').innerText = "🏥 جميع منتجات الصيدلية";
+    } else {
+      banner.style.display = 'none';
+      document.getElementById('currentSectionTitle').innerText = "📂 قسم: " + cat;
+    }
+    renderSidebar();
     renderProducts();
   }
 
@@ -761,21 +1038,26 @@
   function renderProducts() {
     const q = document.getElementById('searchInput').value.trim().toLowerCase();
     const filtered = products.filter(p => {
-      const matchCat = currentCategory === "الكل" || p.category === currentCategory;
-      const matchSearch = !q || 
-        p.name.toLowerCase().includes(q) || 
-        p.category.toLowerCase().includes(q) || 
-        (p.desc && p.desc.toLowerCase().includes(q));
-      return matchCat && matchSearch;
+      if (q) {
+        return p.name.toLowerCase().includes(q) ||
+               p.category.toLowerCase().includes(q) ||
+               (p.desc && p.desc.toLowerCase().includes(q));
+      }
+      if (currentCategory === "العروض") return p.isOffer || (p.oldPrice && p.oldPrice > p.price);
+      if (currentCategory === "الكل") return true;
+      return p.category === currentCategory;
     });
+
+    if (q) {
+      document.getElementById('currentSectionTitle').innerText = `🔍 نتائج البحث عن: "${q}"`;
+    }
 
     document.getElementById('productsCountLabel').innerText = `${filtered.length} صنف`;
     const grid = document.getElementById('productsGrid');
 
     if (filtered.length === 0) {
       grid.innerHTML = `<div style="grid-column:1/-1; text-align:center; padding:40px; background:#fff; border-radius:16px; border:1px solid var(--border);">
-        <p style="font-size:1.1rem; font-weight:800; color:var(--navy); margin-bottom:8px;">لم يتم العثور على هذا المنتج في القائمة الحالية</p>
-        <p style="font-size:0.9rem; color:var(--muted); margin-bottom:14px;">يمكنك طلبه مباشرة عبر واتساب الصيدلية وسنوفره لك فوراً</p>
+        <p style="font-size:1.1rem; font-weight:800; color:var(--navy); margin-bottom:8px;">لا توجد أصناف مطابقة حالياً</p>
         <button class="btn-rx" style="margin:auto;" onclick="openRxModal()">📲 اطلبه عبر واتساب الآن</button>
       </div>`;
       return;
@@ -784,8 +1066,28 @@
     grid.innerHTML = filtered.map(p => {
       const available = p.status !== "غير متوفر";
       const media = p.image ? `<img src="${p.image}" alt="${p.name}">` : p.icon;
+      const inCartItem = cart.find(item => item.id === p.id);
+      const hasDiscount = p.oldPrice && p.oldPrice > p.price;
+      const discountPct = hasDiscount ? Math.round(((p.oldPrice - p.price) / p.oldPrice) * 100) : 0;
+
+      let actionHTML = '';
+      if (!available) {
+        actionHTML = `<button class="add-btn" disabled>نفذت الكمية</button>`;
+      } else if (inCartItem) {
+        actionHTML = `
+          <div class="inline-qty-box">
+            <button class="inline-qty-btn" onclick="changeQty(${p.id}, 1)">+</button>
+            <span class="inline-qty-num">${inCartItem.qty}</span>
+            <button class="inline-qty-btn" onclick="changeQty(${p.id}, -1)">-</button>
+          </div>
+        `;
+      } else {
+        actionHTML = `<button class="add-btn" onclick="addToCart(${p.id})">+ أضف للسلة</button>`;
+      }
+
       return `
         <div class="card">
+          ${hasDiscount ? `<span class="badge-discount">خصم ${discountPct}%</span>` : ''}
           <span class="badge-stock ${available ? '' : 'out'}">${available ? 'متوفر' : 'غير متوفر'}</span>
           <div>
             <div class="card-visual">${media}</div>
@@ -793,11 +1095,12 @@
             <div class="card-title">${p.name}</div>
             ${p.desc ? `<div class="card-desc">${p.desc}</div>` : ''}
           </div>
-          <div class="card-footer">
-            <div class="price">${p.price} <small>ج.م</small></div>
-            ${available
-              ? `<button class="add-btn" onclick="addToCart(${p.id})">+ أضف للسلة</button>`
-              : `<button class="add-btn" disabled>نفذت الكمية</button>`}
+          <div class="card-action-area">
+            <div class="price-row">
+              <span class="price">${p.price} <small>ج.م</small></span>
+              ${hasDiscount ? `<span class="old-price">${p.oldPrice} ج.م</span>` : ''}
+            </div>
+            ${actionHTML}
           </div>
         </div>
       `;
@@ -811,6 +1114,7 @@
     if (existing) existing.qty++;
     else cart.push({ ...prod, qty: 1 });
     updateCartUI();
+    renderProducts();
     showToast(`✓ تمت إضافة "${prod.name}" للسلة`);
   }
 
@@ -820,6 +1124,7 @@
     cart[idx].qty += delta;
     if (cart[idx].qty <= 0) cart.splice(idx, 1);
     updateCartUI();
+    renderProducts();
   }
 
   function updateCartUI() {
@@ -831,19 +1136,18 @@
       container.innerHTML = `<div style="text-align:center; color:var(--muted); margin-top:50px;">
         <div style="font-size:42px; margin-bottom:10px;">🛒</div>
         <p style="font-weight:700;">سلة المشتريات فارغة حالياً</p>
-        <p style="font-size:0.82rem;">اختر المنتجات من الأقسام وأضفها للسلة</p>
       </div>`;
     } else {
       container.innerHTML = cart.map(item => `
         <div class="cart-item">
           <div style="flex:1;">
-            <div style="font-weight:800; font-size:0.88rem; color:var(--text);">${item.name}</div>
-            <div style="color:var(--navy); font-weight:800; font-size:0.85rem;">${item.price * item.qty} ج.م <small style="color:var(--muted); font-weight:600;">(${item.price} × ${item.qty})</small></div>
+            <div style="font-weight:800; font-size:0.88rem;">${item.name}</div>
+            <div style="color:var(--navy); font-weight:800; font-size:0.85rem;">${item.price * item.qty} ج.م</div>
           </div>
-          <div class="qty-controls">
-            <button class="qty-btn" onclick="changeQty(${item.id}, -1)">-</button>
-            <strong style="min-width:18px; text-align:center;">${item.qty}</strong>
-            <button class="qty-btn" onclick="changeQty(${item.id}, 1)">+</button>
+          <div class="inline-qty-box" style="gap:8px; padding:3px 6px;">
+            <button class="inline-qty-btn" style="width:26px; height:26px;" onclick="changeQty(${item.id}, 1)">+</button>
+            <span class="inline-qty-num" style="font-size:0.9rem; min-width:20px;">${item.qty}</span>
+            <button class="inline-qty-btn" style="width:26px; height:26px;" onclick="changeQty(${item.id}, -1)">-</button>
           </div>
         </div>
       `).join('');
@@ -867,46 +1171,163 @@
     document.getElementById('rxModal').classList.add('open');
   }
 
-  function openSettings() {
+  /* Admin Controls */
+  function openAdminLogin() {
+    closeAll();
+    document.getElementById('adminPassInput').value = "";
+    document.getElementById('overlay').classList.add('open');
+    document.getElementById('adminLoginModal').classList.add('open');
+    setTimeout(() => document.getElementById('adminPassInput').focus(), 100);
+  }
+
+  function verifyAdminPass() {
+    const entered = document.getElementById('adminPassInput').value;
+    if (entered === config.adminPass) {
+      openAdminPanel();
+    } else {
+      alert("كلمة المرور غير صحيحة!");
+    }
+  }
+
+  function openAdminPanel() {
     closeAll();
     document.getElementById('setPharmName').value = config.name;
     document.getElementById('setWhatsapp').value = config.whatsapp;
     document.getElementById('setDelivery').value = config.delivery;
+    document.getElementById('setBannerTitle').value = config.bannerTitle;
     document.getElementById('setSheetUrl').value = config.sheetUrl;
+    document.getElementById('setAdminPass').value = config.adminPass;
+    renderAdminProductsList();
     document.getElementById('overlay').classList.add('open');
-    document.getElementById('settingsModal').classList.add('open');
+    document.getElementById('adminPanelModal').classList.add('open');
   }
 
-  function saveSettings() {
+  function switchAdminTab(tabName, btn) {
+    document.querySelectorAll('.admin-tab').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.admin-section').forEach(s => s.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('tab-' + tabName).classList.add('active');
+  }
+
+  function saveGeneralSettings() {
     config = {
       name: document.getElementById('setPharmName').value.trim() || defaultConfig.name,
       whatsapp: document.getElementById('setWhatsapp').value.trim() || defaultConfig.whatsapp,
       delivery: Number(document.getElementById('setDelivery').value) || 0,
-      sheetUrl: document.getElementById('setSheetUrl').value.trim()
+      bannerTitle: document.getElementById('setBannerTitle').value.trim() || defaultConfig.bannerTitle,
+      sheetUrl: document.getElementById('setSheetUrl').value.trim(),
+      adminPass: document.getElementById('setAdminPass').value.trim() || "1234"
     };
-    localStorage.setItem('pharmConfig_v2', JSON.stringify(config));
+    localStorage.setItem('pharmConfig_v3', JSON.stringify(config));
     applyConfig();
     loadProducts();
     updateCartUI();
-    closeAll();
-    showToast("✓ تم حفظ الإعدادات بنجاح");
+    showToast("✓ تم حفظ إعدادات المتجر بنجاح");
   }
 
-  function resetDefaultSettings() {
-    localStorage.removeItem('pharmConfig_v2');
+  function addNewProductManual() {
+    const name = document.getElementById('newProdName').value.trim();
+    const category = document.getElementById('newProdCat').value;
+    const price = parseFloat(document.getElementById('newProdPrice').value);
+    const oldPrice = parseFloat(document.getElementById('newProdOldPrice').value) || null;
+    const desc = document.getElementById('newProdDesc').value.trim();
+    const image = document.getElementById('newProdImg').value.trim();
+
+    if (!name || !price) return alert("يرجى إدخال اسم الصنف والسعر");
+
+    products.unshift({
+      id: Date.now(),
+      name,
+      category,
+      price,
+      oldPrice,
+      isOffer: Boolean(oldPrice && oldPrice > price),
+      desc,
+      image,
+      status: "متوفر",
+      icon: "💊"
+    });
+
+    localStorage.setItem('pharmProducts_v3', JSON.stringify(products));
+    renderSidebar();
+    renderProducts();
+    renderAdminProductsList();
+    document.getElementById('newProdName').value = "";
+    document.getElementById('newProdPrice').value = "";
+    document.getElementById('newProdOldPrice').value = "";
+    document.getElementById('newProdDesc').value = "";
+    document.getElementById('newProdImg').value = "";
+    showToast("✓ تمت إضافة الصنف للمتجر بنجاح");
+  }
+
+  function renderAdminProductsList() {
+    const q = (document.getElementById('adminSearchProd').value || "").toLowerCase();
+    const filtered = products.filter(p => p.name.toLowerCase().includes(q) || p.category.toLowerCase().includes(q));
+    const list = document.getElementById('adminProductsList');
+    list.innerHTML = filtered.map(p => `
+      <div class="admin-prod-row">
+        <div style="flex:1; min-width:180px;">
+          <strong style="font-size:0.88rem; display:block;">${p.name}</strong>
+          <small style="color:var(--muted);">${p.category}</small>
+        </div>
+        <div style="display:flex; align-items:center; gap:6px;">
+          <input type="number" value="${p.price}" style="width:75px; padding:5px; border:1px solid var(--border); border-radius:6px;" onchange="updateProdPrice(${p.id}, this.value)" />
+          <small>ج.م</small>
+          <button class="admin-tab" style="padding:5px 10px; background:${p.status==='متوفر'?'#DCFCE7':'#FEE2E2'}; color:${p.status==='متوفر'?'#16A34A':'#DC2626'};" onclick="toggleProdStock(${p.id})">${p.status}</button>
+          <button class="admin-tab" style="padding:5px 9px; color:#DC2626;" onclick="deleteProd(${p.id})">🗑️</button>
+        </div>
+      </div>
+    `).join('');
+  }
+
+  function updateProdPrice(id, newPrice) {
+    const p = products.find(x => x.id === id);
+    if (p) {
+      p.price = parseFloat(newPrice) || 0;
+      localStorage.setItem('pharmProducts_v3', JSON.stringify(products));
+      renderProducts();
+      showToast("✓ تم تحديث السعر");
+    }
+  }
+
+  function toggleProdStock(id) {
+    const p = products.find(x => x.id === id);
+    if (p) {
+      p.status = p.status === "متوفر" ? "غير متوفر" : "متوفر";
+      localStorage.setItem('pharmProducts_v3', JSON.stringify(products));
+      renderAdminProductsList();
+      renderProducts();
+    }
+  }
+
+  function deleteProd(id) {
+    if (!confirm("هل تريد حذف هذا الصنف؟")) return;
+    products = products.filter(x => x.id !== id);
+    localStorage.setItem('pharmProducts_v3', JSON.stringify(products));
+    renderAdminProductsList();
+    renderSidebar();
+    renderProducts();
+  }
+
+  function resetAllData() {
+    if (!confirm("هل تريد استعادة جميع الأصناف والإعدادات الافتراضية؟")) return;
+    localStorage.removeItem('pharmConfig_v3');
+    localStorage.removeItem('pharmProducts_v3');
     config = { ...defaultConfig };
+    products = [...defaultProducts];
     applyConfig();
-    loadProducts();
-    updateCartUI();
+    renderSidebar();
+    renderProducts();
     closeAll();
-    showToast("✓ تمت استعادة الإعدادات الافتراضية");
+    showToast("✓ تمت استعادة ضبط المصنع");
   }
 
   function closeAll() {
     document.getElementById('overlay').classList.remove('open');
     document.getElementById('cartDrawer').classList.remove('open');
     document.getElementById('rxModal').classList.remove('open');
-    document.getElementById('settingsModal').classList.remove('open');
+    document.getElementById('adminLoginModal').classList.remove('open');
+    document.getElementById('adminPanelModal').classList.remove('open');
   }
 
   function sendRxWhatsApp() {
@@ -946,7 +1367,7 @@
     window.open(`https://wa.me/${config.whatsapp}?text=${encodeURIComponent(text)}`, '_blank');
   }
 
-  // Initialize
+  // Init
   applyConfig();
   loadProducts();
   updateCartUI();
